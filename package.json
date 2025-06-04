@@ -1,0 +1,12 @@
+{
+  "name": "actualnow-api",
+  "version": "1.0.0",
+  "description": "Serverless function for live scores",
+  "main": "api/live-scores.js",
+  "dependencies": {
+    "node-fetch": "^2.6.1"
+  },
+  "scripts": {
+    "start": "vercel dev"
+  }
+}
