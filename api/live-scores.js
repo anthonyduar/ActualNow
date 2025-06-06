@@ -2,6 +2,7 @@
 
 // No necesitamos importar axios si usamos fetch nativo
 // const axios = require('axios'); // <<-- ELIMINAR O COMENTAR ESTA LÍNEA
+// Prueba de despliegue con clave actualizada
 
 export default async (req, res) => {
     const API_FOOTBALL_KEY = process.env.API_FOOTBALL_KEY;
