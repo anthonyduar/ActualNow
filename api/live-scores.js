@@ -1,3 +1,4 @@
+// Cambio forzado para despliegue de Vercel
 const axios = require('axios'); // Asegúrate de que tienes axios instalado (npm install axios)
 
 export default async (req, res) => {
