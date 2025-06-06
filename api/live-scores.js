@@ -1,4 +1,4 @@
-import axios from 'axios'; // Asegúrate de que tienes axios instalado (npm install axios)
+const axios = require('axios'); // Asegúrate de que tienes axios instalado (npm install axios)
 
 export default async (req, res) => {
     // Tu clave API se configurará en Vercel, no aquí directamente
