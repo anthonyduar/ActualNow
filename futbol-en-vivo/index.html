@@ -17,9 +17,11 @@
 	<meta property="og:description" content="Cargando resultados de fútbol&#8230;">
 	<meta property="og:url" content="/futbol-en-vivo/">
 	<meta property="og:site_name" content="ActualNow">
-	<meta property="article:modified_time" content="2025-06-06T19:25:57+00:00">
+	<meta property="article:modified_time" content="2025-06-06T19:32:15+00:00">
 	<meta name="twitter:card" content="summary_large_image">
-	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"/futbol-en-vivo/","url":"/futbol-en-vivo/","name":"FÚTBOL EN VIVO - ActualNow","isPartOf":{"@id":"/#website"},"datePublished":"2025-06-05T23:20:47+00:00","dateModified":"2025-06-06T19:25:57+00:00","breadcrumb":{"@id":"/futbol-en-vivo/#breadcrumb"},"inLanguage":"es","potentialAction":[{"@type":"ReadAction","target":["/futbol-en-vivo/"]}]},{"@type":"BreadcrumbList","@id":"/futbol-en-vivo/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"/"},{"@type":"ListItem","position":2,"name":"FÚTBOL EN VIVO"}]},{"@type":"WebSite","@id":"/#website","url":"/","name":"ActualNow","description":"Tu pasión, nuestra noticia.","publisher":{"@id":"/#organization"},"potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"/?s={search_term_string}"},"query-input":{"@type":"PropertyValueSpecification","valueRequired":true,"valueName":"search_term_string"}}],"inLanguage":"es"},{"@type":"Organization","@id":"/#organization","name":"ActualNow","url":"/","logo":{"@type":"ImageObject","inLanguage":"es","@id":"/#/schema/logo/image/","url":"/wp-content/uploads/2025/06/Logo-1-1.png","contentUrl":"/wp-content/uploads/2025/06/Logo-1-1.png","width":150,"height":150,"caption":"ActualNow"},"image":{"@id":"/#/schema/logo/image/"}}]}</script>
+	<meta name="twitter:label1" content="Est. reading time">
+	<meta name="twitter:data1" content="1 minuto">
+	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"/futbol-en-vivo/","url":"/futbol-en-vivo/","name":"FÚTBOL EN VIVO - ActualNow","isPartOf":{"@id":"/#website"},"datePublished":"2025-06-05T23:20:47+00:00","dateModified":"2025-06-06T19:32:15+00:00","breadcrumb":{"@id":"/futbol-en-vivo/#breadcrumb"},"inLanguage":"es","potentialAction":[{"@type":"ReadAction","target":["/futbol-en-vivo/"]}]},{"@type":"BreadcrumbList","@id":"/futbol-en-vivo/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"/"},{"@type":"ListItem","position":2,"name":"FÚTBOL EN VIVO"}]},{"@type":"WebSite","@id":"/#website","url":"/","name":"ActualNow","description":"Tu pasión, nuestra noticia.","publisher":{"@id":"/#organization"},"potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"/?s={search_term_string}"},"query-input":{"@type":"PropertyValueSpecification","valueRequired":true,"valueName":"search_term_string"}}],"inLanguage":"es"},{"@type":"Organization","@id":"/#organization","name":"ActualNow","url":"/","logo":{"@type":"ImageObject","inLanguage":"es","@id":"/#/schema/logo/image/","url":"/wp-content/uploads/2025/06/Logo-1-1.png","contentUrl":"/wp-content/uploads/2025/06/Logo-1-1.png","width":150,"height":150,"caption":"ActualNow"},"image":{"@id":"/#/schema/logo/image/"}}]}</script>
 	<!-- / Yoast SEO plugin. -->
 
 
@@ -544,22 +546,26 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const resultadosDiv = document.getElementById('resultados-futbol');
-    // Asegúrate de que esta URL sea la de tu función Vercel
     const apiURL = 'https://actualnow.vercel.app/api/live-scores'; 
 
     fetch(apiURL)
         .then(response => {
             if (!response.ok) {
+                console.error('Error en la respuesta de la API:', response.status, response.statusText);
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             return response.json();
         })
-        .then(data => {
+        .then(apiResponse => { // Cambiado 'data' a 'apiResponse' para mayor claridad
             let htmlContent = '';
-            if (data.length === 0) {
+            
+            // Acceder a la propiedad 'response' del JSON
+            const matches = apiResponse.response; 
+
+            if (!matches || matches.length === 0) {
                 htmlContent = '<p>No hay partidos en vivo disponibles en este momento.<\/p>';
             } else {
-                data.forEach(match => {
+                matches.forEach(match => {
                     const homeTeamName = match.teams.home.name;
                     const awayTeamName = match.teams.away.name;
                     const homeScore = match.goals.home !== null ? match.goals.home : '-';
@@ -570,7 +576,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     htmlContent += `
                         <p>
-                            <strong>${homeTeamName}<\/strong> ${homeScore} - <span class="math-inline">\{awayScore\} <strong\><\/span>{awayTeamName}<\/strong><br/>
+                            <strong>${homeTeamName}<\/strong> ${homeScore} - ${awayScore} <strong>${awayTeamName}<\/strong><br/>
                             Liga: ${leagueName} - Estado: ${status} ${status === 'Match Finished' ? '' : `(${elapsed}' min)`}
                         <\/p>
                         <hr/>
