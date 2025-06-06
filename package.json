@@ -10,9 +10,10 @@
   "author": "",
   "license": "ISC",
   "engines": {
-      "node": "18.x"
+    "node": "18.x"
   },
   "dependencies": {
-    "node-fetch": "^2.6.7" 
+    "axios": "^1.9.0",
+    "node-fetch": "^2.6.7"
   }
 }

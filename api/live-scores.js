@@ -1,48 +1,53 @@
-import fetch from 'node-fetch'; // Asegúrate de que esto es 'node-fetch' si tu Node.js es antiguo, o quítalo si usas Node.js 18+
+import axios from 'axios'; // Asegúrate de que tienes axios instalado (npm install axios)
 
 export default async (req, res) => {
-    // TU CLAVE API SE CONFIGURARÁ EN VERCEL, NO AQUÍ DIRECTAMENTE
-    const API_KEY = process.env.API_FOOTBALL_KEY;
+    // Tu clave API se configurará en Vercel, no aquí directamente
+    const API_FOOTBALL_KEY = process.env.API_FOOTBALL_KEY;
 
-    // Esta es la URL del endpoint que encontramos en la documentación para partidos en vivo
-    const API_URL = "https://v3.football.api-sports.io/fixtures?live=all";
+    // IDs de las ligas y competiciones que quieres mostrar
+    // Esta es la lista que me proporcionaste, separada por comas.
+    const desiredLeagueIds = '39,61,135,78,94,140,71,1,299,128,13,9,866,2,3,4,5,848,531,15,1168,143,556,34,32';
 
-    // *** INICIO DE LAS CABECERAS CORS AÑADIDAS ***
-    // Permite que cualquier origen (tu Live Server local, por ejemplo) acceda a esta API
+    // *** INICIO DE LAS CABECERAS CORS Y CACHÉ ***
     res.setHeader('Access-Control-Allow-Origin', '*');
-    // Define los métodos HTTP permitidos (GET, POST, OPTIONS)
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-    // Define las cabeceras que pueden ser usadas en la solicitud
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, x-rapidapi-host, x-rapidapi-key');
+    res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,Content-Type,Accept');
 
-    // Manejar las solicitudes preflight (OPTIONS):
-    // El navegador envía una solicitud OPTIONS primero para verificar los permisos CORS.
-    // Si la solicitud es OPTIONS, respondemos con 200 OK y las cabeceras CORS.
+    // Manejar las solicitudes preflight (OPTIONS)
     if (req.method === 'OPTIONS') {
         return res.status(200).end();
     }
-    // *** FIN DE LAS CABECERAS CORS AÑADIDAS ***
 
-    if (!API_KEY) {
+    // Cabeceras de caché para Vercel Edge. Cachea la respuesta por 60 segundos.
+    res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate');
+    // *** FIN DE LAS CABECERAS CORS Y CACHÉ ***
+
+    if (!API_FOOTBALL_KEY) {
         return res.status(500).json({ error: "API_FOOTBALL_KEY no está configurada en Vercel." });
     }
 
     try {
-        const response = await fetch(API_URL, {
+        const options = {
             method: 'GET',
+            // La URL base es solo el host, los parámetros van en 'params'
+            url: 'https://api-football-v1.p.rapidapi.com/v3/fixtures',
+            params: {
+                live: 'all', // Pide todos los partidos que estén en vivo
+                league: desiredLeagueIds // Filtra por las ligas específicas
+            },
             headers: {
-                'x-rapidapi-host': 'v3.football.api-sports.io', // Este host podría variar, verifica la doc si hay problemas
-                'x-rapidapi-key': API_KEY
+                'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com', // Asegúrate de que este host sea el correcto para tu suscripción
+                'X-RapidAPI-Key': API_FOOTBALL_KEY
             }
-        });
+        };
 
-        if (!response.ok) {
-            const errorText = await response.text();
-            throw new Error(`Error de la API-Football: ${response.status} - ${errorText}`);
+        const response = await axios.request(options);
+
+        if (response.status !== 200) {
+            throw new Error(`Error de la API-Football: ${response.status} - ${response.statusText}`);
         }
 
-        const data = await response.json();
-        res.status(200).json(data); // Envía los datos obtenidos al navegador de quien lo solicite
+        res.status(200).json(response.data); // Envía los datos obtenidos
     } catch (error) {
         console.error("Error en la función serverless:", error.message);
         res.status(500).json({ error: "No se pudieron obtener los resultados en vivo.", details: error.message });
