@@ -14,14 +14,14 @@
 	<meta property="og:locale" content="es_ES">
 	<meta property="og:type" content="article">
 	<meta property="og:title" content="FÚTBOL EN VIVO - ActualNow">
-	<meta property="og:description" content="Cargando resultados de fútbol&#8230;">
+	<meta property="og:description" content="Cargando resultados de fútbol&#8230; Actualizar Resultados">
 	<meta property="og:url" content="/futbol-en-vivo/">
 	<meta property="og:site_name" content="ActualNow">
-	<meta property="article:modified_time" content="2025-06-06T19:32:15+00:00">
+	<meta property="article:modified_time" content="2025-06-06T19:45:58+00:00">
 	<meta name="twitter:card" content="summary_large_image">
 	<meta name="twitter:label1" content="Est. reading time">
 	<meta name="twitter:data1" content="1 minuto">
-	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"/futbol-en-vivo/","url":"/futbol-en-vivo/","name":"FÚTBOL EN VIVO - ActualNow","isPartOf":{"@id":"/#website"},"datePublished":"2025-06-05T23:20:47+00:00","dateModified":"2025-06-06T19:32:15+00:00","breadcrumb":{"@id":"/futbol-en-vivo/#breadcrumb"},"inLanguage":"es","potentialAction":[{"@type":"ReadAction","target":["/futbol-en-vivo/"]}]},{"@type":"BreadcrumbList","@id":"/futbol-en-vivo/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"/"},{"@type":"ListItem","position":2,"name":"FÚTBOL EN VIVO"}]},{"@type":"WebSite","@id":"/#website","url":"/","name":"ActualNow","description":"Tu pasión, nuestra noticia.","publisher":{"@id":"/#organization"},"potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"/?s={search_term_string}"},"query-input":{"@type":"PropertyValueSpecification","valueRequired":true,"valueName":"search_term_string"}}],"inLanguage":"es"},{"@type":"Organization","@id":"/#organization","name":"ActualNow","url":"/","logo":{"@type":"ImageObject","inLanguage":"es","@id":"/#/schema/logo/image/","url":"/wp-content/uploads/2025/06/Logo-1-1.png","contentUrl":"/wp-content/uploads/2025/06/Logo-1-1.png","width":150,"height":150,"caption":"ActualNow"},"image":{"@id":"/#/schema/logo/image/"}}]}</script>
+	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"/futbol-en-vivo/","url":"/futbol-en-vivo/","name":"FÚTBOL EN VIVO - ActualNow","isPartOf":{"@id":"/#website"},"datePublished":"2025-06-05T23:20:47+00:00","dateModified":"2025-06-06T19:45:58+00:00","breadcrumb":{"@id":"/futbol-en-vivo/#breadcrumb"},"inLanguage":"es","potentialAction":[{"@type":"ReadAction","target":["/futbol-en-vivo/"]}]},{"@type":"BreadcrumbList","@id":"/futbol-en-vivo/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"/"},{"@type":"ListItem","position":2,"name":"FÚTBOL EN VIVO"}]},{"@type":"WebSite","@id":"/#website","url":"/","name":"ActualNow","description":"Tu pasión, nuestra noticia.","publisher":{"@id":"/#organization"},"potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"/?s={search_term_string}"},"query-input":{"@type":"PropertyValueSpecification","valueRequired":true,"valueName":"search_term_string"}}],"inLanguage":"es"},{"@type":"Organization","@id":"/#organization","name":"ActualNow","url":"/","logo":{"@type":"ImageObject","inLanguage":"es","@id":"/#/schema/logo/image/","url":"/wp-content/uploads/2025/06/Logo-1-1.png","contentUrl":"/wp-content/uploads/2025/06/Logo-1-1.png","width":150,"height":150,"caption":"ActualNow"},"image":{"@id":"/#/schema/logo/image/"}}]}</script>
 	<!-- / Yoast SEO plugin. -->
 
 
@@ -539,56 +539,99 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15
         <div class="entry-content">
             <div class="inner-entry-content">
                 
-<div id="resultados-futbol">
+<div id="resultados-futbol-container">
     Cargando resultados de fútbol&#8230;
 </div>
 
+<div style="text-align: center; margin-top: 20px; margin-bottom: 20px;">
+    <button id="btn-actualizar-resultados" style="background-color: #007bff; /* Un azul bonito */
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1em;
+        transition: background-color 0.3s ease;">
+        Actualizar Resultados
+    </button>
+</div>
+<style>/* ... (tu CSS actual aquí) ... */
+    #btn-actualizar-resultados:hover {
+        background-color: #0056b3; /* Un azul más oscuro al pasar el ratón */
+    }</style>
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    const resultadosDiv = document.getElementById('resultados-futbol');
+    const resultadosContainer = document.getElementById('resultados-futbol-container');
+    const updateButton = document.getElementById('btn-actualizar-resultados'); // Obtener el botón
     const apiURL = 'https://actualnow.vercel.app/api/live-scores'; 
 
-    fetch(apiURL)
-        .then(response => {
-            if (!response.ok) {
-                console.error('Error en la respuesta de la API:', response.status, response.statusText);
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then(apiResponse => { // Cambiado 'data' a 'apiResponse' para mayor claridad
-            let htmlContent = '';
-            
-            // Acceder a la propiedad 'response' del JSON
-            const matches = apiResponse.response; 
+    function fetchLiveScores() {
+        resultadosContainer.innerHTML = '<p class="mensaje-estado">Actualizando resultados...<\/p>'; // Mensaje mientras carga
+        updateButton.disabled = true; // Deshabilitar el botón durante la carga
+        updateButton.textContent = 'Actualizando...'; // Cambiar texto del botón
 
-            if (!matches || matches.length === 0) {
-                htmlContent = '<p>No hay partidos en vivo disponibles en este momento.<\/p>';
-            } else {
-                matches.forEach(match => {
-                    const homeTeamName = match.teams.home.name;
-                    const awayTeamName = match.teams.away.name;
-                    const homeScore = match.goals.home !== null ? match.goals.home : '-';
-                    const awayScore = match.goals.away !== null ? match.goals.away : '-';
-                    const leagueName = match.league.name;
-                    const status = match.fixture.status.long;
-                    const elapsed = match.fixture.status.elapsed; // Minutos transcurridos si el partido está en juego
+        fetch(apiURL)
+            .then(response => {
+                if (!response.ok) {
+                    console.error('Error en la respuesta de la API:', response.status, response.statusText);
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(apiResponse => {
+                let htmlContent = '';
+                const matches = apiResponse.response; 
 
-                    htmlContent += `
-                        <p>
-                            <strong>${homeTeamName}<\/strong> ${homeScore} - ${awayScore} <strong>${awayTeamName}<\/strong><br/>
-                            Liga: ${leagueName} - Estado: ${status} ${status === 'Match Finished' ? '' : `(${elapsed}' min)`}
-                        <\/p>
-                        <hr/>
-                    `;
-                });
-            }
-            resultadosDiv.innerHTML = htmlContent;
-        })
-        .catch(error => {
-            console.error('Error al obtener los datos de los partidos:', error);
-            resultadosDiv.innerHTML = '<p>Error al cargar los resultados de fútbol. Por favor, inténtalo de nuevo más tarde.<\/p>';
-        });
+                if (!matches || matches.length === 0) {
+                    htmlContent = '<p class="mensaje-estado">No hay partidos en vivo disponibles en este momento.<\/p>';
+                } else {
+                    matches.forEach(match => {
+                        const homeTeamName = match.teams.home.name;
+                        const awayTeamName = match.teams.away.name;
+                        const homeScore = match.goals.home !== null ? match.goals.home : '-';
+                        const awayScore = match.goals.away !== null ? match.goals.away : '-';
+                        const leagueName = match.league.name;
+                        const status = match.fixture.status.long;
+                        const elapsed = match.fixture.status.elapsed;
+                        const homeLogo = match.teams.home.logo;
+                        const awayLogo = match.teams.away.logo;
+
+                        const statusClass = (status === 'Match Finished' || status === 'Halftime') ? 'estado-finalizado' : 'estado-partido';
+
+                        htmlContent += `
+                            <div class="partido-item">
+                                <div class="partido-equipos">
+                                    ${homeLogo ? `<img decoding="async" src="${homeLogo}" alt="${homeTeamName} logo" class="equipo-logo">` : ''}
+                                    <span class="equipo-nombre">${homeTeamName}<\/span>
+                                    <span class="partido-resultado">${homeScore} - ${awayScore}<\/span>
+                                    <span class="equipo-nombre">${awayTeamName}<\/span>
+                                    ${awayLogo ? `<img decoding="async" src="${awayLogo}" alt="${awayTeamName} logo" class="equipo-logo">` : ''}
+                                <\/div>
+                                <div class="partido-info">
+                                    Liga: <strong>${leagueName}<\/strong> - Estado: <span class="${statusClass}">${status} ${status === 'Match Finished' ? '' : `(${elapsed}' min)`}<\/span>
+                                <\/div>
+                            <\/div>
+                        `;
+                    });
+                }
+                resultadosContainer.innerHTML = htmlContent;
+                updateButton.disabled = false; // Habilitar el botón
+                updateButton.textContent = 'Actualizar Resultados'; // Restaurar texto
+            })
+            .catch(error => {
+                console.error('Error al obtener los datos de los partidos:', error);
+                resultadosContainer.innerHTML = '<p class="mensaje-estado">Error al cargar los resultados de fútbol. Por favor, inténtalo de nuevo más tarde.<\/p>';
+                updateButton.disabled = false; // Habilitar el botón incluso en error
+                updateButton.textContent = 'Reintentar Actualizar'; // Indicar reintento
+            });
+    }
+
+    // Llamar a la función al cargar la página por primera vez
+    fetchLiveScores();
+
+    // Añadir el evento de click al botón
+    updateButton.addEventListener('click', fetchLiveScores);
 });
 </script>
             </div>
