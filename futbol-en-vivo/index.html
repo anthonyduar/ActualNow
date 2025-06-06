@@ -14,12 +14,14 @@
 	<meta property="og:locale" content="es_ES">
 	<meta property="og:type" content="article">
 	<meta property="og:title" content="Fútbol en vivo - ActualNow">
+	<meta property="og:description" content="Cargando resultados de fútbol&#8230;">
 	<meta property="og:url" content="/futbol-en-vivo/">
 	<meta property="og:site_name" content="ActualNow">
+	<meta property="article:modified_time" content="2025-06-06T18:07:20+00:00">
 	<meta name="twitter:card" content="summary_large_image">
 	<meta name="twitter:label1" content="Est. reading time">
 	<meta name="twitter:data1" content="1 minuto">
-	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"/futbol-en-vivo/","url":"/futbol-en-vivo/","name":"Fútbol en vivo - ActualNow","isPartOf":{"@id":"/#website"},"datePublished":"2025-06-05T23:20:47+00:00","breadcrumb":{"@id":"/futbol-en-vivo/#breadcrumb"},"inLanguage":"es","potentialAction":[{"@type":"ReadAction","target":["/futbol-en-vivo/"]}]},{"@type":"BreadcrumbList","@id":"/futbol-en-vivo/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"/"},{"@type":"ListItem","position":2,"name":"Fútbol en vivo"}]},{"@type":"WebSite","@id":"/#website","url":"/","name":"ActualNow","description":"Tu pasión, nuestra noticia.","publisher":{"@id":"/#organization"},"potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"/?s={search_term_string}"},"query-input":{"@type":"PropertyValueSpecification","valueRequired":true,"valueName":"search_term_string"}}],"inLanguage":"es"},{"@type":"Organization","@id":"/#organization","name":"ActualNow","url":"/","logo":{"@type":"ImageObject","inLanguage":"es","@id":"/#/schema/logo/image/","url":"/wp-content/uploads/2025/06/Logo-1-1.png","contentUrl":"/wp-content/uploads/2025/06/Logo-1-1.png","width":150,"height":150,"caption":"ActualNow"},"image":{"@id":"/#/schema/logo/image/"}}]}</script>
+	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"/futbol-en-vivo/","url":"/futbol-en-vivo/","name":"Fútbol en vivo - ActualNow","isPartOf":{"@id":"/#website"},"datePublished":"2025-06-05T23:20:47+00:00","dateModified":"2025-06-06T18:07:20+00:00","breadcrumb":{"@id":"/futbol-en-vivo/#breadcrumb"},"inLanguage":"es","potentialAction":[{"@type":"ReadAction","target":["/futbol-en-vivo/"]}]},{"@type":"BreadcrumbList","@id":"/futbol-en-vivo/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"/"},{"@type":"ListItem","position":2,"name":"Fútbol en vivo"}]},{"@type":"WebSite","@id":"/#website","url":"/","name":"ActualNow","description":"Tu pasión, nuestra noticia.","publisher":{"@id":"/#organization"},"potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"/?s={search_term_string}"},"query-input":{"@type":"PropertyValueSpecification","valueRequired":true,"valueName":"search_term_string"}}],"inLanguage":"es"},{"@type":"Organization","@id":"/#organization","name":"ActualNow","url":"/","logo":{"@type":"ImageObject","inLanguage":"es","@id":"/#/schema/logo/image/","url":"/wp-content/uploads/2025/06/Logo-1-1.png","contentUrl":"/wp-content/uploads/2025/06/Logo-1-1.png","width":150,"height":150,"caption":"ActualNow"},"image":{"@id":"/#/schema/logo/image/"}}]}</script>
 	<!-- / Yoast SEO plugin. -->
 
 
@@ -536,7 +538,61 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15
         
         <div class="entry-content">
             <div class="inner-entry-content">
-                <p>[resultados_futbol]</p>
+                
+<div id="resultados-futbol">
+    Cargando resultados de fútbol&#8230;
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const resultadosDiv = document.getElementById('resultados-futbol');
+    const apiURL = 'https://actualnow.vercel.app/api/live-scores'; // ¡Esta es la URL de tu API!
+
+    fetch(apiURL)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('La respuesta de la red no fue correcta: ' + response.statusText);
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Aquí vamos a procesar los datos y mostrarlos.
+            // NECESITO SABER EL FORMATO EXACTO DE LOS DATOS QUE DEVUELVE TU API.
+            // Por ahora, pondré un ejemplo genérico.
+
+            if (data && Array.isArray(data) && data.length > 0) { // Si la API devuelve un array de resultados
+                let htmlContent = '<h2>Resultados de Fútbol en Vivo<\/h2>';
+                data.forEach(match => {
+                    htmlContent += `
+                        <p>
+                            <strong>${match.homeTeam}<\/strong> ${match.score.home} - <span class="math-inline">\{match\.score\.away\} <strong\><\/span>{match.awayTeam}<\/strong><br/>
+                            <small>Liga: ${match.league} - Estado: ${match.status}<\/small>
+                        <\/p>
+                    `;
+                });
+                resultadosDiv.innerHTML = htmlContent;
+            } else if (data && typeof data === 'object' && data.matches && Array.isArray(data.matches)) { // Si la API devuelve un objeto con una propiedad 'matches' que es un array
+                let htmlContent = '<h2>Resultados de Fútbol en Vivo<\/h2>';
+                data.matches.forEach(match => {
+                    htmlContent += `
+                        <p>
+                            <strong>${match.homeTeam}<\/strong> ${match.score.home} - <span class="math-inline">\{match\.score\.away\} <strong\><\/span>{match.awayTeam}<\/strong><br/>
+                            <small>Liga: ${match.league} - Estado: ${match.status}<\/small>
+                        <\/p>
+                    `;
+                });
+                resultadosDiv.innerHTML = htmlContent;
+            }
+            else {
+                resultadosDiv.innerHTML = '<p>No se encontraron resultados de fútbol.<\/p>';
+            }
+        })
+        .catch(error => {
+            console.error('Hubo un problema al obtener los resultados:', error);
+            resultadosDiv.innerHTML = '<p>Lo sentimos, no pudimos cargar los resultados en este momento. Inténtalo de nuevo más tarde.<\/p>';
+        });
+});
+</script>
             </div>
         </div>
 <!-- .entry-content -->
