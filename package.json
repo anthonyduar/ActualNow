@@ -1,0 +1,18 @@
+{
+  "name": "actualnow-serverless",
+  "version": "1.0.0",
+  "description": "Serverless functions for ActualNow project",
+  "main": "api/live-scores.js",
+  "scripts": {
+    "start": "node api/live-scores.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "engines": {
+      "node": "16.x"
+  },
+  "dependencies": {
+    "node-fetch": "^2.6.7" 
+  }
+}
