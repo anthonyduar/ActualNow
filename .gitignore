@@ -1,0 +1,23 @@
+# Ignorar la carpeta de módulos de Node.js
+node_modules/
+
+# Ignorar archivos específicos de configuración de Vercel y Next.js (si los usas)
+.vercel/
+.next/
+
+# Ignorar el directorio de WordPress local si lo tienes en la raíz
+wp-content/cache/
+wp-content/debug.log
+wp-content/uploads/
+wp-config.php
+wp-config-sample.php
+
+# Ignorar archivos generados automáticamente que no deben estar en el repo
+.DS_Store # Mac
+Thumbs.db # Windows
+
+# =============================================================
+# IMPORTANTE: LA CARPETA 'static/' NO DEBE ESTAR AQUÍ
+# Queremos que Git la rastree porque ahí está tu sitio estático
+# que Vercel necesita.
+# =============================================================

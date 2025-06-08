@@ -1,7 +1,10 @@
 import os
 from datetime import datetime
 
-def generate_sitemap(base_url, output_file="sitemap.xml"):
+# ====================================================================
+# CAMBIO AQUI: output_file ahora apunta a 'static/sitemap.xml'
+# ====================================================================
+def generate_sitemap(base_url, output_file="static/sitemap.xml"):
     """Genera un sitemap XML básico para un sitio estático."""
     urls = []
 
@@ -16,7 +19,7 @@ def generate_sitemap(base_url, output_file="sitemap.xml"):
     sitemap_content = f"""<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 """
-    for url in urls: # <-- Asegúrate de que esta línea esté correctamente indentada
+    for url in urls:
         lastmod = datetime.now().strftime("%Y-%m-%dT%H:%M:%S+00:00")
         sitemap_content += f"""  <url>
     <loc>{url}</loc>
