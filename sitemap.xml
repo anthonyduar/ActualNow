@@ -1,21 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://actualnow.vercel.app</loc>
-    <lastmod>2025-06-07T10:43:43+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://actualnow.vercel.app/about.html</loc>
-    <lastmod>2025-06-07T10:43:43+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://actualnow.vercel.app/contact.html</loc>
-    <lastmod>2025-06-07T10:43:43+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-</urlset>
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Redirigiendo...</title>
+		<meta http-equiv="refresh" content="0;url=https://actualnow.vercel.app/wp-sitemap.xml">
+	</head>
+	<body>
+		<script type="text/javascript">
+			window.location = "https://actualnow.vercel.app/wp-sitemap.xml";
+		</script>
+
+		<p>Estás siendo redirigido a <a href="https://actualnow.vercel.app/wp-sitemap.xml">https://actualnow.vercel.app/wp-sitemap.xml</a></p>
+	</body>
+</html>
