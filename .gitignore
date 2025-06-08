@@ -21,3 +21,12 @@ Thumbs.db # Windows
 # Queremos que Git la rastree porque ahí está tu sitio estático
 # que Vercel necesita.
 # =============================================================
+
+wp-admin/
+wp-includes/
+wp-content/ # Esta línea ignorará el resto de la carpeta wp-content en la raíz
+
+# Ignorar archivos generados por WordPress que no son del sitio estático
+xmlrpc.php
+readme.html
+license.txt
