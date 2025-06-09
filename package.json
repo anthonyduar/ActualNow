@@ -4,7 +4,8 @@
   "description": "Serverless functions for ActualNow project",
   "main": "api/live-scores.js",
   "scripts": {
-    "start": "node api/live-scores.js"
+    "start": "node api/live-scores.js",
+    "postinstall": "pip install -r requirements.txt && python generate_sitemap.py"
   },
   "keywords": [],
   "author": "",

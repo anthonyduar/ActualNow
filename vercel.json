@@ -1,6 +1,5 @@
 {
   "version": 2,
-  "buildCommand": "pip install -r requirements.txt && npm install && python generate_sitemap.py",
   "builds": [
     {
       "src": "generate_sitemap.py",
