@@ -6,11 +6,19 @@
       "use": "@vercel/python"
     },
     {
+      "src": "api/live-scores.js",
+      "use": "@vercel/node"
+    },
+    {
       "src": "static/**",
       "use": "@vercel/static"
     }
   ],
   "routes": [
+    {
+      "src": "/api/live-scores",
+      "dest": "/api/live-scores.js"
+    },
     {
       "src": "/sitemap.xml",
       "dest": "/static/sitemap.xml"
@@ -24,5 +32,5 @@
       "dest": "/static/$1"
     }
   ],
-  "installCommand": "pip install -r requirements.txt"
+  "installCommand": "pip install -r requirements.txt && npm install"
 }
