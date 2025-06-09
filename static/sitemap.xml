@@ -1,3 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type="text/xsl" href="https://actualnow.vercel.app/wp-sitemap-index.xsl" ?>
-<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><sitemap><loc>https://actualnow.vercel.app/wp-sitemap-posts-post-1.xml</loc></sitemap><sitemap><loc>https://actualnow.vercel.app/wp-sitemap-posts-page-1.xml</loc></sitemap><sitemap><loc>https://actualnow.vercel.app/wp-sitemap-taxonomies-category-1.xml</loc></sitemap><sitemap><loc>https://actualnow.vercel.app/wp-sitemap-taxonomies-post_tag-1.xml</loc></sitemap><sitemap><loc>https://actualnow.vercel.app/wp-sitemap-users-1.xml</loc></sitemap></sitemapindex>
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Redirigiendo...</title>
+		<meta http-equiv="refresh" content="0;url=https://actualnow.vercel.app/wp-sitemap.xml">
+	</head>
+	<body>
+		<script type="text/javascript">
+			window.location = "https://actualnow.vercel.app/wp-sitemap.xml";
+		</script>
+
+		<p>Estás siendo redirigido a <a href="https://actualnow.vercel.app/wp-sitemap.xml">https://actualnow.vercel.app/wp-sitemap.xml</a></p>
+	</body>
+</html>
