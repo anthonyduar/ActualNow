@@ -1,14 +1,49 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>Redirigiendo...</title>
-		<meta http-equiv="refresh" content="0;url=https://actualnow.vercel.app/wp-sitemap.xml">
-	</head>
-	<body>
-		<script type="text/javascript">
-			window.location = "https://actualnow.vercel.app/wp-sitemap.xml";
-		</script>
-
-		<p>Estás siendo redirigido a <a href="https://actualnow.vercel.app/wp-sitemap.xml">https://actualnow.vercel.app/wp-sitemap.xml</a></p>
-	</body>
-</html>
+<?xml version='1.0' encoding='UTF-8'?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+  <?xml-stylesheet type="text/xsl" href="https://actualnow.vercel.app/wp-sitemap-index.xsl"?>
+  <url>
+    <loc>https://actualnow.vercel.app</loc>
+    <lastmod>2025-06-09T11:04:29+00:00</lastmod>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://actualnow.local/category/baloncesto/oklahoma-pacers-segundo-juego-final-nba/</loc>
+    <lastmod>2025-06-09T15:00:55</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://actualnow.local/category/deportes/tenis/alcaraz-sinner-conquista-roland-garros/</loc>
+    <lastmod>2025-06-09T00:57:31</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://actualnow.local/category/futbol/portugal-campeon-nations-league/</loc>
+    <lastmod>2025-06-08T23:03:09</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://actualnow.local/futbol-en-vivo/</loc>
+    <lastmod>2025-06-07T01:57:44</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://actualnow.local/contacto/</loc>
+    <lastmod>2025-06-07T13:41:02</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://actualnow.local/politica-de-cookies/</loc>
+    <lastmod>2025-06-05T21:25:47</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://actualnow.local/privacy-policy/</loc>
+    <lastmod>2025-06-05T21:23:04</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://actualnow.local/sample-page/</loc>
+    <lastmod>2025-06-05T21:24:42</lastmod>
+    <priority>0.7</priority>
+  </url>
+</urlset>
