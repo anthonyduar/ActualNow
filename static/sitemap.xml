@@ -3,12 +3,17 @@
   <?xml-stylesheet type="text/xsl" href="https://actualnow.vercel.app/wp-sitemap-index.xsl"?>
   <url>
     <loc>https://actualnow.vercel.app</loc>
-    <lastmod>2025-06-10T23:25:44+00:00</lastmod>
+    <lastmod>2025-06-11T16:56:19+00:00</lastmod>
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://actualnow.local/category/beisbol/ronald-acunajr-cuadrangular-braves/</loc>
+    <lastmod>2025-06-11T20:51:40</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://actualnow.local/category/futbol/brasil-clasifica-mundial-vinijr/</loc>
-    <lastmod>2025-06-11T03:21:41</lastmod>
+    <lastmod>2025-06-11T03:28:33</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
