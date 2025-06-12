@@ -3,8 +3,13 @@
   <?xml-stylesheet type="text/xsl" href="https://actualnow.vercel.app/wp-sitemap-index.xsl"?>
   <url>
     <loc>https://actualnow.vercel.app</loc>
-    <lastmod>2025-06-11T16:56:19+00:00</lastmod>
+    <lastmod>2025-06-11T23:29:39+00:00</lastmod>
     <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://actualnow.local/category/baloncesto/pacers-thunder-nbafinals/</loc>
+    <lastmod>2025-06-12T03:26:07</lastmod>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://actualnow.local/category/beisbol/ronald-acunajr-cuadrangular-braves/</loc>
