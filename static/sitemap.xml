@@ -3,8 +3,18 @@
   <?xml-stylesheet type="text/xsl" href="https://actualnow.vercel.app/wp-sitemap-index.xsl"?>
   <url>
     <loc>https://actualnow.vercel.app</loc>
-    <lastmod>2025-06-11T23:29:39+00:00</lastmod>
+    <lastmod>2025-06-14T00:06:26+00:00</lastmod>
     <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://actualnow.local/category/baloncesto/thunder-pacers-shai-nbafinals/</loc>
+    <lastmod>2025-06-14T04:01:59</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://actualnow.local/category/beisbol/red-sox-yankees-narvaez/</loc>
+    <lastmod>2025-06-14T03:59:09</lastmod>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://actualnow.local/category/baloncesto/pacers-thunder-nbafinals/</loc>
@@ -23,7 +33,7 @@
   </url>
   <url>
     <loc>https://actualnow.local/category/baloncesto/oklahoma-pacers-segundo-juego-final-nba/</loc>
-    <lastmod>2025-06-09T15:00:55</lastmod>
+    <lastmod>2025-06-14T03:59:19</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
