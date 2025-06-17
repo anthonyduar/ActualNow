@@ -12,6 +12,7 @@ Este repositorio detalla la implementación web de la plataforma ActualNow, un p
 * Diseño UI/UX conceptualizado en Figma y adaptado a un tema de WordPress.
 * Navegación intuitiva y fácil acceso a las secciones de noticias y deportes.
 * Visualización optimizada para dispositivos: La plataforma aprovecha la capacidad responsiva del tema de WordPress utilizado, adaptándose perfectamente a pantallas de móviles, tablets y escritorios para una experiencia óptima.
+* Actualizaciones en tiempo real: Incorporación de la API de football-data.org para mostrar resultados de partidos de fútbol en vivo.
 * Integración de elementos visuales (logo y banner principal) generados con asistencia de Inteligencia Artificial.
 
 ## Despliegue
