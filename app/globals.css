@@ -24,3 +24,17 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee-custom {
+  display: inline-flex;
+  animation: marquee 25s linear infinite; /* 45 segundos para que sea suave */
+  min-width: fit-content;
+}
