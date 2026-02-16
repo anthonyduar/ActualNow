@@ -1,30 +1,36 @@
-# ActualNow 
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-Este repositorio detalla la implementación web de la plataforma ActualNow, un portal dinámico de noticias y deportes. El proyecto se centró en adaptar y personalizar un tema de WordPress para replicar fielmente el diseño UI/UX conceptualizado en Figma, logrando una presencia online funcional sin necesidad de código personalizado.
+## Getting Started
 
-## Tecnologías Utilizadas
+First, run the development server:
 
-* WordPress (Modificación de tema)
-* Figma (Guía de Diseño UI/UX)
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
-## Características Destacadas
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-* Diseño UI/UX conceptualizado en Figma y adaptado a un tema de WordPress.
-* Navegación intuitiva y fácil acceso a las secciones de noticias y deportes.
-* Visualización optimizada para dispositivos: La plataforma aprovecha la capacidad responsiva del tema de WordPress utilizado, adaptándose perfectamente a pantallas de móviles, tablets y escritorios para una experiencia óptima.
-* Actualizaciones en tiempo real: Incorporación de la API de football-data.org para mostrar resultados de partidos de fútbol en vivo.
-* Integración de elementos visuales (logo y banner principal) generados con asistencia de Inteligencia Artificial.
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-## Despliegue
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-Este proyecto está desplegado y accesible en línea a través de Vercel: [Actual Now en Vercel](https://actualnow.vercel.app/)
+## Learn More
 
-## Contacto
+To learn more about Next.js, take a look at the following resources:
 
-Puedes contactarme a través de:
-* [LinkedIn](https://www.linkedin.com/in/anthonyrduarte/)
-* Email: anthonyraduarte@gmail.com
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-## Licencia
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-Este proyecto está bajo la Licencia MIT - mira el archivo [LICENSE.md](LICENSE.md) para más detalles.
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
