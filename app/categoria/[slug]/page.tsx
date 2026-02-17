@@ -1,12 +1,20 @@
 import Link from "next/link";
 
-export default async function CategoryPage({ params }: { params: any }) {
+export default async function CategoryPage({
+  params,
+  searchParams,
+}: {
+  params: any;
+  searchParams: any;
+}) {
   const resolvedParams = await params;
+  const resolvedSearchParams = await searchParams;
   const slug = resolvedParams.slug;
+  const currentPage = parseInt(resolvedSearchParams.page || "1");
+  const postsPerPage = 5;
   const baseUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL;
 
   try {
-    // 1. Obtener la categoría
     const catRes = await fetch(`${baseUrl}/categories?search=${slug}`, {
       cache: "no-store",
     });
@@ -14,23 +22,20 @@ export default async function CategoryPage({ params }: { params: any }) {
     const category =
       categories.find((c: any) => c.slug === slug) || categories[0];
 
-    if (!category) {
+    if (!category)
       return (
         <div className="p-20 text-white text-center font-sans">
           Categoría no encontrada.
         </div>
       );
-    }
 
-    // 2. Traer los posts de esta categoría
     const postRes = await fetch(
-      `${baseUrl}/posts?categories=${category.id}&_embed&per_page=10`,
+      `${baseUrl}/posts?categories=${category.id}&_embed&per_page=${postsPerPage}&page=${currentPage}`,
       { cache: "no-store" },
     );
     const posts = await postRes.json();
-
-    // 3. Traer Recomendados (Igual que en PostPage)
-    const recRes = await fetch(`${baseUrl}/posts?per_page=5&_embed`, {
+    const totalPages = parseInt(postRes.headers.get("X-WP-TotalPages") || "1");
+    const recRes = await fetch(`${baseUrl}/posts?per_page=4&_embed`, {
       cache: "no-store",
     });
     const recommended = await recRes.json();
@@ -77,43 +82,76 @@ export default async function CategoryPage({ params }: { params: any }) {
           ))}
         </div>
 
-        {/* SECCIÓN RECOMENDADOS (IDÉNTICA A POSTPAGE) */}
+        {/* PAGINACIÓN: 5 BOTONES MÁXIMO */}
+        {totalPages > 1 && (
+          <div className="mt-12 flex justify-center items-center gap-2 font-sans">
+            {currentPage > 1 && (
+              <Link
+                href={`/categoria/${slug}?page=${currentPage - 1}`}
+                className="px-4 py-2 bg-zinc-900 border border-zinc-800 rounded hover:bg-sky-500 transition"
+              >
+                «
+              </Link>
+            )}
+
+            {Array.from({ length: totalPages }, (_, i) => i + 1)
+              .filter((num) => {
+                const start = Math.max(
+                  1,
+                  Math.min(currentPage - 2, totalPages - 4),
+                );
+                const end = Math.min(totalPages, Math.max(currentPage + 2, 5));
+                return num >= start && num <= end;
+              })
+              .map((num) => (
+                <Link
+                  key={num}
+                  href={`/categoria/${slug}?page=${num}`}
+                  className={`px-4 py-2 rounded font-bold border ${num === currentPage ? "bg-sky-500 border-sky-500 text-white" : "bg-zinc-900 border-zinc-800 text-zinc-400 hover:border-sky-500"}`}
+                >
+                  {num}
+                </Link>
+              ))}
+
+            {currentPage < totalPages && (
+              <Link
+                href={`/categoria/${slug}?page=${currentPage + 1}`}
+                className="px-4 py-2 bg-zinc-900 border border-zinc-800 rounded hover:bg-sky-500 transition"
+              >
+                »
+              </Link>
+            )}
+          </div>
+        )}
+
         <section className="mt-20 border-t border-zinc-800 pt-10">
-          <h3 className="text-lg font-bold uppercase tracking-widest mb-8 text-white border-l-4 border-sky-500 pl-4">
+          <h3 className="text-lg font-bold uppercase tracking-widest mb-8 border-l-4 border-sky-500 pl-4">
             Recomendados
           </h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {recommended.slice(0, 4).map((rec: any) => {
-              const img = rec._embedded?.["wp:featuredmedia"]?.[0]?.source_url;
-              return (
-                <Link
-                  key={rec.id}
-                  href={`/posts/${rec.slug}`}
-                  className="group"
-                >
-                  <div className="aspect-video mb-3 overflow-hidden rounded bg-zinc-800">
-                    {img && (
-                      <img
-                        src={img}
-                        className="object-cover w-full h-full group-hover:scale-105 transition duration-500"
-                      />
-                    )}
-                  </div>
-                  <h4
-                    className="text-sm md:text-base font-bold leading-tight group-hover:text-sky-500 transition line-clamp-3"
-                    dangerouslySetInnerHTML={{ __html: rec.title.rendered }}
-                  />
-                </Link>
-              );
-            })}
+            {recommended.map((rec: any) => (
+              <Link key={rec.id} href={`/posts/${rec.slug}`} className="group">
+                <div className="aspect-video mb-3 overflow-hidden rounded bg-zinc-800">
+                  {rec._embedded?.["wp:featuredmedia"]?.[0]?.source_url && (
+                    <img
+                      src={rec._embedded["wp:featuredmedia"][0].source_url}
+                      className="object-cover w-full h-full group-hover:scale-105 transition duration-500"
+                    />
+                  )}
+                </div>
+                <h4
+                  className="text-sm font-bold leading-tight group-hover:text-sky-500 transition line-clamp-3"
+                  dangerouslySetInnerHTML={{ __html: rec.title.rendered }}
+                />
+              </Link>
+            ))}
           </div>
         </section>
 
-        {/* BOTÓN VOLVER (IDÉNTICO A POSTPAGE) */}
-        <div className="text-center mt-10 mb-2">
+        <div className="text-center mt-10 mb-10">
           <Link
             href="/"
-            className="inline-block bg-sky-500 text-white px-8 py-2 rounded-full font-bold uppercase text-[10px] tracking-widest hover:bg-sky-600 transition-colors"
+            className="inline-block bg-sky-500 text-white px-8 py-2 rounded-full font-bold uppercase text-[10px] tracking-widest hover:bg-sky-600 transition"
           >
             Volver
           </Link>

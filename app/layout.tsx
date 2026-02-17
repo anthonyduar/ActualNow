@@ -1,6 +1,7 @@
 import "./globals.css";
 import Link from "next/link";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { SafeDate, SearchButton } from "./components/ClientElements";
 
 export const metadata = {
   title: "ActualNow | Noticias Deportivas al Instante",
@@ -30,10 +31,13 @@ export default async function RootLayout({
   ];
 
   return (
-    <html lang="es">
+    <html lang="es" suppressHydrationWarning>
       <body className="bg-white text-black min-h-screen flex flex-col">
         <header className="max-w-6xl mx-auto w-full p-6 pb-0">
-          {/* BANNER */}
+          <div className="flex justify-end mb-2 text-xs font-bold text-gray-500 uppercase tracking-widest">
+            <SafeDate />
+          </div>
+
           <div className="relative w-full mb-6">
             <img
               src="/banner.jpg"
@@ -51,7 +55,6 @@ export default async function RootLayout({
             </div>
           </div>
 
-          {/* TICKER */}
           <div className="bg-black text-white p-2 mb-4 flex overflow-hidden border-y border-gray-800 font-sans">
             <span className="font-bold text-red-600 mr-4 bg-black z-10 whitespace-nowrap px-2">
               ÚLTIMA HORA:
@@ -72,7 +75,6 @@ export default async function RootLayout({
             </div>
           </div>
 
-          {/* MENÚ */}
           <nav className="flex flex-wrap items-center gap-x-6 gap-y-2 mb-4 font-sans border-b pb-4 text-sm md:text-base">
             <Link
               href="/"
@@ -80,7 +82,6 @@ export default async function RootLayout({
             >
               Inicio
             </Link>
-
             {categorias.map((cat) => (
               <Link
                 key={cat.slug}
@@ -91,9 +92,11 @@ export default async function RootLayout({
               </Link>
             ))}
 
+            <SearchButton />
+
             <Link
               href="/futbol-en-vivo"
-              className="ml-auto bg-red-600 text-white px-4 py-1 rounded-full font-bold text-xs md:text-sm animate-pulse hover:bg-red-700 transition"
+              className="bg-red-600 text-white px-4 py-1 rounded-full font-bold text-xs md:text-sm animate-pulse hover:bg-red-700 transition"
             >
               ● FÚTBOL EN VIVO
             </Link>
@@ -102,6 +105,7 @@ export default async function RootLayout({
 
         <div className="flex-grow">{children}</div>
 
+        {/* FOOTER COMPLETO RESTAURADO */}
         <footer className="bg-black text-white mt-20 border-t-4 border-sky-500 font-sans">
           <div className="max-w-6xl mx-auto p-10 grid grid-cols-1 md:grid-cols-4 gap-10">
             <div>
@@ -178,14 +182,12 @@ export default async function RootLayout({
 
           <div className="border-t border-gray-800 py-6 text-center text-xs text-gray-500">
             <p>
-              © {new Date().getFullYear()} ActualNow. Todos los derechos
+              © <SafeDate format="year" /> ActualNow. Todos los derechos
               reservados.
             </p>
           </div>
         </footer>
-
-        {/* REEMPLAZA ESTE ID POR EL TUYO REAL DE GA4 */}
-        <GoogleAnalytics gaId="G-XXXXXXXXXX" />
+        <GoogleAnalytics gaId="G-QC35JH2V91" />
       </body>
     </html>
   );

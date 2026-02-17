@@ -1,16 +1,54 @@
-export default function EnVivo() {
+import Link from "next/link";
+import { getLiveMatches } from "@/lib/football";
+import LiveMatchesList from "../components/LiveMatchesList";
+
+export default async function EnVivo() {
+  const baseUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL;
+  const initialMatches = await getLiveMatches();
+
+  const recRes = await fetch(`${baseUrl}/posts?per_page=4&_embed`, {
+    cache: "no-store",
+  });
+  const recommended = await recRes.json();
+
   return (
-    <main className="max-w-4xl mx-auto p-10 text-white font-sans">
-      <div className="flex items-center gap-4 mb-10">
-        <div className="h-3 w-3 bg-red-600 rounded-full animate-pulse"></div>
-        <h1 className="text-3xl font-bold uppercase tracking-tighter">
-          Fútbol en Vivo
-        </h1>
-      </div>
-      <div className="bg-zinc-900 border border-zinc-800 p-20 rounded-2xl text-center">
-        <p className="text-zinc-500 uppercase tracking-widest text-sm italic">
-          No hay transmisiones disponibles en este momento.
-        </p>
+    <main className="max-w-5xl mx-auto px-6 pt-10 text-white min-h-screen font-sans">
+      {/* Componente que maneja los partidos y el refresco interno */}
+      <LiveMatchesList initialMatches={initialMatches} />
+
+      {/* RECOMENDADOS */}
+      <section className="mt-20 border-t border-zinc-800 pt-10">
+        <h3 className="text-lg font-bold uppercase tracking-widest mb-8 border-l-4 border-sky-500 pl-4">
+          Recomendados
+        </h3>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          {recommended.map((rec: any) => (
+            <Link key={rec.id} href={`/posts/${rec.slug}`} className="group">
+              <div className="aspect-video mb-3 overflow-hidden rounded bg-zinc-800">
+                {rec._embedded?.["wp:featuredmedia"]?.[0]?.source_url && (
+                  <img
+                    src={rec._embedded["wp:featuredmedia"][0].source_url}
+                    className="object-cover w-full h-full group-hover:scale-105 transition duration-500"
+                    alt=""
+                  />
+                )}
+              </div>
+              <h4
+                className="text-sm font-bold leading-tight group-hover:text-sky-500 transition line-clamp-3"
+                dangerouslySetInnerHTML={{ __html: rec.title.rendered }}
+              />
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <div className="text-center mt-10 mb-10">
+        <Link
+          href="/"
+          className="inline-block bg-sky-500 text-white px-8 py-2 rounded-full font-bold uppercase text-[10px] tracking-widest hover:bg-sky-600 transition"
+        >
+          Volver
+        </Link>
       </div>
     </main>
   );
