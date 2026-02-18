@@ -65,10 +65,7 @@ export default function Home() {
         if (Array.isArray(data)) {
           // Filtra: solo deja las noticias que NO tienen la categoría 21 (Fútbol)
           const nonFootball = data.filter(
-            (post: any) =>
-              !post._embedded?.["wp:term"]?.[0]?.some(
-                (cat: any) => cat.slug === "futbol",
-              ),
+            (post: any) => !post.categories?.includes(21),
           );
           setPosts(nonFootball);
         } else {
