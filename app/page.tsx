@@ -56,21 +56,20 @@ export default function Home() {
     setIsClient(true);
     async function getData() {
       try {
-        // Pedimos 100 posts para tener suficiente margen tras filtrar
         const res = await fetch(
-          `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/posts?_embed&per_page=100&v=${Date.now()}`,
-          { cache: "no-store" },
+          `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/posts?_embed&per_page=100&nocache=${Math.random()}`,
+          {
+            cache: "no-store",
+            headers: { "Cache-Control": "no-cache" },
+          },
         );
         const data = await res.json();
 
         if (Array.isArray(data)) {
+          // Filtro ultra simple por ID 21
           const nonFootball = data.filter((post: any) => {
-            const categories = post._embedded?.["wp:term"]?.[0] || [];
-            // Filtra por ID 21 O por nombre "futbol"
-            return (
-              !post.categories?.includes(21) &&
-              !categories.some((cat: any) => cat.slug.includes("futbol"))
-            );
+            const categories = post.categories || [];
+            return !categories.includes(21);
           });
           setPosts(nonFootball);
         } else {
