@@ -57,7 +57,7 @@ export default function Home() {
     async function getData() {
       try {
         const res = await fetch(
-          `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/posts?_embed`,
+          `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/posts?_embed&v=${Date.now()}`,
           { cache: "no-store" },
         );
         const data = await res.json();
@@ -73,14 +73,14 @@ export default function Home() {
     async function getFootballData() {
       try {
         const categoryRes = await fetch(
-          `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/categories?slug=futbol`,
+          `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/categories?slug=futbol&v=${Date.now()}`,
           { cache: "no-store" },
         );
         const categoryData = await categoryRes.json();
         if (categoryData.length > 0) {
           const footballCategoryId = categoryData[0].id;
           const postsRes = await fetch(
-            `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/posts?_embed&categories=${footballCategoryId}&per_page=3`,
+            `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/posts?_embed&categories=${footballCategoryId}&per_page=3&v=${Date.now()}`,
             { cache: "no-store" },
           );
           const postsData = await postsRes.json();
