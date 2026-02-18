@@ -64,9 +64,16 @@ export default function Home() {
 
         if (Array.isArray(data)) {
           // Filtramos para que NO aparezca Fútbol (ID 21) en Carrusel ni Verticales
-          const nonFootball = data.filter(
-            (post: any) => !post.categories?.includes(21),
-          );
+          const nonFootball = data.filter((post: any) => {
+            const categories = post._embedded?.["wp:term"]?.[0] || [];
+            const isFootball = categories.some(
+              (cat: any) =>
+                cat.name.toLowerCase().includes("fútbol") ||
+                cat.name.toLowerCase().includes("futbol") ||
+                cat.id === 21,
+            );
+            return !isFootball;
+          });
           setPosts(nonFootball);
         } else {
           setPosts([]);
