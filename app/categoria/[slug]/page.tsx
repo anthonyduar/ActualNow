@@ -15,9 +15,12 @@ export default async function CategoryPage({
   const baseUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL;
 
   try {
-    const catRes = await fetch(`${baseUrl}/categories?search=${slug}`, {
-      cache: "no-store",
-    });
+    const catRes = await fetch(
+      `${baseUrl}/categories?search=${slug}&v=${Date.now()}`,
+      {
+        cache: "no-store",
+      },
+    );
     const categories = await catRes.json();
     const category =
       categories.find((c: any) => c.slug === slug) || categories[0];
@@ -30,14 +33,17 @@ export default async function CategoryPage({
       );
 
     const postRes = await fetch(
-      `${baseUrl}/posts?categories=${category.id}&_embed&per_page=${postsPerPage}&page=${currentPage}`,
+      `${baseUrl}/posts?categories=${category.id}&_embed&per_page=${postsPerPage}&page=${currentPage}&v=${Date.now()}`,
       { cache: "no-store" },
     );
     const posts = await postRes.json();
     const totalPages = parseInt(postRes.headers.get("X-WP-TotalPages") || "1");
-    const recRes = await fetch(`${baseUrl}/posts?per_page=4&_embed`, {
-      cache: "no-store",
-    });
+    const recRes = await fetch(
+      `${baseUrl}/posts?per_page=4&_embed&v=${Date.now()}`,
+      {
+        cache: "no-store",
+      },
+    );
     const recommended = await recRes.json();
 
     return (

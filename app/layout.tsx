@@ -15,7 +15,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/posts?per_page=5`,
+    `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/posts?per_page=5&v=${Date.now()}`,
     { cache: "no-store" },
   );
   const tickerPosts = await res.json();
