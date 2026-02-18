@@ -61,7 +61,19 @@ export default function Home() {
           { cache: "no-store" },
         );
         const data = await res.json();
-        setPosts(Array.isArray(data) ? data : []);
+
+        if (Array.isArray(data)) {
+          // Filtra: solo deja las noticias que NO tienen la categoría 21 (Fútbol)
+          const nonFootball = data.filter(
+            (post: any) =>
+              !post._embedded?.["wp:term"]?.[0]?.some(
+                (cat: any) => cat.slug === "futbol",
+              ),
+          );
+          setPosts(nonFootball);
+        } else {
+          setPosts([]);
+        }
       } catch (error) {
         console.error("Error posts:", error);
       }

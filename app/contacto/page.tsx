@@ -3,9 +3,10 @@ import Link from "next/link";
 export default async function Contacto() {
   const baseUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL;
 
-  const recRes = await fetch(`${baseUrl}/posts?per_page=4&_embed`, {
-    cache: "no-store",
-  });
+  const recRes = await fetch(
+    `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/posts?per_page=4&_embed&v=${Date.now()}`,
+    { cache: "no-store" },
+  );
   const recommended = await recRes.json();
 
   return (

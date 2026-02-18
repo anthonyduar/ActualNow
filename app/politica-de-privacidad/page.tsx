@@ -12,9 +12,10 @@ export default async function PrivacidadPage() {
     const page = pages[0];
 
     // 2. Traer Recomendados (Igual que en categorías y noticias)
-    const recRes = await fetch(`${baseUrl}/posts?per_page=5&_embed`, {
-      cache: "no-store",
-    });
+    const recRes = await fetch(
+      `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/posts?per_page=4&_embed&v=${Date.now()}`,
+      { cache: "no-store" },
+    );
     const recommended = await recRes.json();
 
     if (!page) {
