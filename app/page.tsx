@@ -57,13 +57,13 @@ export default function Home() {
     async function getData() {
       try {
         const res = await fetch(
-          `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/posts?_embed&v=${Date.now()}`,
+          `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/posts?_embed&per_page=50&v=${Date.now()}`,
           { cache: "no-store" },
         );
         const data = await res.json();
 
         if (Array.isArray(data)) {
-          // Filtra: solo deja las noticias que NO tienen la categoría 21 (Fútbol)
+          // Filtramos para que NO aparezca Fútbol (ID 21) en Carrusel ni Verticales
           const nonFootball = data.filter(
             (post: any) => !post.categories?.includes(21),
           );
