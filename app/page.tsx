@@ -56,23 +56,21 @@ export default function Home() {
     setIsClient(true);
     async function getData() {
       try {
+        // Pedimos 100 posts para tener suficiente margen tras filtrar
         const res = await fetch(
-          `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/posts?_embed&per_page=50&v=${Date.now()}`,
+          `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/posts?_embed&per_page=100&v=${Date.now()}`,
           { cache: "no-store" },
         );
         const data = await res.json();
 
         if (Array.isArray(data)) {
-          // Filtramos para que NO aparezca Fútbol (ID 21) en Carrusel ni Verticales
           const nonFootball = data.filter((post: any) => {
             const categories = post._embedded?.["wp:term"]?.[0] || [];
-            const isFootball = categories.some(
-              (cat: any) =>
-                cat.name.toLowerCase().includes("fútbol") ||
-                cat.name.toLowerCase().includes("futbol") ||
-                cat.id === 21,
+            // Filtra por ID 21 O por nombre "futbol"
+            return (
+              !post.categories?.includes(21) &&
+              !categories.some((cat: any) => cat.slug.includes("futbol"))
             );
-            return !isFootball;
           });
           setPosts(nonFootball);
         } else {
