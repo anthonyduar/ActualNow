@@ -28,8 +28,9 @@ export default function LiveMatchesList({
       <div className="flex justify-between items-center mb-10">
         <div className="flex items-center gap-4">
           <div className="h-3 w-3 bg-sky-500 rounded-full animate-pulse"></div>
+          {/* TÍTULO ACTUALIZADO */}
           <h1 className="text-3xl font-bold uppercase tracking-tighter text-white">
-            Fútbol en Vivo
+            Resultados en Vivo
           </h1>
         </div>
         <button
@@ -48,7 +49,7 @@ export default function LiveMatchesList({
               key={match.id}
               className="bg-zinc-900 border border-zinc-800 p-6 rounded-2xl flex justify-between items-center shadow-lg transition hover:border-sky-500/50 group"
             >
-              {/* LOCAL */}
+              {/* LOCAL CON ESCUDO */}
               <div className="flex-1 flex items-center justify-end gap-3 font-bold uppercase text-sm text-white group-hover:text-sky-400 transition text-right">
                 <span className="hidden md:inline">{match.homeTeam.name}</span>
                 <span className="md:hidden">
@@ -74,7 +75,7 @@ export default function LiveMatchesList({
                 </div>
               </div>
 
-              {/* VISITANTE */}
+              {/* VISITANTE CON ESCUDO */}
               <div className="flex-1 flex items-center justify-start gap-3 font-bold uppercase text-sm text-white group-hover:text-sky-400 transition text-left">
                 {match.awayTeam.crest && (
                   <img
