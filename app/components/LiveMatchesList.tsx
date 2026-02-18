@@ -48,10 +48,23 @@ export default function LiveMatchesList({
               key={match.id}
               className="bg-zinc-900 border border-zinc-800 p-6 rounded-2xl flex justify-between items-center shadow-lg transition hover:border-sky-500/50 group"
             >
-              <div className="flex-1 text-right font-bold uppercase text-sm text-white group-hover:text-sky-400 transition">
-                {match.homeTeam.name}
+              {/* LOCAL */}
+              <div className="flex-1 flex items-center justify-end gap-3 font-bold uppercase text-sm text-white group-hover:text-sky-400 transition text-right">
+                <span className="hidden md:inline">{match.homeTeam.name}</span>
+                <span className="md:hidden">
+                  {match.homeTeam.tla || match.homeTeam.name}
+                </span>
+                {match.homeTeam.crest && (
+                  <img
+                    src={match.homeTeam.crest}
+                    alt=""
+                    className="w-8 h-8 object-contain"
+                  />
+                )}
               </div>
-              <div className="mx-6 bg-black px-4 py-2 rounded-lg border border-sky-500 text-center min-w-[110px]">
+
+              {/* MARCADOR */}
+              <div className="mx-4 md:mx-6 bg-black px-4 py-2 rounded-lg border border-sky-500 text-center min-w-[100px] md:min-w-[110px]">
                 <span className="text-sky-500 font-mono font-bold text-xl">
                   {match.score.fullTime.home ?? 0} -{" "}
                   {match.score.fullTime.away ?? 0}
@@ -60,8 +73,20 @@ export default function LiveMatchesList({
                   En Vivo
                 </div>
               </div>
-              <div className="flex-1 text-left font-bold uppercase text-sm text-white group-hover:text-sky-400 transition">
-                {match.awayTeam.name}
+
+              {/* VISITANTE */}
+              <div className="flex-1 flex items-center justify-start gap-3 font-bold uppercase text-sm text-white group-hover:text-sky-400 transition text-left">
+                {match.awayTeam.crest && (
+                  <img
+                    src={match.awayTeam.crest}
+                    alt=""
+                    className="w-8 h-8 object-contain"
+                  />
+                )}
+                <span className="hidden md:inline">{match.awayTeam.name}</span>
+                <span className="md:hidden">
+                  {match.awayTeam.tla || match.awayTeam.name}
+                </span>
               </div>
             </div>
           ))
