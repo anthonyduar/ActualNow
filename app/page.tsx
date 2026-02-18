@@ -58,6 +58,7 @@ export default function Home() {
       try {
         const res = await fetch(
           `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/posts?_embed`,
+          { cache: "no-store" },
         );
         const data = await res.json();
         setPosts(Array.isArray(data) ? data : []);
@@ -73,12 +74,14 @@ export default function Home() {
       try {
         const categoryRes = await fetch(
           `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/categories?slug=futbol`,
+          { cache: "no-store" },
         );
         const categoryData = await categoryRes.json();
         if (categoryData.length > 0) {
           const footballCategoryId = categoryData[0].id;
           const postsRes = await fetch(
             `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/posts?_embed&categories=${footballCategoryId}&per_page=3`,
+            { cache: "no-store" },
           );
           const postsData = await postsRes.json();
           setFootballPosts(Array.isArray(postsData) ? postsData : []);
