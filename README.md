@@ -1,36 +1,27 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+ActualNow 🚀
+Plataforma profesional de noticias y deportes que combina el rigor periodístico con arquitectura web moderna.
 
-## Getting Started
+Como Licenciado en Comunicación Social, diseñé este portal para gestionar un flujo real de noticias, utilizando un sistema Headless CMS que permite publicaciones rápidas y despliegues automáticos. Este proyecto evolucionó de un sitio estático a una arquitectura moderna para optimizar el flujo editorial.
 
-First, run the development server:
+🛠️ Stack Técnico y Flujo
+Gestión de Contenido: WordPress (Pantheon) como motor de redacción.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Frontend: Next.js / Static Site Generation (SSG).
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Despliegue: CI/CD vía GitHub y Vercel (Auto-deploy al publicar).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Desarrollo: Lógica e integraciones optimizadas mediante la supervisión y aplicación de asistencia con IA (Gemini).
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+✨ Valor Agregado
+Redacción Periodística: Contenido original basado en fuentes deportivas reales.
 
-## Learn More
+Arquitectura Eficiente: Separación de la lógica visual y el panel de redacción para máxima velocidad de carga.
 
-To learn more about Next.js, take a look at the following resources:
+Automatización: Flujo de trabajo donde la publicación de una entrada dispara la reconstrucción del sitio estático.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+🚀 Demo en Vivo
+ActualNow en Vercel
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+⚠️ Aviso Legal y Licencia
+Este repositorio es para exhibición de portafolio técnico y periodístico.
+Código bajo licencia GPL v3. Prohibida su venta o uso comercial sin autorización expresa del autor.
