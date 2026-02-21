@@ -34,4 +34,4 @@ He diseñado un ecosistema donde la redacción y el código trabajan de forma in
 * **⚠️ Aviso Legal y Licencia:** Este repositorio es para **exhibición de portafolio técnico y periodístico**. El código está bajo la licencia **GPL v3**. Se prohíbe su venta, uso comercial o redistribución sin la autorización expresa del autor.
 
 ---
-*Desarrollado por [anthonyduar] - Integrando periodismo y tecnología avanzada.*
+Desarrollado por [anthonyduar] - Integrando periodismo con arquitectura tecnológica avanzada.
