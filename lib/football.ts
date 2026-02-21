@@ -1,4 +1,4 @@
-const API_KEY = process.env.FOOTBALL_DATA_API_KEY;
+const API_KEY = process.env.FOOTBALL_DATA_API_KEY || "";
 
 export async function getLiveMatches() {
   const res = await fetch("https://api.football-data.org/v4/matches", {
