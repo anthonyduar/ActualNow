@@ -25,29 +25,23 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* TICKER PRINCIPAL - 25 SEGUNDOS */
+/* EL PRINCIPAL (Lento - 25s) */
 .animate-marquee {
   display: inline-flex !important;
   animation: marquee 25s linear infinite !important;
 }
 
-/* TICKER PUBLICIDAD - 8 SEGUNDOS */
-.animate-marquee-fast {
+/* PUBLICIDAD (Rápidos - 8s) */
+.animate-marquee-custom {
   display: inline-flex !important;
-  animation: marquee 10s linear infinite !important;
+  animation: marquee 8s linear infinite !important;
 }
 
-.animate-marquee-fast-reverse {
+.animate-marquee-reverse-custom {
   display: inline-flex !important;
-  animation: marquee-reverse 10s linear infinite !important;
+  animation: marquee-reverse 8s linear infinite !important;
 }
 
-@keyframes marquee {
-  0% { transform: translateX(0%); }
-  100% { transform: translateX(-50%); }
-}
-
-@keyframes marquee-reverse {
-  0% { transform: translateX(-50%); }
-  100% { transform: translateX(0%); }
-}
+/* MOTOR DE MOVIMIENTO */
+@keyframes marquee { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
+@keyframes marquee-reverse { 0% { transform: translateX(-50%); } 100% { transform: translateX(0%); } }
