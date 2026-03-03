@@ -50,6 +50,7 @@ function FeaturedCarousel({ posts }: { posts: any[] }) {
 export default function Home() {
   const [posts, setPosts] = useState<any[]>([]);
   const [footballPosts, setFootballPosts] = useState<any[]>([]);
+  const [adPost, setAdPost] = useState<any>(null);
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
@@ -57,7 +58,7 @@ export default function Home() {
     async function getData() {
       try {
         const res = await fetch(
-          `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/posts?_embed&per_page=30&v=${Date.now()}`,
+  `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/posts?_embed&per_page=30&categories_exclude=77&v=${Date.now()}`,
           { cache: "no-store" },
         );
         const data = await res.json();
@@ -102,6 +103,22 @@ export default function Home() {
     getFootballData();
   }, []);
 
+  useEffect(() => {
+  async function getAdData() {
+    try {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/posts?_embed&categories=77&per_page=1&v=${Date.now()}`,
+        { cache: "no-store" }
+      );
+      const data = await res.json();
+      if (Array.isArray(data) && data.length > 0) setAdPost(data[0]);
+    } catch (error) {
+      console.error("Error Ad:", error);
+    }
+  }
+  getAdData();
+}, []);
+
   if (!isClient) return <div className="min-h-screen bg-zinc-950" />;
 
   // Definición segura de las variables de segmentación
@@ -120,10 +137,20 @@ export default function Home() {
               <div className="w-full h-[450px] bg-zinc-900 animate-pulse rounded-2xl" />
             )}
           </div>
-          <div className="md:w-[30%] hidden md:flex bg-zinc-900 rounded-2xl border-2 border-dashed border-zinc-800 items-center justify-center text-center p-4">
-            <p className="text-zinc-600 text-xs font-bold uppercase tracking-widest">
-              Publicidad
-            </p>
+          <div className="md:w-[30%] hidden md:flex bg-zinc-900 rounded-2xl border-2 border-zinc-800 overflow-hidden relative group">
+            {adPost ? (
+              <a href={adPost.content.rendered.replace(/<[^>]*>?/gm, '').trim()} target="_blank" className="w-full h-full">
+                <img 
+                  src={adPost._embedded?.["wp:featuredmedia"]?.[0]?.source_url} 
+                  className="object-cover w-full h-full group-hover:scale-105 transition duration-500" 
+                  alt="Publicidad" 
+                />
+              </a>
+            ) : (
+              <p className="text-zinc-600 text-xs font-bold uppercase tracking-widest m-auto">
+                Publicidad
+              </p>
+            )}
           </div>
         </div>
 
