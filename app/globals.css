@@ -33,12 +33,7 @@ body {
   }
 }
 
-.animate-marquee-custom {
-  display: inline-flex;
-  animation: marquee 25s linear infinite; /* 45 segundos para que sea suave */
-  min-width: fit-content;
-}
-
+/* KEYFRAMES */
 @keyframes marquee {
   0% { transform: translateX(0%); }
   100% { transform: translateX(-50%); }
@@ -49,6 +44,7 @@ body {
   to { transform: translateX(0); }
 }
 
+/* CLASES DE VELOCIDAD */
 .animate-marquee-custom {
   display: inline-flex;
   animation: marquee 8s linear infinite;
