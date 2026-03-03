@@ -137,7 +137,7 @@ export default function Home() {
               <div className="w-full h-[450px] bg-zinc-900 animate-pulse rounded-2xl" />
             )}
           </div>
-          <div className="md:w-[30%] hidden md:flex bg-zinc-900 rounded-2xl border-2 border-zinc-800 overflow-hidden relative group">
+          <div className="md:w-[30%] h-[450px] hidden md:flex bg-zinc-900 rounded-2xl border-2 border-zinc-800 overflow-hidden relative group">
             {adPost ? (
               <a href={adPost.content.rendered.replace(/<[^>]*>?/gm, '').trim()} target="_blank" className="w-full h-full">
                 <img 
