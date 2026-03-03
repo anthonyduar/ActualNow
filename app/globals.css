@@ -25,12 +25,29 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-@keyframes marquee { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
-@keyframes marquee-reverse { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+/* TICKER PRINCIPAL - 25 SEGUNDOS */
+.animate-marquee {
+  display: inline-flex !important;
+  animation: marquee 25s linear infinite !important;
+}
 
-/* PRINCIPAL (LENTO) */
-.animate-marquee { display: inline-flex; animation: marquee 25s linear infinite; min-width: fit-content; }
+/* TICKER PUBLICIDAD - 8 SEGUNDOS */
+.animate-marquee-fast {
+  display: inline-flex !important;
+  animation: marquee 10s linear infinite !important;
+}
 
-/* PUBLICIDAD (RÁPIDOS) */
-.animate-marquee-custom { display: inline-flex; animation: marquee 10s linear infinite !important; min-width: fit-content; }
-.animate-marquee-reverse-custom { display: inline-flex; animation: marquee-reverse 10s linear infinite !important; min-width: fit-content; }
+.animate-marquee-fast-reverse {
+  display: inline-flex !important;
+  animation: marquee-reverse 10s linear infinite !important;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee-reverse {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0%); }
+}
