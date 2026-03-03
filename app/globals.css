@@ -25,19 +25,18 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* EL PRINCIPAL (Lento - 25s) */
+/* EL PRINCIPAL (Noticias arriba - LENTO) */
 .animate-marquee {
   display: inline-flex !important;
-  animation: marquee 25s linear infinite !important;
+  animation: marquee 20s linear infinite !important;
 }
 
-/* PUBLICIDAD ARRIBA (Rápido - 8s) */
+/* PUBLICIDAD (Los dos de la derecha - RÁPIDOS) */
 .animate-marquee-custom {
   display: inline-flex !important;
   animation: marquee 10s linear infinite !important;
 }
 
-/* PUBLICIDAD ABAJO (Rápido Reversa - 8s) */
 .animate-marquee-reverse-custom {
   display: inline-flex !important;
   animation: marquee-reverse 10s linear infinite !important;

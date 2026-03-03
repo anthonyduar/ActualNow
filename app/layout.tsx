@@ -60,7 +60,7 @@ export default async function RootLayout({
               ÚLTIMA HORA:
             </span>
             <div className="flex overflow-hidden">
-              <div className="animate-marquee-custom whitespace-nowrap">
+              <div className="animate-marquee whitespace-nowrap">
                 {tickerPosts.map((post: any) => (
                   <Link
                     key={post.id}
