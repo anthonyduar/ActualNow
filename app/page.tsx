@@ -158,6 +158,13 @@ export default function Home() {
       Publicidad
     </p>
   )}
+
+  {/* TICKER INFERIOR - Va justo antes de cerrar el contenedor principal */}
+  <div className="bg-zinc-800 w-full overflow-hidden py-1.5 border-t border-zinc-700">
+    <div className="whitespace-nowrap animate-marquee-reverse-custom font-black text-[10px] uppercase tracking-widest text-zinc-300">
+      HARDWARE TECH • LICENCIAS DIGITALES • ACCESORIOS GAMINIG • LO ÚLTIMO EN TECNOLOGÍA •
+    </div>
+  </div>
 </div>
         </div>
 

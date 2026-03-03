@@ -48,3 +48,19 @@ body {
   display: inline-block;
   animation: marquee 10s linear infinite;
 }
+/* ... tus estilos anteriores ... */
+
+@keyframes marquee-reverse {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-marquee-reverse-custom {
+  display: inline-flex;
+  animation: marquee-reverse 25s linear infinite; /* Misma velocidad, sentido contrario */
+  min-width: fit-content;
+}
