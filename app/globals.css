@@ -31,17 +31,17 @@ body {
   animation: marquee 25s linear infinite !important;
 }
 
-/* PUBLICIDAD (Rápidos - 8s) */
+/* PUBLICIDAD ARRIBA (Rápido - 8s) */
 .animate-marquee-custom {
   display: inline-flex !important;
-  animation: marquee 8s linear infinite !important;
+  animation: marquee 10s linear infinite !important;
 }
 
+/* PUBLICIDAD ABAJO (Rápido Reversa - 8s) */
 .animate-marquee-reverse-custom {
   display: inline-flex !important;
-  animation: marquee-reverse 8s linear infinite !important;
+  animation: marquee-reverse 10s linear infinite !important;
 }
 
-/* MOTOR DE MOVIMIENTO */
 @keyframes marquee { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
 @keyframes marquee-reverse { 0% { transform: translateX(-50%); } 100% { transform: translateX(0%); } }
