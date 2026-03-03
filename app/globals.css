@@ -51,12 +51,12 @@ body {
 
 .animate-marquee-custom {
   display: inline-flex;
-  animation: marquee 15s linear infinite;
+  animation: marquee 8s linear infinite;
   min-width: fit-content;
 }
 
 .animate-marquee-reverse-custom {
   display: inline-flex;
-  animation: marquee-reverse 15s linear infinite;
+  animation: marquee-reverse 8s linear infinite;
   min-width: fit-content;
 }
