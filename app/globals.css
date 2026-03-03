@@ -44,23 +44,19 @@ body {
   100% { transform: translateX(-50%); }
 }
 
-.animate-marquee {
-  display: inline-block;
-  animation: marquee 15s linear infinite;
-}
-/* ... tus estilos anteriores ... */
-
 @keyframes marquee-reverse {
-  from {
-    transform: translateX(-50%);
-  }
-  to {
-    transform: translateX(0);
-  }
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+
+.animate-marquee-custom {
+  display: inline-flex;
+  animation: marquee 15s linear infinite;
+  min-width: fit-content;
 }
 
 .animate-marquee-reverse-custom {
   display: inline-flex;
-  animation: marquee-reverse 15s linear infinite; /* Misma velocidad, sentido contrario */
+  animation: marquee-reverse 15s linear infinite;
   min-width: fit-content;
 }

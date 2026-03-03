@@ -137,11 +137,11 @@ export default function Home() {
               <div className="w-full h-[450px] bg-zinc-900 animate-pulse rounded-2xl" />
             )}
           </div>
-          <div className="md:w-[30%] h-[450px] hidden md:flex bg-zinc-900 rounded-2xl border-2 border-zinc-800 overflow-hidden relative group flex-col">
+         <div className="md:w-[30%] h-[450px] hidden md:flex bg-zinc-900 rounded-2xl border-2 border-zinc-800 overflow-hidden relative group flex-col">
   {/* TICKER SUPERIOR */}
-  <a href="#" className="bg-black w-full overflow-hidden py-1.5 border-b border-zinc-800 block hover:bg-zinc-800 transition-colors">
-    <div className="whitespace-nowrap animate-marquee-custom font-black text-[10px] uppercase tracking-widest text-white">
-      OFERTAS EXCLUSIVAS • LICENCIAS DIGITALES • COMPRA AHORA • ACCESORIOS TECH • STOCK LIMITADO • SOFTWARE •
+  <a href="/ofertas" className="bg-white w-full overflow-hidden py-1.5 border-b-2 border-black block">
+    <div className="whitespace-nowrap animate-marquee-custom font-black text-[10px] uppercase tracking-widest text-black">
+      OFERTAS EXCLUSIVAS • LICENCIAS DIGITALES • COMPRA AHORA • ACCESORIOS TECH • STOCK LIMITADO •
     </div>
   </a>
 
@@ -154,8 +154,8 @@ export default function Home() {
   )}
 
   {/* TICKER INFERIOR */}
-  <a href="#" className="bg-black w-full overflow-hidden py-1.5 border-t border-zinc-800 block hover:bg-zinc-800 transition-colors">
-    <div className="whitespace-nowrap animate-marquee-reverse-custom font-black text-[10px] uppercase tracking-widest text-white">
+  <a href="/ofertas" className="bg-white w-full overflow-hidden py-1.5 border-t-2 border-black block">
+    <div className="whitespace-nowrap animate-marquee-reverse-custom font-black text-[10px] uppercase tracking-widest text-black">
       HARDWARE TECH • LICENCIAS DIGITALES • ACCESORIOS GAMING • LO ÚLTIMO EN TECNOLOGÍA •
     </div>
   </a>
