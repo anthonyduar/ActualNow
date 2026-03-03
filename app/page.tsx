@@ -137,21 +137,28 @@ export default function Home() {
               <div className="w-full h-[450px] bg-zinc-900 animate-pulse rounded-2xl" />
             )}
           </div>
-          <div className="md:w-[30%] h-[450px] hidden md:flex bg-zinc-900 rounded-2xl border-2 border-zinc-800 overflow-hidden relative group">
-            {adPost ? (
-              <a href={adPost.content.rendered.replace(/<[^>]*>?/gm, '').trim()} target="_blank" className="w-full h-full">
-                <img 
-                  src={adPost._embedded?.["wp:featuredmedia"]?.[0]?.source_url} 
-                  className="object-cover w-full h-full group-hover:scale-105 transition duration-500" 
-                  alt="Publicidad" 
-                />
-              </a>
-            ) : (
-              <p className="text-zinc-600 text-xs font-bold uppercase tracking-widest m-auto">
-                Publicidad
-              </p>
-            )}
-          </div>
+          <div className="md:w-[30%] h-[450px] hidden md:flex bg-zinc-900 rounded-2xl border-2 border-zinc-800 overflow-hidden relative group flex-col">
+  {/* TICKER SUPERIOR */}
+  <div className="bg-sky-500 w-full overflow-hidden py-1.5 border-b border-sky-400">
+    <div className="whitespace-nowrap animate-marquee-custom font-black text-[10px] uppercase tracking-widest text-white">
+      OFERTAS EXCLUSIVAS • LICENCIAS DIGITALES • COMPRA AHORA • ACCESORIOS TECH • STOCK LIMITADO • SOFTWARE •
+    </div>
+  </div>
+
+  {adPost ? (
+    <a href={adPost.content.rendered.replace(/<[^>]*>?/gm, '').trim()} target="_blank" className="flex-1 relative overflow-hidden">
+      <img 
+        src={adPost._embedded?.["wp:featuredmedia"]?.[0]?.source_url} 
+        className="object-cover w-full h-full group-hover:scale-105 transition duration-500" 
+        alt="Publicidad" 
+      />
+    </a>
+  ) : (
+    <p className="m-auto text-zinc-600 text-xs font-bold uppercase tracking-widest">
+      Publicidad
+    </p>
+  )}
+</div>
         </div>
 
         {/* SECCIÓN FÚTBOL */}
