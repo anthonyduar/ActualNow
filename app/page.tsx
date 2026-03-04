@@ -177,7 +177,7 @@ export default function Home() {
                 key={post.id}
                 className="flex-shrink-0 w-[300px] md:w-[calc(33.33%-22px)]"
               >
-                <Link href={`/posts/${post.slug}`}>
+                <Link href={`/posts/${post.slug}`} className="group">
                   <div className="relative h-64 w-full overflow-hidden rounded-2xl bg-zinc-900 mb-4 border border-zinc-800">
                     <img
                       src={
@@ -189,7 +189,7 @@ export default function Home() {
                   </div>
                   <div className="space-y-2 px-1">
                     <h3
-                      className="text-lg font-bold text-white leading-tight uppercase line-clamp-2"
+                      className="text-lg font-bold text-white leading-tight uppercase line-clamp-2 group-hover:text-sky-500 transition"
                       dangerouslySetInnerHTML={{ __html: post.title.rendered }}
                     />
                     <div
@@ -238,9 +238,9 @@ export default function Home() {
                   </div>
 
                   <div className="md:w-2/3 relative flex flex-col justify-center min-h-[200px]">
-                    <Link href={`/posts/${post.slug}`}>
+                    <Link href={`/posts/${post.slug}`} className="group">
                       <h2
-                        className="text-base md:text-lg font-bold text-white mb-4 leading-tight uppercase"
+                        className="text-base md:text-lg font-bold text-white mb-4 leading-tight uppercase group-hover:text-sky-500 transition"
                         dangerouslySetInnerHTML={{
                           __html: post.title.rendered,
                         }}
