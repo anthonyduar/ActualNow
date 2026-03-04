@@ -62,7 +62,7 @@ export default async function PostPage({
         {/* IMAGEN + LEYENDA */}
         {img && (
           <div className="mb-1 max-w-2xl mx-auto">
-            <div className="w-full h-64 rounded-3xl overflow-hidden border border-zinc-800 shadow-2xl">
+            <div className="w-full h-80 rounded-3xl overflow-hidden border border-zinc-800 shadow-2xl">
               <img src={img} className="w-full h-full object-cover" alt="" />
             </div>
             {caption && (

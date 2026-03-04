@@ -60,7 +60,7 @@ export default async function PrivacidadPage() {
         </div>
 
         {/* SECCIÓN RECOMENDADOS (IDÉNTICA) */}
-        <section className="mt-20 border-t border-zinc-800 pt-10">
+        <section className="mt-10 border-t border-zinc-800 pt-10">
           <h3 className="text-lg font-bold uppercase tracking-widest mb-8 text-white border-l-4 border-sky-500 pl-4">
             Recomendados
           </h3>
