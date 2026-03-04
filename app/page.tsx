@@ -141,7 +141,7 @@ export default function Home() {
   {/* TICKER SUPERIOR - RÁPIDO */}
   <a href="https://eparadise.vercel.app/" target="_blank" rel="noopener noreferrer" className="bg-white w-full overflow-hidden py-1.5 block">
     <div className="whitespace-nowrap animate-marquee-custom font-black text-[10px] uppercase tracking-widest text-black">
-      OFERTAS EXCLUSIVAS • LICENCIAS DIGITALES • COMPRA AHORA • ACCESORIOS TECH • STOCK LIMITADO •
+      OFERTAS EXCLUSIVAS • LICENCIAS DIGITALES • COMPRA AHORA • ACCESORIOS TECH • STOCK LIMITADO • OFERTAS EXCLUSIVAS • LICENCIAS DIGITALES • COMPRA AHORA • ACCESORIOS TECH • STOCK LIMITADO •
     </div>
   </a>
 
@@ -159,7 +159,7 @@ export default function Home() {
   {/* TICKER INFERIOR - RÁPIDO REVERSA */}
   <a href="https://eparadise.vercel.app/" target="_blank" rel="noopener noreferrer" className="bg-white w-full overflow-hidden py-1.5 block">
     <div className="whitespace-nowrap animate-marquee-reverse-custom font-black text-[10px] uppercase tracking-widest text-black">
-      HARDWARE TECH • LICENCIAS DIGITALES • ACCESORIOS GAMING • LO ÚLTIMO EN TECNOLOGÍA •
+      HARDWARE TECH • LICENCIAS DIGITALES • ACCESORIOS GAMING • LO ÚLTIMO EN TECNOLOGÍA • HARDWARE TECH • LICENCIAS DIGITALES • ACCESORIOS GAMING • LO ÚLTIMO EN TECNOLOGÍA •
     </div>
   </a>
 </div>
