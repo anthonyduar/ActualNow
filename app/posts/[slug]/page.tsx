@@ -62,8 +62,8 @@ export default async function PostPage({
         {/* IMAGEN + LEYENDA */}
         {img && (
           <div className="mb-1 max-w-2xl mx-auto">
-            <div className="w-full h-auto rounded-3xl overflow-hidden border border-zinc-800 shadow-2xl">
-              <img src={img} className="w-full h-auto object-cover" alt="" />
+            <div className="w-full h-64 rounded-3xl overflow-hidden border border-zinc-800 shadow-2xl">
+              <img src={img} className="w-full h-full object-cover" alt="" />
             </div>
             {caption && (
               <div
@@ -119,7 +119,7 @@ export default async function PostPage({
 
       {/* FOOTER */}
       <footer className="max-w-4xl mx-auto w-full px-6 pb-12 mt-2">
-        <div className="text-center mb-12">
+        <div className="text-center mt-10">
           <Link
             href="/"
             className="inline-block bg-sky-500 text-white px-8 py-2 rounded-full font-bold uppercase text-[10px] tracking-widest hover:bg-sky-600 transition shadow-lg"
@@ -128,28 +128,32 @@ export default async function PostPage({
           </Link>
         </div>
 
-        <section className="border-t border-zinc-900 pt-10">
-          <h3 className="text-sm font-black uppercase tracking-widest mb-8 border-l-4 border-sky-500 pl-4 text-white">
-            Recomendados
-          </h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {recommended.map((rec: any) => (
-              <Link key={rec.id} href={`/posts/${rec.slug}`} className="group">
-                <div className="aspect-square mb-3 overflow-hidden rounded-xl bg-zinc-900">
+        {/* SECCIÓN RECOMENDADOS */}
+      <section className="mt-10 border-t border-zinc-800 pt-10">
+        <h3 className="text-lg font-bold uppercase tracking-widest mb-8 border-l-4 border-sky-500 pl-4">
+          Recomendados
+        </h3>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          {recommended.map((rec: any) => (
+            <Link key={rec.id} href={`/posts/${rec.slug}`} className="group">
+              <div className="aspect-square mb-3 overflow-hidden rounded bg-zinc-800">
+                {rec._embedded?.["wp:featuredmedia"]?.[0]?.source_url && (
                   <img
-                    src={rec._embedded?.["wp:featuredmedia"]?.[0]?.source_url}
-                    className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                    src={rec._embedded["wp:featuredmedia"][0].source_url}
+                    className="object-cover w-full h-full group-hover:scale-105 transition duration-500"
+                    alt=""
                   />
-                </div>
-                <h4
-                  className="text-[13px] font-bold leading-tight group-hover:text-sky-500 transition line-clamp-2"
-                  dangerouslySetInnerHTML={{ __html: rec.title.rendered }}
-                />
-              </Link>
-            ))}
-          </div>
-        </section>
+                )}
+              </div>
+              <h4
+                className="text-sm font-bold leading-tight group-hover:text-sky-500 transition line-clamp-3"
+                dangerouslySetInnerHTML={{ __html: rec.title.rendered }}
+              />
+            </Link>
+          ))}
+        </div>
+      </section>
       </footer>
-    </main>
-  );
-}
+     </main>
+    );
+  }

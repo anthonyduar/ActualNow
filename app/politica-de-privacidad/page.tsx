@@ -50,7 +50,7 @@ export default async function PrivacidadPage() {
           dangerouslySetInnerHTML={{ __html: page.content.rendered }}
         />
 
-        <div className="text-center mt-12 mb-10">
+        <div className="text-center mt-10">
           <Link
             href="/"
             className="inline-block bg-sky-500 text-white px-8 py-2 rounded-full font-bold uppercase text-[10px] tracking-widest hover:bg-sky-600 transition-colors"
