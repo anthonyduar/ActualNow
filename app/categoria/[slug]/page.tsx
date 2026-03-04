@@ -39,7 +39,7 @@ export default async function CategoryPage({
     const posts = await postRes.json();
     const totalPages = parseInt(postRes.headers.get("X-WP-TotalPages") || "1");
     const recRes = await fetch(
-      `${baseUrl}/posts?per_page=4&_embed&v=${Date.now()}`,
+      `${baseUrl}/posts?per_page=4&_embed&categories_exclude=77&v=${Date.now()}`,
       {
         cache: "no-store",
       },

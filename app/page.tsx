@@ -123,7 +123,6 @@ export default function Home() {
 
   // Definición segura de las variables de segmentación
   const featuredPosts = posts.slice(0, 5);
-  const remainingPosts = posts.slice(5);
 
   return (
     <main className="min-h-screen bg-zinc-950 text-white">
@@ -208,7 +207,7 @@ export default function Home() {
 
         {/* SECCIÓN VERTICAL */}
         <div className="grid gap-12 max-w-5xl">
-          {remainingPosts.map((post: any) => {
+          {posts.map((post: any) => {
             const category = post._embedded?.["wp:term"]?.[0]?.[0];
             return (
               <article

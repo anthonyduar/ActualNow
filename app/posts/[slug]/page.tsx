@@ -20,7 +20,7 @@ async function getPostData(slug: string) {
     const post = posts[0] || null;
 
     const recRes = await fetch(
-      `${baseUrl}/posts?per_page=4&_embed&v=${Date.now()}`,
+      `${baseUrl}/posts?per_page=4&_embed&categories_exclude=77&v=${Date.now()}`,
       { cache: "no-store" },
     );
     const recommended = await recRes.json();
