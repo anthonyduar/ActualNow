@@ -17,7 +17,7 @@ export default async function EnVivo() {
       {/* Componente que maneja los partidos y el refresco interno */}
       <LiveMatchesList initialMatches={initialMatches} />
 
-      <div className="text-center mt-10">
+      <div className="text-center mt-2">
         <Link
           href="/"
           className="inline-block bg-sky-500 text-white px-8 py-2 rounded-full font-bold uppercase text-[10px] tracking-widest hover:bg-sky-600 transition"
