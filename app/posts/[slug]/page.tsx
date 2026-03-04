@@ -62,7 +62,7 @@ export default async function PostPage({
         {/* IMAGEN + LEYENDA */}
         {img && (
           <div className="mb-1 max-w-2xl mx-auto">
-            <div className="w-full h-80 rounded-3xl overflow-hidden border border-zinc-800 shadow-2xl">
+            <div className="w-full h-120 rounded-3xl overflow-hidden border border-zinc-800 shadow-2xl">
               <img src={img} className="w-full h-full object-cover" alt="" />
             </div>
             {caption && (
@@ -118,7 +118,7 @@ export default async function PostPage({
       </div>
 
       {/* FOOTER */}
-      <footer className="max-w-4xl mx-auto w-full px-6 pb-12 mt-2">
+      <footer className="max-w-4xl mx-auto w-full px-6 pb-12 mt-0">
         <div className="text-center mt-10">
           <Link
             href="/"
@@ -129,7 +129,7 @@ export default async function PostPage({
         </div>
 
         {/* SECCIÓN RECOMENDADOS */}
-      <section className="mt-10 border-t border-zinc-800 pt-10">
+      <section className="mt-2 border-t border-zinc-800 pt-4">
         <h3 className="text-lg font-bold uppercase tracking-widest mb-8 border-l-4 border-sky-500 pl-4">
           Recomendados
         </h3>
