@@ -40,7 +40,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!post) return {};
 
   // Cambiamos la URL de WP por una externa para probar si X la muestra ahora
-  const img = "https://images.unsplash.com/photo-1504450758481-7338eba7524a";
+  const img = post._embedded?.["wp:featuredmedia"]?.[0]?.source_url;
 
   return {
     title: post.title.rendered.replace(/<\/?[^>]+(>|$)/g, ""),
