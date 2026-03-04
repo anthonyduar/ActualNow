@@ -17,6 +17,15 @@ export default async function EnVivo() {
       {/* Componente que maneja los partidos y el refresco interno */}
       <LiveMatchesList initialMatches={initialMatches} />
 
+      <div className="text-center mt-10 mb-10">
+        <Link
+          href="/"
+          className="inline-block bg-sky-500 text-white px-8 py-2 rounded-full font-bold uppercase text-[10px] tracking-widest hover:bg-sky-600 transition"
+        >
+          Volver
+        </Link>
+      </div>
+
       {/* RECOMENDADOS */}
       <section className="mt-20 border-t border-zinc-800 pt-10">
         <h3 className="text-lg font-bold uppercase tracking-widest mb-8 border-l-4 border-sky-500 pl-4">
@@ -42,15 +51,6 @@ export default async function EnVivo() {
           ))}
         </div>
       </section>
-
-      <div className="text-center mt-10 mb-10">
-        <Link
-          href="/"
-          className="inline-block bg-sky-500 text-white px-8 py-2 rounded-full font-bold uppercase text-[10px] tracking-widest hover:bg-sky-600 transition"
-        >
-          Volver
-        </Link>
-      </div>
-    </main>
+      </main>
   );
 }

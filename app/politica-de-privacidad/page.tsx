@@ -50,6 +50,15 @@ export default async function PrivacidadPage() {
           dangerouslySetInnerHTML={{ __html: page.content.rendered }}
         />
 
+        <div className="text-center mt-12 mb-10">
+          <Link
+            href="/"
+            className="inline-block bg-sky-500 text-white px-8 py-2 rounded-full font-bold uppercase text-[10px] tracking-widest hover:bg-sky-600 transition-colors"
+          >
+            Volver
+          </Link>
+        </div>
+
         {/* SECCIÓN RECOMENDADOS (IDÉNTICA) */}
         <section className="mt-20 border-t border-zinc-800 pt-10">
           <h3 className="text-lg font-bold uppercase tracking-widest mb-8 text-white border-l-4 border-sky-500 pl-4">
@@ -82,16 +91,6 @@ export default async function PrivacidadPage() {
             })}
           </div>
         </section>
-
-        {/* BOTÓN VOLVER (EL AZUL QUE TE GUSTA) */}
-        <div className="text-center mt-12 mb-10">
-          <Link
-            href="/"
-            className="inline-block bg-sky-500 text-white px-8 py-2 rounded-full font-bold uppercase text-[10px] tracking-widest hover:bg-sky-600 transition-colors"
-          >
-            Volver
-          </Link>
-        </div>
       </main>
     );
   } catch (error) {

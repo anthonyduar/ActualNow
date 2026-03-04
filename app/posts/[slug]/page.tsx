@@ -47,7 +47,7 @@ export default async function PostPage({
 
   return (
     <main className="bg-zinc-950 min-h-screen text-white flex flex-col font-sans">
-      <div className="max-w-4xl mx-auto p-6 md:pt-16 flex-grow">
+      <div className="max-w-4xl mx-auto p-4 md:pt-8 flex-grow">
         {/* TÍTULO Y ACTUALNOW */}
         <div className="text-center mb-10">
           <h1
@@ -118,7 +118,7 @@ export default async function PostPage({
       </div>
 
       {/* FOOTER */}
-      <footer className="max-w-4xl mx-auto w-full px-6 pb-12 mt-20">
+      <footer className="max-w-4xl mx-auto w-full px-6 pb-12 mt-10">
         <div className="text-center mb-12">
           <Link
             href="/"

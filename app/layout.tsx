@@ -106,7 +106,7 @@ export default async function RootLayout({
         <div className="flex-grow">{children}</div>
 
         {/* FOOTER COMPLETO RESTAURADO */}
-        <footer className="bg-black text-white mt-20 border-t-4 border-sky-500 font-sans">
+        <footer className="bg-black text-white mt-10 border-t-4 border-sky-500 font-sans">
           <div className="max-w-6xl mx-auto p-10 grid grid-cols-1 md:grid-cols-4 gap-10">
             <div>
               <img src="/logo.png" alt="Logo" className="h-12 w-auto mb-4" />
