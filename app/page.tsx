@@ -146,12 +146,14 @@ export default function Home() {
   </a>
 
   {adPost ? (
-    <a href={adPost.content.rendered.replace(/<[^>]*>?/gm, '').trim()} target="_blank" className="flex-1 relative overflow-hidden">
-      <img src={adPost._embedded?.["wp:featuredmedia"]?.[0]?.source_url} className="object-cover w-full h-full group-hover:scale-105 transition duration-500" alt="Publicidad" />
-    </a>
-  ) : (
-    <p className="m-auto text-zinc-600 text-xs font-bold uppercase tracking-widest">Publicidad</p>
-  )}
+  <a href={adPost.content.rendered.replace(/<[^>]*>?/gm, '').trim()} target="_blank" className="flex-1 relative overflow-hidden">
+    {/* AQUÍ FALTA EL GIF: */}
+    <img src="/gif.gif" className="absolute top-6 left-1/2 -translate-x-1/2 z-30 w-24 h-auto pointer-events-none" alt="Click Here" />
+    <img src={adPost._embedded?.["wp:featuredmedia"]?.[0]?.source_url} className="object-cover w-full h-full group-hover:scale-105 transition duration-500" alt="Publicidad" />
+  </a>
+) : (
+  <p className="m-auto text-zinc-600 text-xs font-bold uppercase tracking-widest">Publicidad</p>
+)}
 
   {/* TICKER INFERIOR - RÁPIDO REVERSA */}
   <a href="https://eparadise.vercel.app/" target="_blank" rel="noopener noreferrer" className="bg-white w-full overflow-hidden py-1.5 block">
