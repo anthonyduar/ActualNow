@@ -147,7 +147,7 @@ export default function Home() {
 
   {adPost ? (
   <a href={adPost.content.rendered.replace(/<[^>]*>?/gm, '').trim()} target="_blank" className="flex-1 relative overflow-hidden">
-    <a href="https://eparadise.vercel.app/" target="_blank" rel="noopener noreferrer" className="absolute top-[45px] left-1/2 -translate-x-1/2 z-40 w-[240px]">
+    <a href="https://eparadise.vercel.app/" target="_blank" rel="noopener noreferrer" className="absolute top-[5px] left-1/2 -translate-x-1/2 z-40 w-[240px]">
       <img src="/gif.gif" className="w-full h-auto" alt="Click Here" />
     </a>
     <img src={adPost._embedded?.["wp:featuredmedia"]?.[0]?.source_url} className="object-cover w-full h-full group-hover:scale-105 transition duration-500" alt="Publicidad" />
