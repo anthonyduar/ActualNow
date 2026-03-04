@@ -4,7 +4,7 @@ export default async function Contacto() {
   const baseUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL;
 
   const recRes = await fetch(
-    `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/posts?per_page=4&_embed&v=${Date.now()}`,
+    `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/posts?per_page=4&_embed&categories_exclude=77&v=${Date.now()}`,
     { cache: "no-store" },
   );
   const recommended = await recRes.json();

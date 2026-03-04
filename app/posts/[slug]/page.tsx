@@ -99,13 +99,22 @@ export default async function PostPage({
           </p>
         </div>
 
-        {/* CUERPO DE NOTICIA: SEPARACIÓN AJUSTADA */}
-        <div
-          className="prose prose-invert max-w-none text-zinc-200 text-lg leading-relaxed text-justify 
-                     [&_p]:mb-6 [&_p]:block
-                     [&_br]:content-[''] [&_br]:block [&_br]:mb-3"
-          dangerouslySetInnerHTML={{ __html: post.content.rendered }}
-        />
+        {/* CUERPO DE NOTICIA: FONDO BLANCO CON TEXTO GRIS */}
+        <div className="max-w-3xl mx-auto w-full">
+          <div
+            className="bg-white text-gray-600 text-lg leading-relaxed text-justify px-8 py-10 rounded-lg
+                       [&_p]:mb-6 [&_p]:block
+                       [&_br]:content-[''] [&_br]:block [&_br]:mb-3
+                       [&_h2]:text-gray-800 [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:mt-8 [&_h2]:mb-4
+                       [&_h3]:text-gray-800 [&_h3]:text-xl [&_h3]:font-bold [&_h3]:mt-6 [&_h3]:mb-3
+                       [&_strong]:text-gray-800 [&_strong]:font-bold
+                       [&_em]:italic [&_em]:text-gray-700
+                       [&_ul]:list-disc [&_ul]:ml-6 [&_ul]:mb-4
+                       [&_ol]:list-decimal [&_ol]:ml-6 [&_ol]:mb-4
+                       [&_a]:text-sky-500 [&_a]:underline [&_a]:hover:text-sky-600"
+            dangerouslySetInnerHTML={{ __html: post.content.rendered }}
+          />
+        </div>
       </div>
 
       {/* FOOTER */}
