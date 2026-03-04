@@ -30,6 +30,27 @@ async function getPostData(slug: string) {
     return { post: null, recommended: [] };
   }
 }
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const baseUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL;
+  const res = await fetch(`${baseUrl}/posts?_embed&slug=${slug}`);
+  const posts = await res.json();
+  const post = posts[0];
+
+  if (!post) return {};
+
+  const img = post._embedded?.["wp:featuredmedia"]?.[0]?.source_url;
+
+  return {
+    title: post.title.rendered,
+    openGraph: { images: [img] },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title.rendered,
+      images: [img],
+    },
+  };
+}
 
 export default async function PostPage({
   params,
@@ -74,23 +95,15 @@ export default async function PostPage({
           </div>
         )}
 
-        {/* FIRMA (RED SOCIAL PEGADA AL NOMBRE) */}
-        <div className="flex flex-col items-center text-center mt-4 mb-0 border-b border-zinc-800 pb-8">
-          <p className="text-[11px] font-light uppercase tracking-tighter text-zinc-100">
-            POR: ANTHONY DUARTE
-          </p>
-          <a
-            href="https://x.com/AnthonyDuarte"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-1.5 text-[10px] font-medium text-zinc-400 hover:text-sky-400 mt-0 transition"
-          >
-            <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-            </svg>
-            @AnthonyDuarte
-          </a>
-        </div>
+      <div className="flex flex-col items-center text-center mt-4 mb-0 border-b border-zinc-800 pb-8">
+        <a href="https://x.com/AnthonyDuarte" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-[12px] font-medium text-zinc-400 hover:text-sky-400 mt-0 transition">
+          <span className="font-light opacity-70">POR:</span>
+          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+           <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+          </svg>
+          @AnthonyDuarte
+        </a>
+      </div>
 
         {/* FECHA */}
         <div className="mt-2 mb-12">
