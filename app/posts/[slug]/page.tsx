@@ -119,7 +119,7 @@ export default async function PostPage({
 
       {/* FOOTER */}
       <footer className="max-w-4xl mx-auto w-full px-6 pb-12 mt-2">
-        <div className="text-center mt-10">
+        <div className="text-center mt-10 mb-10">
           <Link
             href="/"
             className="inline-block bg-sky-500 text-white px-8 py-2 rounded-full font-bold uppercase text-[10px] tracking-widest hover:bg-sky-600 transition shadow-lg"
