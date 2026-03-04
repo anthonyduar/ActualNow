@@ -35,13 +35,13 @@ body {
 .animate-marquee-custom {
   display: inline-flex !important;
   /* reducido a 5s para un movimiento más rápido */
-  animation: marquee 5s linear infinite !important;
+  animation: marquee 7s linear infinite !important;
 }
 
 .animate-marquee-reverse-custom {
   display: inline-flex !important;
   /* reducido a 5s para un movimiento más rápido */
-  animation: marquee-reverse 5s linear infinite !important;
+  animation: marquee-reverse 7s linear infinite !important;
 }
 
 @keyframes marquee { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
