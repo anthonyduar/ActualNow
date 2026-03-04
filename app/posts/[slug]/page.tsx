@@ -61,9 +61,9 @@ export default async function PostPage({
 
         {/* IMAGEN + LEYENDA */}
         {img && (
-          <div className="mb-2">
+          <div className="mb-2 max-w-2xl mx-auto">
             <div className="w-full h-auto rounded-3xl overflow-hidden border border-zinc-800 shadow-2xl">
-              <img src={img} className="w-full h-full object-cover" alt="" />
+              <img src={img} className="w-full h-auto object-cover" alt="" />
             </div>
             {caption && (
               <div
@@ -119,6 +119,15 @@ export default async function PostPage({
 
       {/* FOOTER */}
       <footer className="max-w-4xl mx-auto w-full px-6 pb-12 mt-20">
+        <div className="text-center mb-12">
+          <Link
+            href="/"
+            className="inline-block bg-sky-500 text-white px-8 py-2 rounded-full font-bold uppercase text-[10px] tracking-widest hover:bg-sky-600 transition shadow-lg"
+          >
+            Volver al Inicio
+          </Link>
+        </div>
+
         <section className="border-t border-zinc-900 pt-10">
           <h3 className="text-sm font-black uppercase tracking-widest mb-8 border-l-4 border-sky-500 pl-4 text-white">
             Recomendados
@@ -126,7 +135,7 @@ export default async function PostPage({
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {recommended.map((rec: any) => (
               <Link key={rec.id} href={`/posts/${rec.slug}`} className="group">
-                <div className="aspect-video mb-3 overflow-hidden rounded-xl bg-zinc-900">
+                <div className="aspect-square mb-3 overflow-hidden rounded-xl bg-zinc-900">
                   <img
                     src={rec._embedded?.["wp:featuredmedia"]?.[0]?.source_url}
                     className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
@@ -140,15 +149,6 @@ export default async function PostPage({
             ))}
           </div>
         </section>
-
-        <div className="text-center mt-12">
-          <Link
-            href="/"
-            className="inline-block bg-sky-500 text-white px-8 py-2 rounded-full font-bold uppercase text-[10px] tracking-widest hover:bg-sky-600 transition shadow-lg"
-          >
-            Volver
-          </Link>
-        </div>
       </footer>
     </main>
   );

@@ -47,7 +47,7 @@ export default async function CookiesPage() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {recommended.slice(0, 4).map((rec: any) => (
             <Link key={rec.id} href={`/posts/${rec.slug}`} className="group">
-              <div className="aspect-video mb-3 overflow-hidden rounded bg-zinc-800">
+              <div className="aspect-square mb-3 overflow-hidden rounded bg-zinc-800">
                 {rec._embedded?.["wp:featuredmedia"]?.[0]?.source_url && (
                   <img
                     src={rec._embedded["wp:featuredmedia"][0].source_url}

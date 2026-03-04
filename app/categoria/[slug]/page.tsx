@@ -64,7 +64,7 @@ export default async function CategoryPage({
                 href={`/posts/${post.slug}`}
                 className="flex flex-col md:flex-row gap-6 group"
               >
-                <div className="md:w-1/4 aspect-video overflow-hidden rounded bg-zinc-800">
+                <div className="md:w-1/4 aspect-square overflow-hidden rounded bg-zinc-800">
                   {post._embedded?.["wp:featuredmedia"]?.[0]?.source_url && (
                     <img
                       src={post._embedded["wp:featuredmedia"][0].source_url}
@@ -137,7 +137,7 @@ export default async function CategoryPage({
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {recommended.map((rec: any) => (
               <Link key={rec.id} href={`/posts/${rec.slug}`} className="group">
-                <div className="aspect-video mb-3 overflow-hidden rounded bg-zinc-800">
+                <div className="aspect-square mb-3 overflow-hidden rounded bg-zinc-800">
                   {rec._embedded?.["wp:featuredmedia"]?.[0]?.source_url && (
                     <img
                       src={rec._embedded["wp:featuredmedia"][0].source_url}

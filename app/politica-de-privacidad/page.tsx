@@ -64,7 +64,7 @@ export default async function PrivacidadPage() {
                   href={`/posts/${rec.slug}`}
                   className="group"
                 >
-                  <div className="aspect-video mb-3 overflow-hidden rounded bg-zinc-800">
+                  <div className="aspect-square mb-3 overflow-hidden rounded bg-zinc-800">
                     {img && (
                       <img
                         src={img}
