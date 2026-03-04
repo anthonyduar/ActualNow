@@ -148,7 +148,7 @@ export default function Home() {
   {adPost ? (
   <a href={adPost.content.rendered.replace(/<[^>]*>?/gm, '').trim()} target="_blank" className="flex-1 relative overflow-hidden">
     {/* AQUÍ FALTA EL GIF: */}
-    <img src="/gif.gif" className="absolute top-[-10px] left-1/2 -translate-x-1/2 z-30 w-40 h-auto pointer-events-none" alt="Click Here" />
+    <img src="/gif.gif" className="absolute top-[-20px] left-1/2 -translate-x-1/2 z-30 w-[60px] h-auto pointer-events-none" alt="Click Here" />
     <img src={adPost._embedded?.["wp:featuredmedia"]?.[0]?.source_url} className="object-cover w-full h-full group-hover:scale-105 transition duration-500" alt="Publicidad" />
   </a>
 ) : (
