@@ -188,13 +188,7 @@ export default async function RootLayout({
           </div>
         </footer>
         <GoogleAnalytics gaId="G-QC35JH2V91" />
-        <div id="cookie-banner" className="fixed bottom-0 left-0 w-full bg-black text-white p-3 text-[10px] flex items-center justify-center gap-4 z-[9999] border-t border-gray-800">
-          <p>Utilizamos cookies propias y de terceros para mejorar su experiencia. </p>
-          <button onClick={() => document.getElementById('cookie-banner')!.style.display='none'} className="bg-white text-black px-3 py-1 font-bold rounded uppercase hover:bg-gray-200 transition">
-            Aceptar
-          </button>
-        </div>
-      </body>
+        </body>
     </html>
   );
 }
