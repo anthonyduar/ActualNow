@@ -30,35 +30,6 @@ async function getPostData(slug: string) {
     return { post: null, recommended: [] };
   }
 }
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
-  const baseUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL;
-  const res = await fetch(`${baseUrl}/posts?_embed&slug=${slug}`);
-  const posts = await res.json();
-  const post = posts[0];
-
-  if (!post) return {};
-
-  const title = post.title.rendered.replace(/<\/?[^>]+(>|$)/g, "");
-  const description = post.excerpt?.rendered?.replace(/<\/?[^>]+(>|$)/g, "") || "";
-  const img = post._embedded?.["wp:featuredmedia"]?.[0]?.source_url;
-
-  return {
-    title: title,
-    description: description,
-    openGraph: {
-      title: title,
-      description: description,
-      images: [img],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: title,
-      description: description,
-      images: [img], // X requiere la URL absoluta aquí
-    },
-  };
-}
 
 export default async function PostPage({
   params,
