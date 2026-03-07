@@ -66,7 +66,7 @@ export default function Home() {
         if (Array.isArray(data)) {
           // Filtro simple: Si tiene el ID 21 (Fútbol), lo quita. Si no, lo deja.
           const nonFootball = data.filter(
-            (post: any) => !post.categories?.includes(21),
+            (post: any) => !post.categories?.includes(3),
           );
           setPosts(nonFootball);
         } else {
