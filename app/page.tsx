@@ -64,11 +64,11 @@ export default function Home() {
         const data = await res.json();
 
         if (Array.isArray(data)) {
-          // Filtro simple: Si tiene el ID 21 (Fútbol), lo quita. Si no, lo deja.
+          // Filtro simple: Si tiene el ID 3 (Fútbol), lo quita. Si no, lo deja.
           const nonFootball = data.filter(
             (post: any) => !post.categories?.includes(3),
           );
-          setPosts(nonFootball);
+          setPosts(data);
         } else {
           setPosts([]);
         }
@@ -207,7 +207,7 @@ export default function Home() {
 
         {/* SECCIÓN VERTICAL */}
         <div className="grid gap-12 max-w-5xl">
-          {posts.map((post: any) => {
+          {posts.filter((p: any) => !p.categories?.includes(3)).map((post: any) => {
             const category = post._embedded?.["wp:term"]?.[0]?.[0];
             return (
               <article
