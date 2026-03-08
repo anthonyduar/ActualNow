@@ -79,14 +79,19 @@ export default async function CategoryPage({
                     dangerouslySetInnerHTML={{ __html: post.title.rendered }}
                   />
                   <div
-                    className="text-zinc-400 text-sm line-clamp-2 text-justify"
+                    className="text-zinc-400 text-sm line-clamp-2 text-justify mb-4"
                     dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }}
                   />
+                  <div className="flex justify-end">
+                    <span className="inline-block bg-sky-500 text-white text-[10px] font-bold uppercase tracking-widest px-6 py-2 rounded-full shadow-lg shadow-sky-500/20">
+                      Leer
+                    </span>
+                  </div>
                 </div>
               </Link>
             </article>
           ))}
-          <div className="flex justify-end mt-4"><span className="inline-block bg-sky-500 text-white text-[10px] font-bold uppercase tracking-widest px-6 py-2 rounded-full shadow-lg shadow-sky-500/20">Leer</span></div>
+          
         </div>
 
         {/* PAGINACIÓN: 5 BOTONES MÁXIMO */}
