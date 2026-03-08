@@ -73,15 +73,17 @@ export default async function CategoryPage({
                     />
                   )}
                 </div>
-                <div className="md:w-3/4">
-                  <h2
-                    className="text-xl font-bold mb-2 leading-tight group-hover:text-sky-500 transition"
-                    dangerouslySetInnerHTML={{ __html: post.title.rendered }}
-                  />
-                  <div
-                    className="text-zinc-400 text-sm line-clamp-2 text-justify mb-4"
-                    dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }}
-                  />
+                <div className="md:w-3/4 flex flex-col justify-between min-h-[160px]">
+                  <div>
+                    <h2
+                      className="text-xl font-bold mb-2 leading-tight group-hover:text-sky-500 transition"
+                      dangerouslySetInnerHTML={{ __html: post.title.rendered }}
+                    />
+                    <div
+                      className="text-zinc-400 text-sm line-clamp-2 text-justify mb-4"
+                      dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }}
+                    />
+                  </div>
                   <div className="flex justify-end">
                     <span className="inline-block bg-sky-500 text-white text-[10px] font-bold uppercase tracking-widest px-6 py-2 rounded-full shadow-lg shadow-sky-500/20">
                       Leer
