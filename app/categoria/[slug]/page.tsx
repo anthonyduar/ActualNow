@@ -86,6 +86,7 @@ export default async function CategoryPage({
               </Link>
             </article>
           ))}
+          <div className="flex justify-end mt-4"><span className="inline-block bg-sky-500 text-white text-[10px] font-bold uppercase tracking-widest px-6 py-2 rounded-full shadow-lg shadow-sky-500/20">Leer</span></div>
         </div>
 
         {/* PAGINACIÓN: 5 BOTONES MÁXIMO */}
