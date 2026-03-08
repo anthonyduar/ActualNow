@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import Script from "next/script";
 
 function formatDate(dateString: string) {
   return new Date(dateString).toLocaleDateString("es-ES", {
@@ -145,6 +146,9 @@ export default async function PostPage({
         </div>
       </section>
       </footer>
+      {/* CARGADORES DE REDES SOCIALES - Colócalos aquí */}
+      <Script src="https://platform.twitter.com/widgets.js" strategy="afterInteractive" />
+      <Script src="https://www.instagram.com/embed.js" strategy="afterInteractive" />
      </main>
     );
   }
