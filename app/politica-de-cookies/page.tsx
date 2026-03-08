@@ -3,10 +3,11 @@ import Link from "next/link";
 export default async function CookiesPage() {
   const baseUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL;
 
-  const res = await fetch(`${baseUrl}/pages/358?_embed`, {
-    cache: "no-store",
-  });
-  const page = await res.json();
+  const res = await fetch(`${baseUrl}/pages?slug=politica-de-cookies-an&_embed`, {
+  cache: "no-store",
+});
+const data = await res.json();
+const page = data[0]; // Extrae la página del array que devuelve el slug
 
   const recRes = await fetch(
     `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/posts?per_page=4&_embed&categories_exclude=77&v=${Date.now()}`,
