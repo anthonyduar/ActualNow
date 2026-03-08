@@ -58,7 +58,7 @@ export default function Home() {
     async function getData() {
       try {
         const res = await fetch(
-  `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/posts?_embed&per_page=30&categories_exclude=77&v=${Date.now()}`,
+  `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/posts?_embed&per_page=30&categories_exclude=77&exclude=57&v=${Date.now()}`,
           { cache: "no-store" },
         );
         const data = await res.json();
