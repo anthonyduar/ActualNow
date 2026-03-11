@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = "https://tu-dominio.com"; // <--- Pon tu URL real aquí
+  const baseUrl = "https://actualnow.vercel.app";
   const wpApi = process.env.NEXT_PUBLIC_WORDPRESS_API_URL;
 
   try {
