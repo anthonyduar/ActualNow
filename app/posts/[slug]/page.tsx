@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Script from "next/script";
+import TwitterEmbed from "../components/TwitterEmbed";
 
 function formatDate(dateString: string) {
   return new Date(dateString).toLocaleDateString("es-ES", {
@@ -147,7 +148,7 @@ export default async function PostPage({
       </section>
       </footer>
       {/* CARGADORES DE REDES SOCIALES - Colócalos aquí */}
-      <Script src="https://platform.twitter.com/widgets.js" strategy="afterInteractive" />
+      <TwitterEmbed />
       <Script src="https://www.instagram.com/embed.js" strategy="afterInteractive" />
      </main>
     );
