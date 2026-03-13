@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect } from "react";
+import { usePathname } from "next/navigation"; // Línea añadida
 
 export default function XIGEmbed() {
+  const pathname = usePathname(); // Línea añadida
   useEffect(() => {
     // Twitter / X
     if ((window as any).twttr?.widgets) {
@@ -24,7 +26,7 @@ export default function XIGEmbed() {
       s.async = true;
       document.body.appendChild(s);
     }
-  }, []);
+  }, [pathname]);
 
   return null;
 }
