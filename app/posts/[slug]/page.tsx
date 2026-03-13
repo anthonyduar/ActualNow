@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Script from "next/script"; 
 import { notFound } from "next/navigation";
 import XIGEmbed from "../../components/XIGEmbed";
 
@@ -148,6 +149,8 @@ export default async function PostPage({
       </footer>
       {/* CARGADORES DE REDES SOCIALES - Colócalos aquí */}
       <XIGEmbed />
+      <Script src="https://platform.twitter.com/widgets.js" strategy="lazyOnload" />
+      <Script src="https://www.instagram.com/embed.js" strategy="lazyOnload" />
      </main>
     );
   }
