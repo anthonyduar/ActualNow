@@ -73,15 +73,18 @@ export default async function CategoryPage({
                     />
                   )}
                 </div>
-                <div className="md:w-3/4 flex flex-col justify-between min-h-[160px]">
+                <div className="md:w-3/4 flex flex-col justify-center min-h-[160px] relative">
                   <div>
                     <h2
                       className="text-xl font-bold mb-2 leading-tight group-hover:text-sky-500 transition"
                       dangerouslySetInnerHTML={{ __html: post.title.rendered }}
                     />
+                    <p className="text-zinc-500 text-[10px] font-bold uppercase mb-4">
+                    {new Date(post.date).toLocaleDateString()}
+                    </p>
                     <div
                       className="text-zinc-400 text-sm line-clamp-2 text-justify mb-4"
-                      dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }}
+                      dangerouslySetInnerHTML={{ __html: post.excerpt.rendered.replace(/<[^>]*>?/gm, '').trim() + "..." }}
                     />
                   </div>
                   <div className="flex justify-end">
