@@ -192,6 +192,9 @@ export default function Home() {
                       className="text-lg font-bold text-white leading-tight uppercase line-clamp-2 group-hover:text-sky-500 transition"
                       dangerouslySetInnerHTML={{ __html: post.title.rendered }}
                     />
+                    <p className="text-zinc-500 text-[10px] font-bold uppercase py-1">
+                    {new Date(post.date).toLocaleDateString()}
+                    </p>
                     <div
                       className="text-zinc-400 text-sm line-clamp-3 leading-relaxed"
                       dangerouslySetInnerHTML={{
@@ -245,6 +248,9 @@ export default function Home() {
                           __html: post.title.rendered,
                         }}
                       />
+                      <p className="text-zinc-500 text-[10px] font-bold uppercase mb-4">
+                      {new Date(post.date).toLocaleDateString()}
+                      </p>
                       <div
                         className="text-zinc-400 line-clamp-3 text-sm leading-relaxed mb-6"
                         dangerouslySetInnerHTML={{
