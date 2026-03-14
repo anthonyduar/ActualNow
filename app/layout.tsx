@@ -111,7 +111,7 @@ export default async function RootLayout({
             <div>
               <img src="/logo.png" alt="Logo" className="h-12 w-auto mb-4" />
               <p className="text-gray-400 text-sm">
-                Tu fuente principal de noticias deportivas al instante.
+                Noticias deportivas al instante.
               </p>
             </div>
 
