@@ -198,7 +198,7 @@ export default function Home() {
                     <div
                       className="text-zinc-400 text-sm line-clamp-3 leading-relaxed"
                       dangerouslySetInnerHTML={{
-                        __html: post.excerpt.rendered + "...",
+                       __html: post.excerpt.rendered.replace(/<[^>]*>?/gm, '').trim() + "..."
                       }}
                     />
                   </div>
@@ -254,7 +254,7 @@ export default function Home() {
                       <div
                         className="text-zinc-400 line-clamp-3 text-sm leading-relaxed mb-6"
                         dangerouslySetInnerHTML={{
-                          __html: post.excerpt.rendered + "...",
+                          __html: post.excerpt.rendered.replace(/<[^>]*>?/gm, '').trim() + "..."
                         }}
                       />
                     </Link>
