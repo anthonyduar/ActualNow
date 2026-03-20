@@ -37,8 +37,8 @@ export default function CookieBanner() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        gap: "16px",
-        flexWrap: "wrap",
+        gap: "10px",
+        flexDirection: "column",
         boxShadow: "0 -2px 10px rgba(0,0,0,0.5)",
       }}
     >
@@ -64,7 +64,7 @@ export default function CookieBanner() {
       </button>
 
       {/* Mensaje */}
-      <p style={{ margin: 0, fontSize: "13px", flex: "1 1 300px", textAlign: "center" }}>
+      <p style={{ margin: 0, fontSize: "13px", textAlign: "center" }}>
         Utilizamos cookies para mejorar su experiencia y analizar el tráfico. Al continuar navegando, acepta su uso.
       </p>
 
