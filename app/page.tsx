@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import CookieBanner from "./components/CookieBanner";
 
 function FeaturedCarousel({ posts }: { posts: any[] }) {
   const [index, setIndex] = useState(0);
@@ -274,6 +275,7 @@ export default function Home() {
           })}
         </div>
       </div>
+      <CookieBanner />
     </main>
   );
 }
