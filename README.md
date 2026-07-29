@@ -1,4 +1,4 @@
-# 🚀 ActualNow | Portal de Noticias y Deportes con Arquitectura Headless
+# 🚀 ActualNow | Portal de Noticias Deportivas con Arquitectura Headless
 
 **[Ver sitio en vivo 🌐](https://actualnow.vercel.app/)**
 
