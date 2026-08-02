@@ -35,6 +35,13 @@ export default async function RootLayout({
 
   return (
     <html lang="es" suppressHydrationWarning>
+      <head>
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6929115276344973"
+          crossOrigin="anonymous"
+        ></script>
+      </head>
       <body className="bg-white text-black min-h-screen flex flex-col">
         <header className="max-w-6xl mx-auto w-full p-6 pb-0">
           <div className="flex justify-end mb-2 text-xs font-bold text-gray-500 uppercase tracking-widest">
