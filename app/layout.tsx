@@ -189,6 +189,9 @@ export default async function RootLayout({
               </Link>
             </div>
           </div>
+          
+          <p className="text-xs text-gray-500 mb-2">
+          Este sitio web es patrocinado por <a href="https://eparadise.vercel.app" target="_blank" className="text-sky-500 hover:underline">eParadise</a></p>
 
           <div className="border-t border-gray-800 py-6 text-center text-xs text-gray-500">
             <p>
