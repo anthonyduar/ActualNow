@@ -93,54 +93,41 @@ export default async function RootLayout({
             </div>
           </div>
 
-          <nav className="flex flex-wrap items-center gap-x-6 gap-y-2 mb-4 font-sans border-b pb-4 text-sm md:text-base relative">
-            <Link
-              href="/"
-              className="font-bold hover:text-sky-500 transition uppercase text-sky-500"
-            >
-              Inicio
-            </Link>
+          <nav className="flex items-center justify-between mb-4 font-sans border-b pb-4 text-sm relative">
+  <div className="flex items-center gap-x-4">
+    <Link href="/" className="font-bold hover:text-sky-500 transition uppercase text-sky-500">
+      Inicio
+    </Link>
 
-            {/* Menú desplegable para móvil (vertical y horizontal) */}
-            <details className="max-lg:inline-block lg:hidden group relative">
-              <summary className="font-bold hover:text-sky-500 transition uppercase cursor-pointer list-none inline-flex items-center gap-1">
-                Categorías <span className="group-open:rotate-180 transition-transform text-xs">▼</span>
-              </summary>
-              <div className="absolute left-0 top-full bg-black border border-gray-800 p-4 mt-2 flex flex-col gap-3 z-50 shadow-2xl rounded-md min-w-[180px]">
-                {categorias.map((cat) => (
-                  <Link
-                    key={cat.slug}
-                    href={`/categoria/${cat.slug}`}
-                    className="font-bold hover:text-sky-500 transition uppercase text-sm"
-                  >
-                    {cat.nombre}
-                  </Link>
-                ))}
-              </div>
-            </details>
+    <details className="max-lg:inline-block lg:hidden group relative">
+      <summary className="font-bold hover:text-sky-500 transition uppercase cursor-pointer list-none inline-flex items-center gap-1">
+        Categorías <span className="group-open:rotate-180 transition-transform text-xs">▼</span>
+      </summary>
+      <div className="absolute left-0 top-full bg-black border border-gray-800 p-4 mt-2 flex flex-col gap-3 z-50 shadow-2xl rounded-md min-w-[180px]">
+        {categorias.map((cat) => (
+          <Link key={cat.slug} href={`/categoria/${cat.slug}`} className="font-bold hover:text-sky-500 transition uppercase text-sm">
+            {cat.nombre}
+          </Link>
+        ))}
+      </div>
+    </details>
 
-            {/* Categorías normales en fila solo para PC */}
-            <div className="hidden lg:flex flex-wrap items-center gap-x-6 gap-y-2">
-              {categorias.map((cat) => (
-                <Link
-                  key={cat.slug}
-                  href={`/categoria/${cat.slug}`}
-                  className="font-bold hover:text-sky-500 transition uppercase"
-                >
-                  {cat.nombre}
-                </Link>
-              ))}
-            </div>
+    <div className="hidden lg:flex flex-wrap items-center gap-x-6">
+      {categorias.map((cat) => (
+        <Link key={cat.slug} href={`/categoria/${cat.slug}`} className="font-bold hover:text-sky-500 transition uppercase">
+          {cat.nombre}
+        </Link>
+      ))}
+    </div>
+  </div>
 
-            <SearchButton />
-
-            <Link
-              href="/futbol-en-vivo"
-              className="bg-red-600 text-white px-4 py-1 rounded-full font-bold text-xs md:text-sm animate-pulse hover:bg-red-700 transition"
-            >
-              ● FÚTBOL EN VIVO
-            </Link>
-          </nav>
+  <div className="flex items-center gap-x-3">
+    <SearchButton />
+    <Link href="/futbol-en-vivo" className="bg-red-600 text-white px-3 py-1 rounded-full font-bold text-[10px] md:text-sm animate-pulse hover:bg-red-700 transition whitespace-nowrap">
+      ● FÚTBOL EN VIVO
+    </Link>
+  </div>
+</nav>
         </header>
 
         <div className="flex-grow">{children}</div>
