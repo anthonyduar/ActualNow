@@ -1,5 +1,3 @@
-"use client";
-
 import "./globals.css";
 import Link from "next/link";
 import { GoogleAnalytics } from "@next/third-parties/google";
@@ -95,7 +93,7 @@ export default async function RootLayout({
             </div>
           </div>
 
-         <nav className="flex items-center justify-between mb-4 font-sans border-b pb-4 text-base relative">
+        <nav className="flex items-center justify-between mb-4 font-sans border-b pb-4 text-base relative">
   <div className="flex items-center gap-x-4">
     <Link href="/" className="font-bold hover:text-sky-500 transition uppercase text-sky-500">
       Inicio
@@ -110,13 +108,6 @@ export default async function RootLayout({
           <Link 
             key={cat.slug} 
             href={`/categoria/${cat.slug}`} 
-            onClick={(e) => {
-              const details = e.currentTarget.closest("details");
-              if (details) {
-                details.removeAttribute("open");
-                details.blur();
-              }
-            }}
             className="font-bold hover:text-sky-500 transition uppercase text-sm"
           >
             {cat.nombre}
