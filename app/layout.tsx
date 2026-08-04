@@ -1,3 +1,5 @@
+"use client";
+
 import "./globals.css";
 import Link from "next/link";
 import { GoogleAnalytics } from "@next/third-parties/google";
