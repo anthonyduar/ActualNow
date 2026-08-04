@@ -93,7 +93,7 @@ export default async function RootLayout({
             </div>
           </div>
 
-          <nav className="flex items-center justify-between mb-4 font-sans border-b pb-4 text-sm relative">
+         <nav className="flex items-center justify-between mb-4 font-sans border-b pb-4 text-base relative">
   <div className="flex items-center gap-x-4">
     <Link href="/" className="font-bold hover:text-sky-500 transition uppercase text-sky-500">
       Inicio
@@ -105,7 +105,15 @@ export default async function RootLayout({
       </summary>
       <div className="absolute left-0 top-full bg-black border border-gray-800 p-4 mt-2 flex flex-col gap-3 z-50 shadow-2xl rounded-md min-w-[180px]">
         {categorias.map((cat) => (
-          <Link key={cat.slug} href={`/categoria/${cat.slug}`} className="font-bold hover:text-sky-500 transition uppercase text-sm">
+          <Link 
+            key={cat.slug} 
+            href={`/categoria/${cat.slug}`} 
+            onClick={(e) => {
+              const details = e.currentTarget.closest("details");
+              if (details) details.removeAttribute("open");
+            }}
+            className="font-bold hover:text-sky-500 transition uppercase text-sm"
+          >
             {cat.nombre}
           </Link>
         ))}
@@ -121,7 +129,7 @@ export default async function RootLayout({
     </div>
   </div>
 
-  <div className="flex items-center gap-x-3">
+  <div className="flex items-center gap-x-4">
     <SearchButton />
     <Link href="/futbol-en-vivo" className="bg-red-600 text-white px-3 py-1 rounded-full font-bold text-[10px] md:text-sm animate-pulse hover:bg-red-700 transition whitespace-nowrap">
       ● FÚTBOL EN VIVO
