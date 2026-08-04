@@ -102,7 +102,7 @@ export default async function RootLayout({
             </Link>
 
             {/* Menú desplegable para móvil (vertical y horizontal) */}
-            <details className="max-md:inline-block md:hidden group relative">
+            <details className="max-lg:inline-block lg:hidden group relative">
               <summary className="font-bold hover:text-sky-500 transition uppercase cursor-pointer list-none inline-flex items-center gap-1">
                 Categorías <span className="group-open:rotate-180 transition-transform text-xs">▼</span>
               </summary>
