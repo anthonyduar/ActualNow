@@ -120,7 +120,7 @@ export default async function RootLayout({
             </details>
 
             {/* Categorías normales en fila solo para PC */}
-            <div className="hidden md:flex flex-wrap items-center gap-x-6 gap-y-2">
+            <div className="hidden lg:flex flex-wrap items-center gap-x-6 gap-y-2">
               {categorias.map((cat) => (
                 <Link
                   key={cat.slug}
