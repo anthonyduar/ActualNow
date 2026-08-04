@@ -110,7 +110,10 @@ export default async function RootLayout({
             href={`/categoria/${cat.slug}`} 
             onClick={(e) => {
               const details = e.currentTarget.closest("details");
-              if (details) details.removeAttribute("open");
+              if (details) {
+                details.removeAttribute("open");
+                details.blur();
+              }
             }}
             className="font-bold hover:text-sky-500 transition uppercase text-sm"
           >
@@ -129,7 +132,7 @@ export default async function RootLayout({
     </div>
   </div>
 
-  <div className="flex items-center gap-x-4">
+  <div className="flex items-center gap-x-6 ml-auto">
     <SearchButton />
     <Link href="/futbol-en-vivo" className="bg-red-600 text-white px-3 py-1 rounded-full font-bold text-[10px] md:text-sm animate-pulse hover:bg-red-700 transition whitespace-nowrap">
       ● FÚTBOL EN VIVO
