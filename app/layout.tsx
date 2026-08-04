@@ -188,7 +188,7 @@ export default async function RootLayout({
                 Escríbenos
               </Link>
               <p className="text-xs text-gray-500">
-                Sitio web es patrocinado por <a href="https://eparadise.vercel.app" target="_blank" className="text-sky-500 hover:underline">eParadise</a>
+                Sitio web patrocinado por <a href="https://eparadise.vercel.app" target="_blank" className="text-sky-500 hover:underline">eParadise</a>
               </p>
             </div>
           </div>
