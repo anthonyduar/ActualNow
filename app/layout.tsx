@@ -17,11 +17,19 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/posts?per_page=5&categories_exclude=77&v=${Date.now()}`,
-    { cache: "no-store" },
-  );
-  const tickerPosts = await res.json();
+  let tickerPosts = [];
+  
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/posts?per_page=5&categories_exclude=77&v=${Date.now()}`,
+      { cache: "no-store" },
+    );
+    if (res.ok) {
+      tickerPosts = await res.json();
+    }
+  } catch (error) {
+    console.error("Error al cargar posts:", error);
+  }
 
   const categorias = [
     { nombre: "fútbol", slug: "futbol" },
