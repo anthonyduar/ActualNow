@@ -95,12 +95,12 @@ export default async function RootLayout({
 
         <nav className="flex items-center justify-between mb-4 font-sans border-b pb-4 text-base relative">
   <div className="flex items-center gap-x-4">
-    <Link href="/" className="font-bold hover:text-sky-500 transition uppercase text-sky-500">
+    <Link href="/" className="font-bold hover:text-sky-500 transition uppercase text-sky-500 text-sm">
       Inicio
     </Link>
 
     <details className="max-lg:inline-block lg:hidden group relative">
-      <summary className="font-bold hover:text-sky-500 transition uppercase cursor-pointer list-none inline-flex items-center gap-1">
+      <summary className="font-bold hover:text-sky-500 transition uppercase cursor-pointer list-none inline-flex items-center gap-1 text-sm">
         Categorías <span className="group-open:rotate-180 transition-transform text-xs">▼</span>
       </summary>
       <div className="absolute left-0 top-full bg-black border border-gray-800 p-4 mt-2 flex flex-col gap-3 z-50 shadow-2xl rounded-md min-w-[180px]">
