@@ -140,10 +140,16 @@ export default async function RootLayout({
         <footer className="bg-black text-white mt-10 border-t-4 border-sky-500 font-sans">
           <div className="max-w-6xl mx-auto p-10 grid grid-cols-1 md:grid-cols-4 gap-10">
             <div>
-              <img src="/logo.png" alt="Logo" className="h-12 w-auto mb-4" />
-              <p className="text-gray-400 text-sm">
+              <img src="/logo.png" alt="Logo" className="h-12 w-auto mb-1" />
+              <p className="text-gray-400 text-xs mb-5">
                 Noticias deportivas al instante.
               </p>
+              <Link
+                href="/acerca-de"
+                className="text-sm text-gray-300 hover:text-white transition block"
+              >
+                Acerca de
+              </Link>
             </div>
 
             <div>
@@ -204,7 +210,7 @@ export default async function RootLayout({
               </h3>
               <Link
                 href="/contacto"
-                className="inline-block bg-sky-500 text-white text-center py-2 px-6 rounded-full font-bold uppercase text-[10px] tracking-widest hover:bg-sky-600 transition mb-4"
+                className="inline-block bg-sky-500 text-white text-center py-2 px-1 rounded-full font-bold uppercase text-[9px] tracking-widest hover:bg-sky-600 transition mb-8"
               >
                 Escríbenos
               </Link>
