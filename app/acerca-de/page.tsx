@@ -30,7 +30,7 @@ export default async function AcercaDePage() {
           dangerouslySetInnerHTML={{ __html: page.title.rendered }}
         />
         <p className="text-zinc-500 text-[10px] uppercase tracking-[0.4em] mt-2">
-          Información Legal
+          ActualNow
         </p>
       </header>
 
