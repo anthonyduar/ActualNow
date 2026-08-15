@@ -57,10 +57,13 @@ export default async function RootLayout({
           </div>
 
           <div className="relative w-full mb-6">
-            <img
-              src="/banner.jpg"
-              alt="Banner"
+            <video
+              src="/banner-actualnow.mp4"
               className="w-full h-52 md:h-64 object-cover rounded-lg shadow-md"
+              autoPlay
+              loop
+              muted
+              playsInline
             />
             <div className="absolute inset-0 flex items-center pl-15 md:pl-20">
               <Link href="/">
@@ -70,8 +73,8 @@ export default async function RootLayout({
                   className="h-24 md:h-36 w-auto drop-shadow-2xl"
                 />
               </Link>
+             </div>
             </div>
-          </div>
 
           <div className="bg-black text-white p-2 mb-4 flex overflow-hidden border-y border-gray-800 font-sans">
             <span className="font-bold text-red-600 mr-4 bg-black z-10 whitespace-nowrap px-2">
