@@ -58,13 +58,13 @@ export default async function RootLayout({
 
           <div className="relative w-full mb-6">
   <video
-    src="/banner-actualnow.mp4"
-    className="w-full h-auto max-h-64 md:max-h-80 object-contain md:object-cover md:object-bottom rounded-lg shadow-md"
-    autoPlay
-    loop
-    muted
-    playsInline
-  />
+  src="/banner-actualnow.mp4"
+  className="w-full h-auto max-h-64 md:max-h-[380px] object-contain md:object-cover md:object-top rounded-lg shadow-md"
+  autoPlay
+  loop
+  muted
+  playsInline
+/>
   <div className="absolute inset-0 flex items-center pl-15 md:pl-20">
     <Link href="/">
       <img
