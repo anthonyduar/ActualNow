@@ -16,7 +16,7 @@ export default async function CategoryPage({
 
   try {
     const catRes = await fetch(
-      `${baseUrl}/categories?search=${slug}&v=${Date.now()}`,
+      `${baseUrl}/categories?slug=${slug}&v=${Date.now()}`,
       {
         cache: "no-store",
       },
