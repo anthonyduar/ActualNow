@@ -62,7 +62,7 @@ export function SearchButton() {
 
   return (
     <>
-      <div className="ml-auto flex items-center group border-l pl-6 md:mr-16 md:pl-10 border-gray-200">
+      <div className="ml-auto flex items-center group border-l pl-6 md:mr-16 md:pl-14 border-gray-200">
         <button
           onClick={() => setSearchOpen(!searchOpen)}
           className="flex items-center gap-2 font-bold hover:text-sky-500 transition uppercase text-gray-700"
