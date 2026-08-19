@@ -38,7 +38,7 @@ export default async function RootLayout({
     { nombre: "tenis", slug: "tenis" },
     { nombre: "motor", slug: "motor" },
     { nombre: "combate", slug: "combate" },
-    { nombre: "rugby/nfl", slug: "rugby" },
+    { nombre: "nfl", slug: "nfl" },
   ];
 
   return (
