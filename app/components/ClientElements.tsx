@@ -62,14 +62,14 @@ export function SearchButton() {
 
  return (
   <>
-    <div className="flex items-center w-full">
-      {/* LÍNEA SEPARADORA (pegada a la izquierda y visible en móvil) */}
-      <div className="h-4 w-[1px] bg-gray-500 ml-2 mr-auto" />
+    <div className="flex-1 flex items-center justify-between ml-6 md:mr-10">
+      {/* LÍNEA SEPARADORA (Pegada a la izquierda) */}
+      <div className="h-4 w-[1px] bg-gray-600" />
 
-      {/* BOTÓN BUSCAR (empujado a la derecha por mr-auto) */}
+      {/* BOTÓN BUSCAR (Pegado a la derecha) */}
       <button
         onClick={() => setSearchOpen(!searchOpen)}
-        className="flex items-center gap-2 font-bold hover:text-sky-500 transition uppercase text-gray-700 mr-6"
+        className="flex items-center gap-2 font-bold hover:text-sky-500 transition uppercase text-gray-700"
       >
         <svg
           className="w-4 h-4"
