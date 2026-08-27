@@ -8,7 +8,6 @@ export default function Navbar() {
   const navigation = [
     { name: "Inicio", href: "/" },
     { name: "Fútbol", href: "/categoria/futbol" },
-    { name: "nfl", href: "/categoria/nfl" },
     { name: "Béisbol", href: "/categoria/beisbol" },
     { name: "Baloncesto", href: "/categoria/baloncesto" },
   ];
