@@ -60,13 +60,16 @@ export function SearchButton() {
     window.location.href = `/posts/${slug}`;
   };
 
-  return (
+ return (
   <>
-    <div className="ml-auto flex items-center md:mr-6">
-      <div className="h-4 w-[1px] bg-gray-300 -ml-4 mr-16 hidden md:block" />
+    <div className="flex items-center w-full">
+      {/* LÍNEA SEPARADORA (pegada a la izquierda y visible en móvil) */}
+      <div className="h-4 w-[1px] bg-gray-500 ml-2 mr-auto" />
+
+      {/* BOTÓN BUSCAR (empujado a la derecha por mr-auto) */}
       <button
         onClick={() => setSearchOpen(!searchOpen)}
-        className="flex items-center gap-2 font-bold hover:text-sky-500 transition uppercase text-gray-700"
+        className="flex items-center gap-2 font-bold hover:text-sky-500 transition uppercase text-gray-700 mr-6"
       >
         <svg
           className="w-4 h-4"
