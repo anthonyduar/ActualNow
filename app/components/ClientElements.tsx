@@ -62,7 +62,7 @@ export function SearchButton() {
 
   return (
     <>
-      <div className="flex-1 flex items-center justify-between ml-6 mr-2 md:mr-10 sm:hidden lg:flex">
+      <div className="flex-1 flex items-center justify-between ml-6 mr-3 md:mr-10 sm:hidden lg:flex">
         {/* LÍNEA SEPARADORA */}
         <div className='hidden lg:block h-4 w-[1px] bg-gray-300 -translate-x-20' />
 
