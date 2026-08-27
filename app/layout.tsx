@@ -101,7 +101,7 @@ export default async function RootLayout({
       Inicio
     </Link>
 
-    <details className="max-lg:inline-block lg:hidden group relative">
+    <details className="max-sm:inline-block sm:hidden group relative">
       <summary className="font-bold hover:text-sky-500 transition uppercase cursor-pointer list-none inline-flex items-center gap-1 text-sm">
         Categorías <span className="group-open:rotate-180 transition-transform text-xs">▼</span>
       </summary>
@@ -118,7 +118,7 @@ export default async function RootLayout({
       </div>
     </details>
 
-    <div className="hidden lg:flex flex-wrap items-center gap-x-6">
+    <div className="hidden sm:flex flex-wrap items-center gap-x-6">
       {categorias.map((cat) => (
         <Link key={cat.slug} href={`/categoria/${cat.slug}`} className="font-bold hover:text-sky-500 transition uppercase">
           {cat.nombre}

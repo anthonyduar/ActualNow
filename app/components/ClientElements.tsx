@@ -64,7 +64,7 @@ return (
   <>
     <div className="flex-1 flex items-center justify-between ml-6 md:mr-10">
       {/* LÍNEA SEPARADORA */}
-    <div className="hidden lg:block h-4 w-[1px] bg-gray-300 -translate-x-20" />
+      <div className="hidden lg:block h-4 w-[1px] bg-gray-300 -translate-x-20" />
 
       {/* BOTÓN BUSCAR */}
       <button
