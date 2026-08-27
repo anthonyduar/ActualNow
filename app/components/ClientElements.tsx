@@ -61,19 +61,19 @@ export function SearchButton() {
   };
 
   return (
-    <>
-      <div className="ml-auto flex items-center md:mr-6">
-      <div className="h-4 w-[1px] bg-gray-300 ml-3 mr-16" />
-        <button
-          onClick={() => setSearchOpen(!searchOpen)}
-          className="flex items-center gap-2 font-bold hover:text-sky-500 transition uppercase text-gray-700"
+  <>
+    <div className="ml-auto flex items-center md:mr-6">
+      <div className="h-4 w-[1px] bg-gray-300 -ml-4 mr-16 hidden md:block" />
+      <button
+        onClick={() => setSearchOpen(!searchOpen)}
+        className="flex items-center gap-2 font-bold hover:text-sky-500 transition uppercase text-gray-700"
+      >
+        <svg
+          className="w-4 h-4"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
         >
-          <svg
-            className="w-4 h-4"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
