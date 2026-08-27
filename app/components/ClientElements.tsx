@@ -60,13 +60,13 @@ export function SearchButton() {
     window.location.href = `/posts/${slug}`;
   };
 
- return (
+return (
   <>
     <div className="flex-1 flex items-center justify-between ml-6 md:mr-10">
-      {/* LÍNEA SEPARADORA (Pegada a la izquierda) */}
-      <div className="h-4 w-[1px] bg-gray-600" />
+      {/* LÍNEA SEPARADORA */}
+      <div className="h-4 w-[1px] bg-gray-300 -translate-x-24" />
 
-      {/* BOTÓN BUSCAR (Pegado a la derecha) */}
+      {/* BOTÓN BUSCAR */}
       <button
         onClick={() => setSearchOpen(!searchOpen)}
         className="flex items-center gap-2 font-bold hover:text-sky-500 transition uppercase text-gray-700"
