@@ -14,30 +14,30 @@ function FeaturedCarousel({ posts }: { posts: any[] }) {
   }, [posts.length]);
 
   return (
-    <div className="relative w-full h-[450px] overflow-hidden rounded-2xl bg-zinc-900 shadow-xl">
-      <div className="absolute top-6 left-6 z-20">
-        <h2 className="bg-sky-500 text-white text-sm md:text-base font-black uppercase tracking-tighter px-4 py-2 rounded-md shadow-lg">
+    <div className='relative w-full h-[450px] overflow-hidden rounded-2xl bg-zinc-900 shadow-xl'>
+      <div className='absolute top-6 left-6 z-20'>
+        <h2 className='bg-sky-500 text-white text-sm md:text-base font-black uppercase tracking-tighter px-4 py-2 rounded-md shadow-lg'>
           Noticias Destacadas
         </h2>
       </div>
       {posts.map((post, i) => (
         <div
           key={post.id}
-          className="absolute inset-0 transition-opacity duration-1000 ease-in-out"
+          className='absolute inset-0 transition-opacity duration-1000 ease-in-out'
           style={{ opacity: i === index ? 1 : 0, zIndex: i === index ? 10 : 0 }}
         >
-          <Link href={`/posts/${post.slug}`} className="block h-full relative">
+          <Link href={`/${post.slug}`} className='block h-full relative'>
             {post._embedded?.["wp:featuredmedia"]?.[0]?.source_url && (
               <img
                 src={post._embedded["wp:featuredmedia"][0].source_url}
-                className="object-cover w-full h-full"
-                alt=""
+                className='object-cover w-full h-full'
+                alt=''
               />
             )}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
-            <div className="absolute bottom-0 p-8 z-20">
+            <div className='absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent' />
+            <div className='absolute bottom-0 p-8 z-20'>
               <h3
-                className="text-3xl md:text-4xl font-black text-white leading-tight uppercase tracking-tighter line-clamp-2"
+                className='text-3xl md:text-4xl font-black text-white leading-tight uppercase tracking-tighter line-clamp-2'
                 dangerouslySetInnerHTML={{ __html: post.title.rendered }}
               />
             </div>
@@ -59,7 +59,7 @@ export default function Home() {
     async function getData() {
       try {
         const res = await fetch(
-  `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/posts?_embed&per_page=30&categories_exclude=77&exclude=358&v=${Date.now()}`,
+          `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/posts?_embed&per_page=30&categories_exclude=77&exclude=358&v=${Date.now()}`,
           { cache: "no-store" },
         );
         const data = await res.json();
@@ -105,101 +105,138 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-  async function getAdData() {
-    try {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/posts?_embed&categories=77&per_page=1&v=${Date.now()}`,
-        { cache: "no-store" }
-      );
-      const data = await res.json();
-      if (Array.isArray(data) && data.length > 0) setAdPost(data[0]);
-    } catch (error) {
-      console.error("Error Ad:", error);
+    async function getAdData() {
+      try {
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/posts?_embed&categories=77&per_page=1&v=${Date.now()}`,
+          { cache: "no-store" },
+        );
+        const data = await res.json();
+        if (Array.isArray(data) && data.length > 0) setAdPost(data[0]);
+      } catch (error) {
+        console.error("Error Ad:", error);
+      }
     }
-  }
-  getAdData();
-}, []);
+    getAdData();
+  }, []);
 
-  if (!isClient) return <div className="min-h-screen bg-zinc-950" />;
+  if (!isClient) return <div className='min-h-screen bg-zinc-950' />;
 
   // Definición segura de las variables de segmentación
   const featuredPosts = posts.slice(0, 5);
 
   return (
-    <main className="min-h-screen bg-zinc-950 text-white">
-      <div className="max-w-6xl mx-auto p-6">
+    <main className='min-h-screen bg-zinc-950 text-white'>
+      <div className='max-w-6xl mx-auto p-6'>
         {/* CABECERA */}
-        <div className="flex flex-col md:flex-row gap-6 mb-10 pt-8">
-          <div className="md:w-[70%]">
+        <div className='flex flex-col md:flex-row gap-6 mb-10 pt-8'>
+          <div className='md:w-[70%]'>
             {featuredPosts.length > 0 ? (
               <FeaturedCarousel posts={featuredPosts} />
             ) : (
-              <div className="w-full h-[450px] bg-zinc-900 animate-pulse rounded-2xl" />
+              <div className='w-full h-[450px] bg-zinc-900 animate-pulse rounded-2xl' />
             )}
           </div>
-         <div className="md:w-[30%] h-[450px] hidden md:flex bg-zinc-900 rounded-2xl border-2 border-zinc-800 overflow-hidden relative group flex-col">
-  {/* TICKER SUPERIOR - RÁPIDO */}
-  <a href="https://eparadise.vercel.app/" target="_blank" rel="noopener noreferrer" className="bg-white w-full overflow-hidden py-1.5 block">
-    <div className="whitespace-nowrap animate-marquee-reverse-custom font-black text-[10px] uppercase tracking-widest text-black">
-      OFERTAS EXCLUSIVAS • LICENCIAS DIGITALES • COMPRA AHORA • ACCESORIOS TECH • STOCK LIMITADO • OFERTAS EXCLUSIVAS • LICENCIAS DIGITALES • COMPRA AHORA • ACCESORIOS TECH • STOCK LIMITADO •
-    </div>
-  </a>
+          <div className='md:w-[30%] h-[450px] hidden md:flex bg-zinc-900 rounded-2xl border-2 border-zinc-800 overflow-hidden relative group flex-col'>
+            {/* TICKER SUPERIOR - RÁPIDO */}
+            <a
+              href='https://eparadise.vercel.app/'
+              target='_blank'
+              rel='noopener noreferrer'
+              className='bg-white w-full overflow-hidden py-1.5 block'
+            >
+              <div className='whitespace-nowrap animate-marquee-reverse-custom font-black text-[10px] uppercase tracking-widest text-black'>
+                OFERTAS EXCLUSIVAS • LICENCIAS DIGITALES • COMPRA AHORA •
+                ACCESORIOS TECH • STOCK LIMITADO • OFERTAS EXCLUSIVAS •
+                LICENCIAS DIGITALES • COMPRA AHORA • ACCESORIOS TECH • STOCK
+                LIMITADO •
+              </div>
+            </a>
 
-  {adPost ? (
-  <a href={adPost.content.rendered.replace(/<[^>]*>?/gm, '').trim()} target="_blank" className="flex-1 relative"> 
-  <a href="https://eparadise.vercel.app/" target="_blank" rel="noopener noreferrer" className="absolute top-[-70px] left-1/2 -translate-x-1/2 z-50 w-[240px]">
-    <img src="/gif.gif" className="w-full h-auto" alt="Click Here" />
-  </a>
-  <img src={adPost._embedded?.["wp:featuredmedia"]?.[0]?.source_url} className="object-cover w-full h-full group-hover:scale-105 transition duration-500" alt="Publicidad" />
-</a>
-) : (
-  <p className="m-auto text-zinc-600 text-xs font-bold uppercase tracking-widest">Publicidad</p>
-)}
+            {adPost ? (
+              <a
+                href={adPost.content.rendered.replace(/<[^>]*>?/gm, "").trim()}
+                target='_blank'
+                className='flex-1 relative'
+              >
+                <a
+                  href='https://eparadise.vercel.app/'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='absolute top-[-70px] left-1/2 -translate-x-1/2 z-50 w-[240px]'
+                >
+                  <img
+                    src='/gif.gif'
+                    className='w-full h-auto'
+                    alt='Click Here'
+                  />
+                </a>
+                <img
+                  src={adPost._embedded?.["wp:featuredmedia"]?.[0]?.source_url}
+                  className='object-cover w-full h-full group-hover:scale-105 transition duration-500'
+                  alt='Publicidad'
+                />
+              </a>
+            ) : (
+              <p className='m-auto text-zinc-600 text-xs font-bold uppercase tracking-widest'>
+                Publicidad
+              </p>
+            )}
 
-  {/* TICKER INFERIOR - RÁPIDO REVERSA */}
-  <a href="https://eparadise.vercel.app/" target="_blank" rel="noopener noreferrer" className="bg-white w-full overflow-hidden py-1.5 block">
-    <div className="whitespace-nowrap animate-marquee-custom font-black text-[10px] uppercase tracking-widest text-black">
-      HARDWARE TECH • LICENCIAS DIGITALES • ACCESORIOS GAMING • LO ÚLTIMO EN TECNOLOGÍA • HARDWARE TECH • LICENCIAS DIGITALES • ACCESORIOS GAMING • LO ÚLTIMO EN TECNOLOGÍA •
-    </div>
-  </a>
-</div>
+            {/* TICKER INFERIOR - RÁPIDO REVERSA */}
+            <a
+              href='https://eparadise.vercel.app/'
+              target='_blank'
+              rel='noopener noreferrer'
+              className='bg-white w-full overflow-hidden py-1.5 block'
+            >
+              <div className='whitespace-nowrap animate-marquee-custom font-black text-[10px] uppercase tracking-widest text-black'>
+                HARDWARE TECH • LICENCIAS DIGITALES • ACCESORIOS GAMING • LO
+                ÚLTIMO EN TECNOLOGÍA • HARDWARE TECH • LICENCIAS DIGITALES •
+                ACCESORIOS GAMING • LO ÚLTIMO EN TECNOLOGÍA •
+              </div>
+            </a>
+          </div>
         </div>
 
         {/* SECCIÓN FÚTBOL */}
-        <section className="mb-12">
-          <div className="mb-6">
-            <span className="bg-sky-500 text-white text-xs font-black uppercase tracking-tighter px-4 py-2 rounded-md">
+        <section className='mb-12'>
+          <div className='mb-6'>
+            <span className='bg-sky-500 text-white text-xs font-black uppercase tracking-tighter px-4 py-2 rounded-md'>
               Fútbol
             </span>
           </div>
-          <div className="flex flex-row gap-8 overflow-x-auto pb-4 scrollbar-hide">
+          <div className='flex flex-row gap-8 overflow-x-auto pb-4 scrollbar-hide'>
             {footballPosts.map((post: any) => (
               <article
                 key={post.id}
-                className="flex-shrink-0 w-[300px] md:w-[calc(33.33%-22px)]"
+                className='flex-shrink-0 w-[300px] md:w-[calc(33.33%-22px)]'
               >
-                <Link href={`/posts/${post.slug}`} className="group">
-                  <div className="relative h-64 w-full overflow-hidden rounded-2xl bg-zinc-900 mb-4 border border-zinc-800">
+                <Link href={`/${post.slug}`} className='group'>
+                  <div className='relative h-64 w-full overflow-hidden rounded-2xl bg-zinc-900 mb-4 border border-zinc-800'>
                     <img
                       src={
                         post._embedded?.["wp:featuredmedia"]?.[0]?.source_url
                       }
-                      className="object-cover w-full h-full"
-                      alt=""
+                      className='object-cover w-full h-full'
+                      alt=''
                     />
                   </div>
-                  <div className="space-y-2 px-1">
+                  <div className='space-y-2 px-1'>
                     <h3
-                      className="text-lg font-bold text-white leading-tight uppercase line-clamp-2 group-hover:text-sky-500 transition"
+                      className='text-lg font-bold text-white leading-tight uppercase line-clamp-2 group-hover:text-sky-500 transition'
                       dangerouslySetInnerHTML={{ __html: post.title.rendered }}
                     />
-                    <p className="text-zinc-500 text-[10px] font-bold uppercase py-1">
-                    {new Date(post.date).toLocaleDateString()}
+                    <p className='text-zinc-500 text-[10px] font-bold uppercase py-1'>
+                      {new Date(post.date).toLocaleDateString()}
                     </p>
                     <div
-                      className="text-zinc-400 text-sm line-clamp-3 leading-relaxed"
+                      className='text-zinc-400 text-sm line-clamp-3 leading-relaxed'
                       dangerouslySetInnerHTML={{
-                       __html: post.excerpt.rendered.replace(/<[^>]*>?/gm, '').trim() + "..."
+                        __html:
+                          post.excerpt.rendered
+                            .replace(/<[^>]*>?/gm, "")
+                            .trim() + "...",
                       }}
                     />
                   </div>
@@ -210,69 +247,74 @@ export default function Home() {
         </section>
 
         {/* SECCIÓN VERTICAL */}
-        <div className="grid gap-12 max-w-5xl">
-          {posts.filter((p: any) => !p.categories?.includes(3)).map((post: any) => {
-            const category = post._embedded?.["wp:term"]?.[0]?.[0];
-            return (
-              <article
-                key={post.id}
-                className="group border-b border-zinc-900 pb-12 last:border-b-0"
-              >
-                <div className="flex flex-col md:flex-row gap-10">
-                  <div className="md:w-1/3 relative">
-                    <Link href={`/posts/${post.slug}`}>
-                      <div className="overflow-hidden rounded-2xl bg-zinc-900 border border-zinc-800">
-                        <img
-                          src={
-                            post._embedded?.["wp:featuredmedia"]?.[0]
-                              ?.source_url
-                          }
-                          className="object-cover h-60 w-full group-hover:scale-105 transition duration-300"
-                          alt=""
-                        />
-                      </div>
-                    </Link>
-                    {category && (
-                      <div className="absolute top-3 left-3 z-10">
-                        <span className="bg-sky-500 text-white text-[10px] font-black uppercase tracking-tighter px-3 py-1.5 rounded-md shadow-md">
-                          {category.name}
-                        </span>
-                      </div>
-                    )}
-                  </div>
-
-                  <div className="md:w-2/3 relative flex flex-col justify-center min-h-[200px]">
-                    <Link href={`/posts/${post.slug}`} className="group">
-                      <h2
-                        className="text-base md:text-lg font-bold text-white mb-4 leading-tight uppercase group-hover:text-sky-500 transition"
-                        dangerouslySetInnerHTML={{
-                          __html: post.title.rendered,
-                        }}
-                      />
-                      <p className="text-zinc-500 text-[10px] font-bold uppercase mb-4">
-                      {new Date(post.date).toLocaleDateString()}
-                      </p>
-                      <div
-                        className="text-zinc-400 line-clamp-3 text-sm leading-relaxed mb-6"
-                        dangerouslySetInnerHTML={{
-                          __html: post.excerpt.rendered.replace(/<[^>]*>?/gm, '').trim() + "..."
-                        }}
-                      />
-                    </Link>
-
-                    <div className="md:absolute bottom-0 right-0">
-                      <Link
-                        href={`/posts/${post.slug}`}
-                        className="inline-block bg-sky-500 text-white text-[10px] font-bold uppercase tracking-widest px-6 py-2 rounded-full hover:bg-sky-600 transition shadow-lg shadow-sky-500/20"
-                      >
-                        Leer
+        <div className='grid gap-12 max-w-5xl'>
+          {posts
+            .filter((p: any) => !p.categories?.includes(3))
+            .map((post: any) => {
+              const category = post._embedded?.["wp:term"]?.[0]?.[0];
+              return (
+                <article
+                  key={post.id}
+                  className='group border-b border-zinc-900 pb-12 last:border-b-0'
+                >
+                  <div className='flex flex-col md:flex-row gap-10'>
+                    <div className='md:w-1/3 relative'>
+                      <Link href={`/${post.slug}`}>
+                        <div className='overflow-hidden rounded-2xl bg-zinc-900 border border-zinc-800'>
+                          <img
+                            src={
+                              post._embedded?.["wp:featuredmedia"]?.[0]
+                                ?.source_url
+                            }
+                            className='object-cover h-60 w-full group-hover:scale-105 transition duration-300'
+                            alt=''
+                          />
+                        </div>
                       </Link>
+                      {category && (
+                        <div className='absolute top-3 left-3 z-10'>
+                          <span className='bg-sky-500 text-white text-[10px] font-black uppercase tracking-tighter px-3 py-1.5 rounded-md shadow-md'>
+                            {category.name}
+                          </span>
+                        </div>
+                      )}
+                    </div>
+
+                    <div className='md:w-2/3 relative flex flex-col justify-center min-h-[200px]'>
+                      <Link href={`/${post.slug}`} className='group'>
+                        <h2
+                          className='text-base md:text-lg font-bold text-white mb-4 leading-tight uppercase group-hover:text-sky-500 transition'
+                          dangerouslySetInnerHTML={{
+                            __html: post.title.rendered,
+                          }}
+                        />
+                        <p className='text-zinc-500 text-[10px] font-bold uppercase mb-4'>
+                          {new Date(post.date).toLocaleDateString()}
+                        </p>
+                        <div
+                          className='text-zinc-400 line-clamp-3 text-sm leading-relaxed mb-6'
+                          dangerouslySetInnerHTML={{
+                            __html:
+                              post.excerpt.rendered
+                                .replace(/<[^>]*>?/gm, "")
+                                .trim() + "...",
+                          }}
+                        />
+                      </Link>
+
+                      <div className='md:absolute bottom-0 right-0'>
+                        <Link
+                          href={`/${post.slug}`}
+                          className='inline-block bg-sky-500 text-white text-[10px] font-bold uppercase tracking-widest px-6 py-2 rounded-full hover:bg-sky-600 transition shadow-lg shadow-sky-500/20'
+                        >
+                          Leer
+                        </Link>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </article>
-            );
-          })}
+                </article>
+              );
+            })}
         </div>
       </div>
       <CookieBanner />

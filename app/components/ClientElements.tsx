@@ -57,12 +57,12 @@ export function SearchButton() {
     setSearchOpen(false);
     setSearchQuery("");
     setResults([]);
-    window.location.href = `/posts/${slug}`;
+    window.location.href = `/${slug}`;
   };
 
   return (
     <>
-      <div className="flex-1 flex items-center justify-between ml-6 mr-4 md:mr-10 sm:hidden lg:flex">
+      <div className='flex-1 flex items-center justify-between ml-6 mr-4 md:mr-10 sm:hidden lg:flex'>
         {/* LÍNEA SEPARADORA */}
         <div className='hidden lg:block h-4 w-[1px] bg-gray-300 -translate-x-20' />
 

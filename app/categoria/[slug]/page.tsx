@@ -27,7 +27,7 @@ export default async function CategoryPage({
 
     if (!category)
       return (
-        <div className="p-20 text-white text-center font-sans">
+        <div className='p-20 text-white text-center font-sans'>
           Categoría no encontrada.
         </div>
       );
@@ -47,65 +47,69 @@ export default async function CategoryPage({
     const recommended = await recRes.json();
 
     return (
-      <main className="max-w-5xl mx-auto px-6 pt-6 text-white min-h-screen">
-        <header className="mb-10 border-b border-zinc-800 pb-6 pt-10 text-center">
-          <h1 className="text-4xl font-bold uppercase tracking-tighter">
+      <main className='max-w-5xl mx-auto px-6 pt-6 text-white min-h-screen'>
+        <header className='mb-10 border-b border-zinc-800 pb-6 pt-10 text-center'>
+          <h1 className='text-4xl font-bold uppercase tracking-tighter'>
             {category.name}
           </h1>
-          <p className="text-zinc-500 text-[10px] uppercase tracking-[0.4em] mt-2">
+          <p className='text-zinc-500 text-[10px] uppercase tracking-[0.4em] mt-2'>
             ActualNow
           </p>
         </header>
 
-        <div className="grid gap-8">
+        <div className='grid gap-8'>
           {posts.map((post: any) => (
-            <article key={post.id} className="border-b border-zinc-900 pb-8">
+            <article key={post.id} className='border-b border-zinc-900 pb-8'>
               <Link
-                href={`/posts/${post.slug}`}
-                className="flex flex-col md:flex-row gap-6 group"
+                href={`/${post.slug}`}
+                className='flex flex-col md:flex-row gap-6 group'
               >
-                <div className="md:w-1/4 aspect-square overflow-hidden rounded bg-zinc-800">
+                <div className='md:w-1/4 aspect-square overflow-hidden rounded bg-zinc-800'>
                   {post._embedded?.["wp:featuredmedia"]?.[0]?.source_url && (
                     <img
                       src={post._embedded["wp:featuredmedia"][0].source_url}
-                      className="object-cover w-full h-full group-hover:scale-105 transition duration-500"
-                      alt=""
+                      className='object-cover w-full h-full group-hover:scale-105 transition duration-500'
+                      alt=''
                     />
                   )}
                 </div>
-                <div className="md:w-3/4 flex flex-col justify-center min-h-[160px] relative">
+                <div className='md:w-3/4 flex flex-col justify-center min-h-[160px] relative'>
                   <div>
                     <h2
-                      className="text-xl font-bold mb-2 leading-tight group-hover:text-sky-500 transition"
+                      className='text-xl font-bold mb-2 leading-tight group-hover:text-sky-500 transition'
                       dangerouslySetInnerHTML={{ __html: post.title.rendered }}
                     />
-                    <p className="text-zinc-500 text-[10px] font-bold uppercase mb-4">
-                    {new Date(post.date).toLocaleDateString('es-ES')}
+                    <p className='text-zinc-500 text-[10px] font-bold uppercase mb-4'>
+                      {new Date(post.date).toLocaleDateString("es-ES")}
                     </p>
                     <div
-                      className="text-zinc-400 text-sm line-clamp-2 text-justify mb-4"
-                      dangerouslySetInnerHTML={{ __html: post.excerpt.rendered.replace(/<[^>]*>?/gm, '').trim() + "..." }}
+                      className='text-zinc-400 text-sm line-clamp-2 text-justify mb-4'
+                      dangerouslySetInnerHTML={{
+                        __html:
+                          post.excerpt.rendered
+                            .replace(/<[^>]*>?/gm, "")
+                            .trim() + "...",
+                      }}
                     />
                   </div>
-                  <div className="md:absolute bottom-0 right-0">
-                   <span className="inline-block bg-sky-500 text-white text-[10px] font-bold uppercase tracking-widest px-6 py-2 rounded-full shadow-lg shadow-sky-500/20">
-                    Leer
-                   </span>
+                  <div className='md:absolute bottom-0 right-0'>
+                    <span className='inline-block bg-sky-500 text-white text-[10px] font-bold uppercase tracking-widest px-6 py-2 rounded-full shadow-lg shadow-sky-500/20'>
+                      Leer
+                    </span>
                   </div>
                 </div>
               </Link>
             </article>
           ))}
-          
         </div>
 
         {/* PAGINACIÓN: 5 BOTONES MÁXIMO */}
         {totalPages > 1 && (
-          <div className="mt-12 flex justify-center items-center gap-2 font-sans">
+          <div className='mt-12 flex justify-center items-center gap-2 font-sans'>
             {currentPage > 1 && (
               <Link
                 href={`/categoria/${slug}?page=${currentPage - 1}`}
-                className="px-4 py-2 bg-zinc-900 border border-zinc-800 rounded hover:bg-sky-500 transition"
+                className='px-4 py-2 bg-zinc-900 border border-zinc-800 rounded hover:bg-sky-500 transition'
               >
                 «
               </Link>
@@ -133,7 +137,7 @@ export default async function CategoryPage({
             {currentPage < totalPages && (
               <Link
                 href={`/categoria/${slug}?page=${currentPage + 1}`}
-                className="px-4 py-2 bg-zinc-900 border border-zinc-800 rounded hover:bg-sky-500 transition"
+                className='px-4 py-2 bg-zinc-900 border border-zinc-800 rounded hover:bg-sky-500 transition'
               >
                 »
               </Link>
@@ -141,32 +145,32 @@ export default async function CategoryPage({
           </div>
         )}
 
-        <div className="text-center mt-10">
+        <div className='text-center mt-10'>
           <Link
-            href="/"
-            className="inline-block bg-sky-500 text-white px-8 py-2 rounded-full font-bold uppercase text-[10px] tracking-widest hover:bg-sky-600 transition"
+            href='/'
+            className='inline-block bg-sky-500 text-white px-8 py-2 rounded-full font-bold uppercase text-[10px] tracking-widest hover:bg-sky-600 transition'
           >
             Volver al Inicio
           </Link>
         </div>
 
-        <section className="mt-10 border-t border-zinc-800 pt-10">
-          <h3 className="text-lg font-bold uppercase tracking-widest mb-8 border-l-4 border-sky-500 pl-4">
+        <section className='mt-10 border-t border-zinc-800 pt-10'>
+          <h3 className='text-lg font-bold uppercase tracking-widest mb-8 border-l-4 border-sky-500 pl-4'>
             Recomendados
           </h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className='grid grid-cols-2 md:grid-cols-4 gap-6'>
             {recommended.map((rec: any) => (
-              <Link key={rec.id} href={`/posts/${rec.slug}`} className="group">
-                <div className="aspect-square mb-3 overflow-hidden rounded bg-zinc-800">
+              <Link key={rec.id} href={`/${rec.slug}`} className='group'>
+                <div className='aspect-square mb-3 overflow-hidden rounded bg-zinc-800'>
                   {rec._embedded?.["wp:featuredmedia"]?.[0]?.source_url && (
                     <img
                       src={rec._embedded["wp:featuredmedia"][0].source_url}
-                      className="object-cover w-full h-full group-hover:scale-105 transition duration-500"
+                      className='object-cover w-full h-full group-hover:scale-105 transition duration-500'
                     />
                   )}
                 </div>
                 <h4
-                  className="text-sm font-bold leading-tight group-hover:text-sky-500 transition line-clamp-3"
+                  className='text-sm font-bold leading-tight group-hover:text-sky-500 transition line-clamp-3'
                   dangerouslySetInnerHTML={{ __html: rec.title.rendered }}
                 />
               </Link>
@@ -177,7 +181,7 @@ export default async function CategoryPage({
     );
   } catch (err) {
     return (
-      <div className="p-20 text-white text-center">
+      <div className='p-20 text-white text-center'>
         Error al cargar la categoría.
       </div>
     );
