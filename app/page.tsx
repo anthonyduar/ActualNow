@@ -16,7 +16,7 @@ function FeaturedCarousel({ posts }: { posts: any[] }) {
   return (
     <div className='relative w-full h-[450px] rounded-2xl bg-zinc-900 shadow-xl'>
       {" "}
-      <div className='absolute top-12 left-6 z-20'>
+      <div className='absolute -top-12 left-6 z-20'>
         <h2 className='bg-sky-500 text-white text-sm md:text-base font-black uppercase tracking-tighter px-4 py-2 rounded-md shadow-lg'>
           Noticias Destacadas
         </h2>
