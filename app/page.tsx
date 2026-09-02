@@ -14,8 +14,9 @@ function FeaturedCarousel({ posts }: { posts: any[] }) {
   }, [posts.length]);
 
   return (
-    <div className='relative w-full h-[450px] overflow-hidden rounded-2xl bg-zinc-900 shadow-xl'>
-      <div className='absolute top-6 left-6 z-20'>
+    <div className='relative w-full h-[450px] rounded-2xl bg-zinc-900 shadow-xl'>
+      {" "}
+      <div className='absolute top-12 left-6 z-20'>
         <h2 className='bg-sky-500 text-white text-sm md:text-base font-black uppercase tracking-tighter px-4 py-2 rounded-md shadow-lg'>
           Noticias Destacadas
         </h2>
@@ -26,7 +27,11 @@ function FeaturedCarousel({ posts }: { posts: any[] }) {
           className='absolute inset-0 transition-opacity duration-1000 ease-in-out'
           style={{ opacity: i === index ? 1 : 0, zIndex: i === index ? 10 : 0 }}
         >
-          <Link href={`/${post.slug}`} className='block h-full relative'>
+          <Link
+            href={`/${post.slug}`}
+            className='block h-full relative overflow-hidden rounded-2xl'
+          >
+            {" "}
             {post._embedded?.["wp:featuredmedia"]?.[0]?.source_url && (
               <img
                 src={post._embedded["wp:featuredmedia"][0].source_url}
