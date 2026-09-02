@@ -58,7 +58,7 @@ export default async function RootLayout({
           <div className='relative w-full mb-6'>
             <video
               src='/banner-actualnow.mp4'
-              className='w-full h-auto max-h-64 object-contain md:object-cover md:object-[center_20%] rounded-lg shadow-md border-2 border-[#06B4E7]'
+              className='w-full h-auto max-h-64 object-contain md:object-cover md:object-[center_20%] rounded-lg shadow-md border border-[#06B4E7]'
               autoPlay
               loop
               muted
@@ -95,7 +95,7 @@ export default async function RootLayout({
             </div>
           </div>
 
-          <nav className='flex items-center justify-between mb-4 font-sans border-b pb-4 text-base relative'>
+          <nav className='flex items-center justify-between mb-4 font-sans border-b border-[#06B4E7] pb-4 text-base relative'>
             <div className='flex items-center gap-x-4'>
               <Link
                 href='/'
