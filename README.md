@@ -31,7 +31,7 @@ He diseñado un ecosistema donde la redacción y el código trabajan de forma in
 
 * **Blindaje de Credenciales:** La URL de la API y las claves de entorno están estrictamente protegidas en **Vercel** y **GitHub Secrets**, evitando cualquier acceso no autorizado al backend de WordPress.
 * **Optimización Editorial:** Implementación de técnicas de caché y Static Site Generation (SSG) para garantizar la integridad del contenido frente a picos de tráfico.
-* **⚠️ Aviso Legal y Licencia:** Este repositorio es para **exhibición de portafolio técnico y periodístico**. El código está bajo la licencia **GPL v3**. Se prohíbe su venta, uso comercial o redistribución sin la autorización expresa del autor.
+* **⚠️ Aviso Legal y Licencia:** Este repositorio es exclusivamente para exhibición de portafolio técnico y periodístico. Todos los derechos están reservados (All Rights Reserved). Queda estrictamente prohibida la copia, modificación, uso comercial o redistribución de este código sin autorización expresa del autor.
 
 ---
 Desarrollado por [anthonyduar] - Integrando periodismo con arquitectura tecnológica avanzada.
