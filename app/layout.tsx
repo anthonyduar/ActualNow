@@ -99,7 +99,7 @@ export default async function RootLayout({
             <div className='flex items-center gap-x-4'>
               <Link
                 href='/'
-                className='font-bold hover:text-sky-500 transition uppercase text-sky-500 text-sm'
+                className='font-bold hover:text-sky-500 transition uppercase text-sky-500 text-lg'
               >
                 Inicio
               </Link>
