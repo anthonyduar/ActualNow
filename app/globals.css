@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* EL PRINCIPAL (Noticias arriba - LENTO) */
+.animate-marquee {
+  display: inline-flex !important;
+  animation: marquee 20s linear infinite !important;
+}
+
+/* PUBLICIDAD (Los dos de la derecha - RÁPIDOS) */
+.animate-marquee-custom {
+  display: inline-flex !important;
+  /* reducido a 5s para un movimiento más rápido */
+  animation: marquee 7s linear infinite !important;
+}
+
+.animate-marquee-reverse-custom {
+  display: inline-flex !important;
+  /* reducido a 5s para un movimiento más rápido */
+  animation: marquee-reverse 7s linear infinite !important;
+}
+
+@keyframes marquee { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
+@keyframes marquee-reverse { 0% { transform: translateX(-50%); } 100% { transform: translateX(0%); } }
+
+.animate-marquee:hover {
+  animation-play-state: paused !important;
+}
