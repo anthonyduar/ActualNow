@@ -38,7 +38,7 @@ async function getRecommendedPosts() {
   }
 }
 
-// PASO 2 EN INTERMEDIO: Añadimos la inyección de SEO para Google
+// 👇 FUNCIÓN DE METADATOS OPTIMIZADA CON ARREGLO DE DOMINIO ABSOLUTO
 export async function generateMetadata({
   params,
 }: {
@@ -59,7 +59,22 @@ export async function generateMetadata({
     ?.replace(/<\/?[^>]+(>|$)/g, "")
     ?.substring(0, 160) || "";
 
-  const img = post._embedded?.["wp:featuredmedia"]?.[0]?.source_url || "";
+  let img = post._embedded?.["wp:featuredmedia"]?.[0]?.source_url || "";
+
+  // 🔄 TRUCO DE ANCLAJE ABSOLUTO:
+  // Si la imagen viene como una ruta interna (ej: /wp-content/...), 
+  // extraemos de forma dinámica el dominio base desde tu API de WordPress.
+  if (img && !img.startsWith("http")) {
+    const apiUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL || "";
+    try {
+      const urlObj = new URL(apiUrl);
+      const domainUrl = `${urlObj.protocol}//${urlObj.hostname}`;
+      img = `${domainUrl}${img.startsWith("/") ? "" : "/"}${img}`;
+    } catch {
+      // Fallback si la conversión falla
+      img = "";
+    }
+  }
 
   return {
     title: `${cleanTitle} | ActualNow`,
@@ -73,7 +88,7 @@ export async function generateMetadata({
       images: img ? [{ url: img, width: 1200, height: 630 }] : [],
     },
     twitter: {
-      card: "summary_large_image",
+      card: "summary_large_image", // Fuerza la previsualización EN GRANDE
       title: cleanTitle,
       description: cleanDescription,
       images: img ? [img] : [],
@@ -102,7 +117,6 @@ export default async function PostPage({
       <div className='max-w-4xl mx-auto p-4 md:pt-8 flex-grow'>
         {/* TÍTULO Y ACTUALNOW */}
         <div className='text-center mb-10'>
-
           <h1
             className='text-3xl md:text-5xl font-black uppercase tracking-tighter leading-none mb-4 text-white'
             dangerouslySetInnerHTML={{ __html: post.title.rendered }}
@@ -203,7 +217,6 @@ export default async function PostPage({
           </div>
         </section>
       </footer>
-      {/* CARGADORES DE REDES SOCIALES - Colócalos aquí */}
       <XIGEmbed />
       <Script
         src='https://platform.twitter.com/widgets.js'
