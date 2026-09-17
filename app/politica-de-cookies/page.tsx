@@ -1,7 +1,8 @@
 import Link from "next/link";
+import { getWordPressBaseUrl, fetchWpNoticias } from "@/lib/wordpress";
 
 export default async function CookiesPage() {
-  const baseUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL;
+  const baseUrl = getWordPressBaseUrl();
 
   // Inicializamos las variables vacías de forma segura
   let page = null;
@@ -26,8 +27,8 @@ export default async function CookiesPage() {
 
   // 2. Bloque seguro para traer las notas recomendadas
   try {
-    const recRes = await fetch(
-      `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/posts?per_page=4&_embed&categories_exclude=77&v=${Date.now()}`,
+    const recRes = await fetchWpNoticias(
+      `per_page=4&_embed&categories_exclude=77&v=${Date.now()}`,
       { cache: "no-store" },
     );
     

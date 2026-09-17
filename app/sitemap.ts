@@ -1,19 +1,20 @@
 import { MetadataRoute } from "next";
+import { fetchWpNoticias } from "@/lib/wordpress";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://actualnow.vercel.app";
-  const wpApi = process.env.NEXT_PUBLIC_WORDPRESS_API_URL;
 
   // 1. Definimos las páginas fijas e inmutables de tu web de noticias
   const staticPages = [
     { url: baseUrl, lastModified: new Date() },
+    { url: `${baseUrl}/acerca-de`, lastModified: new Date() },
     { url: `${baseUrl}/aviso-legal`, lastModified: new Date() },
     { url: `${baseUrl}/politica-de-privacidad`, lastModified: new Date() },
     { url: `${baseUrl}/politica-de-cookies`, lastModified: new Date() },
   ];
 
   try {
-    const res = await fetch(`${wpApi}/posts?per_page=100`, {
+    const res = await fetchWpNoticias("per_page=100", {
       cache: "no-store",
     });
     const posts = await res.json();

@@ -1,10 +1,9 @@
 import Link from "next/link";
 import { getLiveMatches } from "@/lib/football";
 import LiveMatchesList from "../components/LiveMatchesList";
+import { fetchWpNoticias } from "@/lib/wordpress";
 
 export default async function EnVivo() {
-    const baseUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL;
-  
   // 1. Ejecutamos las consultas de forma segura con control de errores
   let initialMatches = [];
   let recommended = [];
@@ -16,8 +15,8 @@ export default async function EnVivo() {
   }
 
   try {
-    const recRes = await fetch(
-      `${baseUrl}/posts?per_page=4&_embed&categories_exclude=77&v=${Date.now()}`,
+    const recRes = await fetchWpNoticias(
+      `per_page=4&_embed&categories_exclude=77&v=${Date.now()}`,
       { cache: "no-store" },
     );
     

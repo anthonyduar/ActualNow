@@ -1,0 +1,8 @@
+{
+  "name": "ActualNow",
+  "description": "Portal de noticias deportivas al instante con arquitectura headless.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

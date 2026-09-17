@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import CookieBanner from "./components/CookieBanner";
+import { fetchWpNoticias, getWordPressBaseUrl } from "@/lib/wordpress";
 
 function FeaturedCarousel({ posts }: { posts: any[] }) {
   const [index, setIndex] = useState(0);
@@ -62,12 +63,9 @@ export default function Home() {
     useEffect(() => {
     setIsClient(true);
     async function getData() {
-      const baseUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL;
-      if (!baseUrl) return;
-
       try {
-        const res = await fetch(
-          `${baseUrl}/posts?_embed&per_page=30&categories_exclude=77&exclude=358&v=${Date.now()}`,
+        const res = await fetchWpNoticias(
+          `_embed&per_page=30&categories_exclude=77&exclude=358&v=${Date.now()}`,
           { cache: "no-store" },
         );
         
@@ -95,7 +93,7 @@ export default function Home() {
 
     useEffect(() => {
     async function getFootballData() {
-      const baseUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL;
+      const baseUrl = getWordPressBaseUrl();
       if (!baseUrl) return;
 
       try {
@@ -110,8 +108,8 @@ export default function Home() {
         const categoryData = await categoryRes.json();
         if (Array.isArray(categoryData) && categoryData.length > 0) {
           const footballCategoryId = categoryData[0].id;
-          const postsRes = await fetch(
-            `${baseUrl}/posts?_embed&categories=${footballCategoryId}&per_page=3&v=${Date.now()}`,
+          const postsRes = await fetchWpNoticias(
+            `_embed&categories=${footballCategoryId}&per_page=3&v=${Date.now()}`,
             { cache: "no-store" },
           );
           
@@ -130,12 +128,9 @@ export default function Home() {
 
   useEffect(() => {
     async function getAdData() {
-      const baseUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL;
-      if (!baseUrl) return;
-
       try {
-        const res = await fetch(
-          `${baseUrl}/posts?_embed&categories=77&per_page=1&v=${Date.now()}`,
+        const res = await fetchWpNoticias(
+          `_embed&categories=77&per_page=1&v=${Date.now()}`,
           { cache: "no-store" },
         );
         

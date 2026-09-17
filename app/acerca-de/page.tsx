@@ -1,7 +1,8 @@
 import Link from "next/link";
+import { getWordPressBaseUrl, fetchWpNoticias } from "@/lib/wordpress";
 
 export default async function AcercaDePage() {
-  const baseUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL;
+  const baseUrl = getWordPressBaseUrl();
 
   // Inicializamos las variables vacías de forma segura
   let page = null;
@@ -23,8 +24,8 @@ export default async function AcercaDePage() {
 
   // 2. Bloque seguro para traer las notas recomendadas del final
   try {
-    const recRes = await fetch(
-      `${baseUrl}/posts?per_page=4&_embed&categories_exclude=77&v=${Date.now()}`,
+    const recRes = await fetchWpNoticias(
+      `per_page=4&_embed&categories_exclude=77&v=${Date.now()}`,
       { cache: "no-store" },
     );
     

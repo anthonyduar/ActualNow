@@ -2,6 +2,7 @@ import "./globals.css";
 import Link from "next/link";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { SafeDate, SearchButton } from "./components/ClientElements";
+import { fetchWpNoticias } from "@/lib/wordpress";
 
 export const metadata = {
   title: "ActualNow | Noticias Deportivas al Instante",
@@ -20,12 +21,13 @@ export default async function RootLayout({
   let tickerPosts = [];
 
   try {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/posts?per_page=5&categories_exclude=77&v=${Date.now()}`,
+    const res = await fetchWpNoticias(
+      `per_page=5&categories_exclude=77&v=${Date.now()}`,
       { cache: "no-store" },
     );
     if (res.ok) {
-      tickerPosts = await res.json();
+      const data = await res.json();
+      tickerPosts = Array.isArray(data) ? data : [];
     }
   } catch (error) {
     console.error("Error al cargar posts:", error);

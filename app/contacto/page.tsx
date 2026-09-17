@@ -1,15 +1,14 @@
 import Link from "next/link";
+import { fetchWpNoticias } from "@/lib/wordpress";
 
 export default async function Contacto() {
-  const baseUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL;
-
   // Inicializamos la variable vacía de forma segura
   let recommended = [];
 
   // Bloque seguro para traer las notas recomendadas del final
   try {
-    const recRes = await fetch(
-      `${baseUrl}/posts?per_page=4&_embed&categories_exclude=77&v=${Date.now()}`,
+    const recRes = await fetchWpNoticias(
+      `per_page=4&_embed&categories_exclude=77&v=${Date.now()}`,
       { cache: "no-store" },
     );
     

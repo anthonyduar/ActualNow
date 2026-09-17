@@ -2,6 +2,7 @@ import Link from "next/link";
 import Script from "next/script";
 import { notFound } from "next/navigation";
 import XIGEmbed from "../components/XIGEmbed";
+import { getPostOrNoticiaBySlug, fetchWpNoticias } from "@/lib/wordpress";
 
 function formatDate(dateString: string) {
   return new Date(dateString).toLocaleDateString("es-ES", {
@@ -13,23 +14,13 @@ function formatDate(dateString: string) {
 }
 
 async function getPostData(slug: string) {
-  const baseUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL;
-  try {
-    const postRes = await fetch(`${baseUrl}/posts?_embed&slug=${slug}`, {
-      cache: "no-store",
-    });
-    const posts = await postRes.json();
-    return posts[0] || null; // Devuelve directamente el post individual
-  } catch {
-    return null;
-  }
+  return await getPostOrNoticiaBySlug(slug);
 }
 
 async function getRecommendedPosts() {
-  const baseUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL;
   try {
-    const recRes = await fetch(
-      `${baseUrl}/posts?per_page=4&_embed&categories_exclude=77&v=${Date.now()}`,
+    const recRes = await fetchWpNoticias(
+      `per_page=4&_embed&categories_exclude=77&v=${Date.now()}`,
       { cache: "no-store" },
     );
     return await recRes.json(); // Devuelve las recomendadas por separado

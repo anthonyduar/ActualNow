@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import { fetchWpNoticias } from "@/lib/wordpress";
 
 export function SafeDate({ format = "full" }: { format?: "full" | "year" }) {
   const [mounted, setMounted] = useState(false);
@@ -33,8 +34,8 @@ export function SearchButton() {
 
     setLoading(true);
     try {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/posts?search=${encodeURIComponent(query)}&_embed&per_page=10&categories_exclude=77&v=${Date.now()}`,
+      const res = await fetchWpNoticias(
+        `search=${encodeURIComponent(query)}&_embed&per_page=10&categories_exclude=77&v=${Date.now()}`,
         { cache: "no-store" },
       );
       const data = await res.json();

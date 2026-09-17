@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { fetchWpNoticias, getWordPressBaseUrl } from "@/lib/wordpress";
 
 export default async function CategoryPage({
   params,
@@ -12,7 +13,7 @@ export default async function CategoryPage({
   const slug = resolvedParams.slug;
   const currentPage = parseInt(resolvedSearchParams.page || "1");
   const postsPerPage = 5;
-  const baseUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL;
+  const baseUrl = getWordPressBaseUrl();
 
   // Inicializamos todas las estructuras de datos vacías por seguridad de renderizado
   let category = null;
@@ -51,8 +52,8 @@ export default async function CategoryPage({
 
   // 2. Bloque seguro para traer los Posts de esta Categoría
   try {
-    const postRes = await fetch(
-      `${baseUrl}/posts?categories=${category.id}&_embed&per_page=${postsPerPage}&page=${currentPage}&v=${Date.now()}`,
+    const postRes = await fetchWpNoticias(
+      `categories=${category.id}&_embed&per_page=${postsPerPage}&page=${currentPage}&v=${Date.now()}`,
       { cache: "no-store" },
     );
 
@@ -67,8 +68,8 @@ export default async function CategoryPage({
 
   // 3. Bloque seguro para traer los Recomendados globales
   try {
-    const recRes = await fetch(
-      `${baseUrl}/posts?per_page=4&_embed&categories_exclude=77&v=${Date.now()}`,
+    const recRes = await fetchWpNoticias(
+      `per_page=4&_embed&categories_exclude=77&v=${Date.now()}`,
       { cache: "no-store" },
     );
     
