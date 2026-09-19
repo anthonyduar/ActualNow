@@ -34,7 +34,7 @@ export default async function Contacto() {
         <form
           action='https://api.web3forms.com/submit'
           method='POST'
-          className='grid gap-6 bg-zinc-900/50 p-8 rounded-2xl border border-zinc-800'
+          className='news-card grid gap-6 p-8'
         >
           {/* Tu Access Key de Web3Forms */}
           <input

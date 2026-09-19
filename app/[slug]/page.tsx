@@ -158,7 +158,7 @@ export default async function PostPage({
         {/* CUERPO DE NOTICIA: FONDO BLANCO CON TEXTO GRIS */}
         <div className='max-w-3xl mx-auto w-full'>
           <div
-            className="news-card bg-zinc-900/70 text-zinc-300 text-lg leading-relaxed text-justify px-8 py-10 rounded-2xl
+            className="news-card px-8 py-10 text-justify text-lg leading-relaxed text-zinc-300
                        [&_p]:mb-6 [&_p]:block
                        [&_br]:content-[''] [&_br]:block [&_br]:mb-3
                        [&_h2]:text-gray-800 [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:mt-8 [&_h2]:mb-4

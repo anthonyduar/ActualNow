@@ -90,7 +90,7 @@ export default function Home() {
             {footballPosts.map((post: any) => (
               <article
                 key={post.id}
-                className='group flex-shrink-0 w-[300px] md:w-[calc(33.33%-22px)] overflow-hidden rounded-2xl border border-white/10 bg-zinc-900/70 shadow-lg shadow-black/20 backdrop-blur-sm transition duration-300 hover:-translate-y-1 hover:border-sky-400/40 hover:shadow-sky-950/40'
+                className='news-card group flex-shrink-0 w-[300px] md:w-[calc(33.33%-22px)]'
               >
                 <Link href={post.slug ? `/${post.slug}` : "/"} className='group'>
                   <div className='relative h-64 w-full overflow-hidden bg-zinc-900'>
@@ -134,7 +134,7 @@ export default function Home() {
               return (
                 <article
                   key={post.id}
-                  className='group flex-shrink-0 overflow-hidden rounded-2xl border border-white/10 bg-zinc-900/70 shadow-lg shadow-black/20 backdrop-blur-sm transition duration-300 hover:-translate-y-1 hover:border-sky-400/40 hover:shadow-sky-950/40 p-0'
+                  className='news-card group flex-shrink-0 p-0'
                 >
                   <div className='flex flex-col'>
                     <div className='relative h-64 w-full overflow-hidden bg-zinc-900'>
