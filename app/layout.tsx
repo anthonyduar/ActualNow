@@ -64,7 +64,7 @@ export default async function RootLayout({
 
           <LatestNewsBanner posts={tickerPosts} />
 
-          <nav className='mb-4 flex items-center justify-between rounded-2xl border border-white/10 bg-zinc-950/80 px-4 py-3 font-sans text-base shadow-lg shadow-black/20 backdrop-blur-md relative'>
+          <nav className='mt-3 mb-4 flex items-center justify-between rounded-2xl border border-white/10 bg-zinc-950/80 px-4 py-3 font-sans text-base shadow-lg shadow-black/20 backdrop-blur-md relative'>
             <div className='flex items-center gap-x-3'>
               <Link
                 href='/'
