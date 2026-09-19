@@ -185,7 +185,7 @@ export default function Home() {
                       <div className='pt-1'>
                         <Link
                           href={`/${post.slug}`}
-                          className='news-button'
+                          className='inline-flex items-center rounded-lg border border-sky-500/10 bg-[#081923] px-3 py-2 text-[10px] font-black uppercase tracking-widest text-sky-400 transition hover:border-sky-400/30 hover:bg-sky-500 hover:text-white'
                         >
                           Leer
                         </Link>
