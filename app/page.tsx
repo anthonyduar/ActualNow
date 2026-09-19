@@ -17,12 +17,7 @@ function FeaturedCarousel({ posts }: { posts: any[] }) {
   return (
     <div className='relative w-full h-[450px] rounded-2xl bg-zinc-900 shadow-xl'>
       {" "}
-      <div className='absolute -top-12 left-0 z-20'>
-        <h2 className='bg-sky-500 text-white text-sm md:text-base font-black uppercase tracking-tighter px-4 py-2 rounded-md shadow-lg'>
-          Noticias Destacadas
-        </h2>
-      </div>
-      {posts.map((post, i) => (
+      {posts.slice(0, 1).map((post, i) => (
         <div
           key={post.id}
           className='absolute inset-0 transition-opacity duration-1000 ease-in-out'
@@ -40,7 +35,6 @@ function FeaturedCarousel({ posts }: { posts: any[] }) {
                 alt=''
               />
             )}
-            <div className='absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent' />
             <div className='absolute bottom-0 p-8 z-20'>
               <h3
                 className='text-3xl md:text-4xl font-black text-white leading-tight uppercase tracking-tighter line-clamp-2'
@@ -57,7 +51,6 @@ function FeaturedCarousel({ posts }: { posts: any[] }) {
 export default function Home() {
   const [posts, setPosts] = useState<any[]>([]);
   const [footballPosts, setFootballPosts] = useState<any[]>([]);
-  const [adPost, setAdPost] = useState<any>(null);
   const [isClient, setIsClient] = useState(false);
 
     useEffect(() => {
@@ -126,26 +119,6 @@ export default function Home() {
     getFootballData();
   }, []);
 
-  useEffect(() => {
-    async function getAdData() {
-      try {
-        const res = await fetchWpNoticias(
-          `_embed&categories=77&per_page=1&v=${Date.now()}`,
-          { cache: "no-store" },
-        );
-        
-        // CORRECCIÓN 3: Evita que la publicidad rompa la web al navegar
-        if (!res.ok) return;
-
-        const data = await res.json();
-        if (Array.isArray(data) && data.length > 0) setAdPost(data[0]);
-      } catch (error) {
-        console.warn("Petición de publicidad gestionada o interrumpida de forma segura.");
-      }
-    }
-    getAdData();
-  }, []);
-
   if (!isClient) return <div className='min-h-screen bg-zinc-950' />;
 
   // Definición segura de las variables de segmentación
@@ -164,62 +137,7 @@ export default function Home() {
             )}
           </div>
 
-          <div className='md:w-[30%] h-[450px] hidden md:flex bg-zinc-900 rounded-2xl border-2 border-zinc-800 overflow-hidden relative group flex-col'>
-            {/* TICKER SUPERIOR - RÁPIDO */}
-            <a
-              href='https://eparadise.vercel.app/'
-              target='_blank'
-              rel='noopener noreferrer'
-              className='bg-white w-full overflow-hidden py-1.5 block'
-            >
-              <div className='whitespace-nowrap animate-marquee-reverse-custom font-black text-[10px] uppercase tracking-widest text-black'>
-                OFERTAS EXCLUSIVAS • LICENCIAS DIGITALES • COMPRA AHORA •
-                ACCESORIOS TECH • STOCK LIMITADO • OFERTAS EXCLUSIVAS •
-                LICENCIAS DIGITALES • COMPRA AHORA • ACCESORIOS TECH • STOCK
-                LIMITADO •
-              </div>
-            </a>
 
-            {adPost ? (
-              <div className='flex-1 relative'>
-                <a
-                  href='https://eparadise.vercel.app/'
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  className='absolute top-[-70px] left-1/2 -translate-x-1/2 z-50 w-[240px]'
-                >
-                  <img
-                    src='/gif.gif'
-                    className='w-full h-auto'
-                    alt='Click Here'
-                  />
-                </a>
-                <img
-                  src={adPost._embedded?.["wp:featuredmedia"]?.[0]?.source_url}
-                  className='object-cover w-full h-full group-hover:scale-105 transition duration-500'
-                  alt='Publicidad'
-                />
-              </div>
-            ) : (
-              <p className='m-auto text-zinc-600 text-xs font-bold uppercase tracking-widest'>
-                Publicidad
-              </p>
-            )}
-
-            {/* TICKER INFERIOR - RÁPIDO REVERSA */}
-            <a
-              href='https://eparadise.vercel.app/'
-              target='_blank'
-              rel='noopener noreferrer'
-              className='bg-white w-full overflow-hidden py-1.5 block'
-            >
-              <div className='whitespace-nowrap animate-marquee-custom font-black text-[10px] uppercase tracking-widest text-black'>
-                HARDWARE TECH • LICENCIAS DIGITALES • ACCESORIOS GAMING • LO
-                ÚLTIMO EN TECNOLOGÍA • HARDWARE TECH • LICENCIAS DIGITALES •
-                ACCESORIOS GAMING • LO ÚLTIMO EN TECNOLOGÍA •
-              </div>
-            </a>
-          </div>
         </div>
 
         {/* SECCIÓN FÚTBOL */}
