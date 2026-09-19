@@ -68,8 +68,8 @@ export default function LatestNewsBanner({ posts }: { posts: NewsPost[] }) {
             dangerouslySetInnerHTML={{ __html: activePost.title.rendered }}
           />
           {activePost.excerpt?.rendered ? (
-            <p
-              className="line-clamp-2 text-sm leading-relaxed text-zinc-400"
+            <div
+              className="line-clamp-2 text-sm leading-relaxed text-zinc-400 [&>p]:m-0"
               dangerouslySetInnerHTML={{ __html: activePost.excerpt.rendered }}
             />
           ) : null}

@@ -181,11 +181,7 @@ export default function Home() {
             </a>
 
             {adPost ? (
-              <a
-                href={adPost.content.rendered.replace(/<[^>]*>?/gm, "").trim()}
-                target='_blank'
-                className='flex-1 relative'
-              >
+              <div className='flex-1 relative'>
                 <a
                   href='https://eparadise.vercel.app/'
                   target='_blank'
@@ -203,7 +199,7 @@ export default function Home() {
                   className='object-cover w-full h-full group-hover:scale-105 transition duration-500'
                   alt='Publicidad'
                 />
-              </a>
+              </div>
             ) : (
               <p className='m-auto text-zinc-600 text-xs font-bold uppercase tracking-widest'>
                 Publicidad
