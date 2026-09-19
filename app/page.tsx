@@ -135,44 +135,44 @@ export default function Home() {
               return (
                 <article
                   key={post.id}
-                  className='news-card group p-4 md:p-5'
+                  className='group flex-shrink-0 overflow-hidden rounded-2xl border border-white/10 bg-zinc-900/70 shadow-lg shadow-black/20 backdrop-blur-sm transition duration-300 hover:-translate-y-1 hover:border-sky-400/40 hover:shadow-sky-950/40 p-0'
                 >
-                  <div className='flex flex-col gap-6 md:flex-row'>
-                    <div className='md:w-1/3 relative'>
+                  <div className='flex flex-col'>
+                    <div className='relative h-64 w-full overflow-hidden bg-zinc-900'>
                       <Link href={`/${post.slug}`}>
-                        <div className='overflow-hidden rounded-2xl bg-zinc-900 border border-zinc-800'>
+                        <div className='h-full w-full overflow-hidden bg-zinc-900'>
                           <img
                             src={
                               post._embedded?.["wp:featuredmedia"]?.[0]
                                 ?.source_url
                             }
-                            className='object-cover h-60 w-full group-hover:scale-105 transition duration-300'
+                            className='h-full w-full object-cover transition duration-500 group-hover:scale-105'
                             alt=''
                           />
                         </div>
                       </Link>
                       {category && (
-                        <div className='absolute top-3 left-3 z-10'>
-                          <span className='bg-sky-500 text-white text-[10px] font-black uppercase tracking-tighter px-3 py-1.5 rounded-md shadow-md'>
+                        <div className='absolute left-3 top-3 z-10'>
+                          <span className='rounded-md bg-sky-500 px-3 py-1.5 text-[10px] font-black uppercase tracking-widest text-white shadow-lg'>
                             {category.name}
                           </span>
                         </div>
                       )}
                     </div>
 
-                    <div className='md:w-2/3 relative flex flex-col justify-center min-h-[200px]'>
+                    <div className='flex flex-col gap-3 p-5'>
 <Link href={`/${post.slug}`} className='block'>
                         <h2
-                          className='text-base md:text-lg font-bold text-white mb-4 leading-tight uppercase group-hover:text-sky-500 transition'
+                          className='line-clamp-2 text-lg font-bold uppercase leading-tight text-white transition group-hover:text-sky-400'
                           dangerouslySetInnerHTML={{
                             __html: post.title.rendered,
                           }}
                         />
-                        <p className='text-zinc-500 text-[10px] font-bold uppercase mb-4'>
+                        <p className='py-1 text-[10px] font-bold uppercase text-zinc-500'>
                           {new Date(post.date).toLocaleDateString()}
                         </p>
                         <div
-                          className='text-zinc-400 line-clamp-3 text-sm leading-relaxed mb-6'
+                          className='line-clamp-3 text-sm leading-relaxed text-zinc-400'
                           dangerouslySetInnerHTML={{
                             __html:
                               post.excerpt.rendered
@@ -182,7 +182,7 @@ export default function Home() {
                         />
                       </Link>
 
-                      <div className='md:absolute bottom-0 right-0'>
+                      <div className='pt-1'>
                         <Link
                           href={`/${post.slug}`}
                           className='news-button'
