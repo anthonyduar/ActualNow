@@ -24,84 +24,31 @@ export default function CookieBanner() {
   if (!visible) return null;
 
   return (
-    <div
-      style={{
-        position: "fixed",
-        bottom: 0,
-        left: 0,
-        right: 0,
-        zIndex: 9999,
-        backgroundColor: "#000",
-        color: "#fff",
-        padding: "12px 20px",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        gap: "10px",
-        flexDirection: "column",
-        boxShadow: "0 -2px 10px rgba(0,0,0,0.5)",
-      }}
+    <aside
+      aria-label="Aviso de cookies"
+      className="fixed inset-x-4 bottom-4 z-[9999] mx-auto flex max-w-xl flex-col gap-4 rounded-2xl border border-sky-400/30 bg-zinc-950/90 p-5 text-white shadow-2xl shadow-black/50 backdrop-blur-md sm:inset-x-auto sm:right-6 sm:mx-0 sm:p-6"
     >
-      {/* Botón X */}
       <button
         onClick={handleClose}
         aria-label="Cerrar aviso de cookies"
-        style={{
-          position: "absolute",
-          top: "8px",
-          right: "12px",
-          background: "none",
-          border: "none",
-          color: "#fff",
-          fontSize: "14px",
-          cursor: "pointer",
-          lineHeight: 1,
-          padding: "2px 4px",
-          opacity: 0.7,
-        }}
+        className="absolute right-3 top-3 rounded-full p-1 text-zinc-500 transition hover:bg-white/10 hover:text-white"
       >
-        ✕
+        <span aria-hidden="true">×</span>
       </button>
-
-      {/* Mensaje */}
-      <p style={{ margin: 0, fontSize: "13px", textAlign: "center" }}>
-        Utilizamos cookies para mejorar su experiencia y analizar el tráfico. Al continuar navegando, acepta su uso.
-      </p>
-
-      {/* Botones */}
-      <div style={{ display: "flex", gap: "10px", flexShrink: 0 }}>
-        <Link
-          href="/politica-de-cookies"
-          style={{
-            fontSize: "12px",
-            fontWeight: "bold",
-            color: "#fff",
-            border: "1px solid #fff",
-            borderRadius: "20px",
-            padding: "6px 16px",
-            textDecoration: "none",
-            whiteSpace: "nowrap",
-          }}
-        >
-          VER MÁS
+      <div className="pr-5">
+        <p className="mb-1 text-[10px] font-black uppercase tracking-[0.25em] text-sky-400">Privacidad</p>
+        <p className="text-sm leading-relaxed text-zinc-300">
+          Utilizamos cookies para mejorar tu experiencia y analizar el tráfico.
+        </p>
+      </div>
+      <div className="flex items-center gap-3">
+        <Link href="/politica-de-cookies" className="text-[10px] font-black uppercase tracking-widest text-zinc-400 transition hover:text-white">
+          Ver política
         </Link>
-        <button
-          onClick={handleAccept}
-          style={{
-            fontSize: "12px",
-            fontWeight: "bold",
-            color: "#fff",
-            backgroundColor: "#0ea5e9",
-            border: "none",
-            borderRadius: "20px",
-            padding: "6px 18px",
-            cursor: "pointer",
-            whiteSpace: "nowrap",
-          }}
-        >
-          ACEPTAR
+        <button onClick={handleAccept} className="ml-auto rounded-full bg-sky-500 px-5 py-2 text-[10px] font-black uppercase tracking-widest text-white transition hover:bg-sky-400">
+          Aceptar
         </button>
       </div>
-    </div>
+    </aside>
   );
 }

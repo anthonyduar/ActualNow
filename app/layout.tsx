@@ -64,11 +64,11 @@ export default async function RootLayout({
 
           <LatestNewsBanner posts={tickerPosts} />
 
-          <nav className='flex items-center justify-between mb-4 font-sans border-b border-[#06B4E7] pb-4 text-base relative'>
-            <div className='flex items-center gap-x-4'>
+          <nav className='mb-4 flex items-center justify-between rounded-2xl border border-white/10 bg-zinc-950/80 px-4 py-3 font-sans text-base shadow-lg shadow-black/20 backdrop-blur-md relative'>
+            <div className='flex items-center gap-x-3'>
               <Link
                 href='/'
-                className='font-bold hover:text-sky-500 transition uppercase text-sky-500 text-sm'
+                className='rounded-lg bg-sky-500/10 px-3 py-2 text-[11px] font-black uppercase tracking-widest text-sky-400 transition hover:bg-sky-500 hover:text-white'
               >
                 Inicio
               </Link>
