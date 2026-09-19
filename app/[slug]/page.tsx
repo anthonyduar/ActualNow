@@ -4,6 +4,10 @@ import { notFound } from "next/navigation";
 import XIGEmbed from "../components/XIGEmbed";
 import { getPostOrNoticiaBySlug, fetchWpNoticias } from "@/lib/wordpress";
 
+function plainText(html = "") {
+  return html.replace(/<[^>]*>/g, "").replace(/&nbsp;/g, " ").trim();
+}
+
 function formatDate(dateString: string) {
   return new Date(dateString).toLocaleDateString("es-ES", {
     weekday: "long",
@@ -108,10 +112,9 @@ export default async function PostPage({
       <div className='max-w-4xl mx-auto p-4 md:pt-8 flex-grow'>
         {/* TÍTULO Y ACTUALNOW */}
         <div className='text-center mb-10'>
-          <h1
-            className='text-3xl md:text-5xl font-black uppercase tracking-tighter leading-none mb-4 text-white'
-            dangerouslySetInnerHTML={{ __html: post.title.rendered }}
-          />
+          <h1 className='text-3xl md:text-5xl font-black uppercase tracking-tighter leading-none mb-4 text-white'>
+            {plainText(post.title.rendered)}
+          </h1>
           <p className='text-[10px] text-zinc-500 font-bold uppercase tracking-[0.5em]'>
             ActualNow
           </p>
@@ -124,10 +127,9 @@ export default async function PostPage({
               <img src={img} className='w-full h-full object-cover' alt='' />
             </div>
             {caption && (
-              <div
-                className='text-[10px] text-zinc-500 mt-3 ml-2 italic text-left'
-                dangerouslySetInnerHTML={{ __html: caption }}
-              />
+              <p className='text-[10px] text-zinc-500 mt-3 ml-2 italic text-left'>
+                {plainText(caption)}
+              </p>
             )}
           </div>
         )}
