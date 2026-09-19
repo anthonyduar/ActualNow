@@ -4,6 +4,10 @@ import Link from "next/link";
 import CookieBanner from "./components/CookieBanner";
 import { fetchWpNoticias, getWordPressBaseUrl } from "@/lib/wordpress";
 
+function plainText(html = "") {
+  return html.replace(/<[^>]*>/g, "").replace(/&nbsp;/g, " ").trim();
+}
+
 export default function Home() {
   const [posts, setPosts] = useState<any[]>([]);
   const [footballPosts, setFootballPosts] = useState<any[]>([]);
@@ -102,22 +106,15 @@ export default function Home() {
                     />
                   </div>
                   <div className='space-y-3 p-5'>
-                    <h3
-                      className='text-lg font-bold text-white leading-tight uppercase line-clamp-2 group-hover:text-sky-500 transition'
-                      dangerouslySetInnerHTML={{ __html: post.title.rendered }}
-                    />
+                    <h3 className='text-lg font-bold text-white leading-tight uppercase line-clamp-2 group-hover:text-sky-500 transition'>
+                      {plainText(post.title.rendered)}
+                    </h3>
                     <p className='text-zinc-500 text-[10px] font-bold uppercase py-1'>
                       {new Date(post.date).toLocaleDateString()}
                     </p>
-                    <div
-                      className='text-zinc-400 text-sm line-clamp-3 leading-relaxed'
-                      dangerouslySetInnerHTML={{
-                        __html:
-                          post.excerpt.rendered
-                            .replace(/<[^>]*>?/gm, "")
-                            .trim() + "...",
-                      }}
-                    />
+                    <p className='text-zinc-400 text-sm line-clamp-3 leading-relaxed'>
+                      {plainText(post.excerpt.rendered) + "..."}
+                    </p>
                     <span className='inline-flex items-center rounded-lg border border-sky-500/10 bg-[#081923] px-3 py-2 text-[10px] font-black uppercase tracking-widest text-sky-400 transition hover:border-sky-400/30 hover:bg-sky-500 hover:text-white'>
                       Leer
                     </span>
@@ -164,24 +161,15 @@ export default function Home() {
 
                     <div className='flex flex-col gap-3 p-5'>
 <Link href={`/${post.slug}`} className='block'>
-                        <h2
-                          className='line-clamp-2 text-lg font-bold uppercase leading-tight text-white transition group-hover:text-sky-400'
-                          dangerouslySetInnerHTML={{
-                            __html: post.title.rendered,
-                          }}
-                        />
+                        <h2 className='line-clamp-2 text-lg font-bold uppercase leading-tight text-white transition group-hover:text-sky-400'>
+                          {plainText(post.title.rendered)}
+                        </h2>
                         <p className='py-1 text-[10px] font-bold uppercase text-zinc-500'>
                           {new Date(post.date).toLocaleDateString()}
                         </p>
-                        <div
-                          className='line-clamp-3 text-sm leading-relaxed text-zinc-400'
-                          dangerouslySetInnerHTML={{
-                            __html:
-                              post.excerpt.rendered
-                                .replace(/<[^>]*>?/gm, "")
-                                .trim() + "...",
-                          }}
-                        />
+                        <p className='line-clamp-3 text-sm leading-relaxed text-zinc-400'>
+                          {plainText(post.excerpt.rendered) + "..."}
+                        </p>
                       </Link>
 
                       <div className='pt-1'>

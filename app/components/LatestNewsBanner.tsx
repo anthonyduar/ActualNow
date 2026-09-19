@@ -3,6 +3,10 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
+function plainText(html = "") {
+  return html.replace(/<[^>]*>/g, "").replace(/&nbsp;/g, " ").trim();
+}
+
 type NewsPost = {
   id: number;
   slug: string;
@@ -60,15 +64,13 @@ export default function LatestNewsBanner({ posts }: { posts: NewsPost[] }) {
           <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-zinc-500">
             Noticia destacada
           </span>
-          <h1
-            className="text-2xl font-black uppercase leading-[1.05] tracking-tight text-white md:text-4xl"
-            dangerouslySetInnerHTML={{ __html: activePost.title.rendered }}
-          />
+          <h1 className="text-2xl font-black uppercase leading-[1.05] tracking-tight text-white md:text-4xl">
+            {plainText(activePost.title.rendered)}
+          </h1>
           {activePost.excerpt?.rendered ? (
-            <div
-              className="line-clamp-2 text-sm leading-relaxed text-zinc-400 [&>p]:m-0"
-              dangerouslySetInnerHTML={{ __html: activePost.excerpt.rendered }}
-            />
+            <p className="line-clamp-2 text-sm leading-relaxed text-zinc-400">
+              {plainText(activePost.excerpt.rendered)}
+            </p>
           ) : null}
           <span className="text-[10px] font-black uppercase tracking-[0.2em] text-sky-400 transition group-hover:text-white">
             Leer noticia →
