@@ -97,7 +97,7 @@ export default async function CategoryPage({
           {posts.map((post: any) => (
             <article key={post.id} className='news-card p-4 md:p-5'>
               <Link
-                href={`/${post.slug}`}
+                href={post.slug ? `/${post.slug}` : "/"}
                 className='flex flex-col gap-6 md:flex-row group'
               >
                 <div className='md:w-1/4 aspect-square overflow-hidden rounded-xl bg-zinc-800'>

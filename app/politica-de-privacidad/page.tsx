@@ -88,7 +88,7 @@ export default async function PrivacidadPage() {
           {recommended.slice(0, 4).map((rec: any) => {
             const img = rec._embedded?.["wp:featuredmedia"]?.[0]?.source_url;
             return (
-              <Link key={rec.id} href={`/${rec.slug}`} className='group'>
+              <Link key={rec.id} href={rec.slug ? `/${rec.slug}` : "/"} className='group'>
                 <div className='aspect-square mb-3 overflow-hidden rounded bg-zinc-800'>
                   {img && (
                     <img

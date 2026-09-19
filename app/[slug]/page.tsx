@@ -191,7 +191,7 @@ export default async function PostPage({
           </h3>
           <div className='grid grid-cols-2 md:grid-cols-4 gap-6'>
             {recommended.map((rec: any) => (
-              <Link key={rec.id} href={`/${rec.slug}`} className='group'>
+              <Link key={rec.id} href={rec.slug ? `/${rec.slug}` : "/"} className='group'>
                 <div className='aspect-square mb-3 overflow-hidden rounded bg-zinc-800'>
                   {rec._embedded?.["wp:featuredmedia"]?.[0]?.source_url && (
                     <img
