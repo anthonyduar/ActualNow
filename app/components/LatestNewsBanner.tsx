@@ -49,7 +49,7 @@ export default function LatestNewsBanner({ posts }: { posts: NewsPost[] }) {
         </p>
       </div>
 
-      <Link href={`/${activePost.slug}`} className="group grid min-h-[230px] md:grid-cols-[0.9fr_1.1fr]">
+      <Link href={activePost.slug ? `/${activePost.slug}` : "/"} className="group grid min-h-[230px] md:grid-cols-[0.9fr_1.1fr]">
         <div className="relative min-h-[180px] overflow-hidden bg-zinc-950">
           {image ? (
             <img

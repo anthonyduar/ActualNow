@@ -92,7 +92,7 @@ export default function Home() {
                 key={post.id}
                 className='group flex-shrink-0 w-[300px] md:w-[calc(33.33%-22px)] overflow-hidden rounded-2xl border border-white/10 bg-zinc-900/70 shadow-lg shadow-black/20 backdrop-blur-sm transition duration-300 hover:-translate-y-1 hover:border-sky-400/40 hover:shadow-sky-950/40'
               >
-                <Link href={`/${post.slug}`} className='group'>
+                <Link href={post.slug ? `/${post.slug}` : "/"} className='group'>
                   <div className='relative h-64 w-full overflow-hidden bg-zinc-900'>
                     <span className='absolute left-3 top-3 z-10 rounded-lg border border-sky-500/10 bg-[#081923] px-3 py-2 text-[10px] font-black uppercase tracking-widest text-sky-400 shadow-lg shadow-black/20 transition hover:border-sky-400/30 hover:bg-sky-500 hover:text-white'>
                       Fútbol
@@ -138,7 +138,7 @@ export default function Home() {
                 >
                   <div className='flex flex-col'>
                     <div className='relative h-64 w-full overflow-hidden bg-zinc-900'>
-                      <Link href={`/${post.slug}`}>
+                      <Link href={post.slug ? `/${post.slug}` : "/"}>
                         <div className='h-full w-full overflow-hidden bg-zinc-900'>
                           <img
                             src={
@@ -160,7 +160,7 @@ export default function Home() {
                     </div>
 
                     <div className='flex flex-col gap-3 p-5'>
-<Link href={`/${post.slug}`} className='block'>
+<Link href={post.slug ? `/${post.slug}` : "/"} className='block'>
                         <h2 className='line-clamp-2 text-lg font-bold uppercase leading-tight text-white transition group-hover:text-sky-400'>
                           {plainText(post.title.rendered)}
                         </h2>
@@ -174,7 +174,7 @@ export default function Home() {
 
                       <div className='pt-1'>
                         <Link
-                          href={`/${post.slug}`}
+                          href={post.slug ? `/${post.slug}` : "/"}
                           className='inline-flex items-center rounded-lg border border-sky-500/10 bg-[#081923] px-3 py-2 text-[10px] font-black uppercase tracking-widest text-sky-400 transition hover:border-sky-400/30 hover:bg-sky-500 hover:text-white'
                         >
                           Leer
