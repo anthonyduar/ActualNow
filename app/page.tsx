@@ -82,11 +82,11 @@ export default function Home() {
   if (!isClient) return <div className='min-h-screen bg-zinc-950' />;
 
   return (
-    <main className='min-h-screen bg-zinc-950 text-white'>
+    <main className='min-h-screen bg-black text-white'>
       <div className='mx-auto max-w-6xl px-6 pb-6 pt-3'>
         {/* SECCIÓN FÚTBOL */}
         <section className='mb-12'>
-          <div className='flex flex-row gap-8 overflow-x-auto pb-4 scrollbar-hide'>
+          <div className='flex flex-row flex-wrap justify-center gap-8 pb-4'>
             {footballPosts.map((post: any) => (
               <article
                 key={post.id}
@@ -126,7 +126,7 @@ export default function Home() {
         </section>
 
         {/* SECCIÓN VERTICAL */}
-        <div className='grid gap-12 max-w-5xl'>
+        <div className='mx-auto grid max-w-5xl justify-items-center gap-12'>
           {posts
             .filter((p: any) => !p.categories?.includes(3))
             .map((post: any) => {
