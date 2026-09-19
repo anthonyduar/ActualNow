@@ -122,12 +122,9 @@ export default async function RootLayout({
 
         {/* FOOTER COMPLETO RESTAURADO */}
         <footer className='mt-16 border-t border-sky-400/30 bg-zinc-950 text-white font-sans'>
-          <div className='mx-auto grid max-w-6xl grid-cols-1 gap-8 px-6 py-10 sm:grid-cols-2 lg:grid-cols-[1.2fr_1fr_1fr] lg:items-start lg:gap-12'>
-            <div>
-              <img src='/logo.png' alt='ActualNow' className='mb-3 h-28 w-auto object-contain object-left' />
-              <p className='mb-4 max-w-xs text-sm leading-relaxed text-zinc-400'>
-                Noticias deportivas al instante.
-              </p>
+          <div className='mx-auto grid max-w-6xl grid-cols-1 gap-8 px-6 py-10 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr] lg:items-start lg:gap-6'>
+            <div className='flex flex-col items-start'>
+              <img src='/logo.png' alt='ActualNow' className='mb-1 h-28 w-auto object-contain object-left' />
               <Link
                 href='/acerca-de'
                 className='inline-flex rounded-full border border-sky-400/30 bg-white/5 px-4 py-2 text-[10px] font-black uppercase tracking-widest text-zinc-300 transition hover:border-sky-400 hover:text-sky-400'
