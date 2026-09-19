@@ -63,8 +63,10 @@ export default async function RootLayout({
           </div>
 
           <LatestNewsBanner posts={tickerPosts} />
+        </header>
 
-          <nav className='news-surface relative mt-3 mb-4 flex items-center justify-between px-4 py-3 font-sans text-base'>
+        <div className='contents'>
+          <nav className='news-surface news-chrome sticky top-3 z-40 relative mx-auto mt-3 mb-4 flex w-[calc(100%-3rem)] max-w-6xl items-center justify-between px-4 py-3 font-sans text-base'>
             <div className='flex items-center gap-x-3'>
               <Link
                 href='/'
@@ -116,7 +118,7 @@ export default async function RootLayout({
               </Link>
             </div>
           </nav>
-        </header>
+        </div>
 
         <main className='flex-grow bg-black'>{children}</main>
 

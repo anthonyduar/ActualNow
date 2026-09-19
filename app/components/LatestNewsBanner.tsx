@@ -42,7 +42,7 @@ export default function LatestNewsBanner({ posts }: { posts: NewsPost[] }) {
   const image = activePost._embedded?.["wp:featuredmedia"]?.[0]?.source_url;
 
   return (
-    <section aria-label="Últimas noticias" className="news-surface">
+    <section aria-label="Últimas noticias" className="news-surface news-chrome">
       <div className="flex items-center justify-between border-b border-white/10 px-5 py-3">
         <p className="text-[11px] font-black uppercase tracking-[0.28em] text-sky-400">
           Últimas noticias
