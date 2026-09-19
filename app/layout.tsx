@@ -120,8 +120,8 @@ export default async function RootLayout({
 
         <div className='flex-grow'>{children}</div>
 
-        {/* FOOTER COMPLETO RESTAURADO */}
-        <footer className='mt-16 border-t border-sky-400/30 bg-zinc-950 text-white font-sans'>
+        {/* Footer principal restaurado */}
+        <footer className='mt-16 block w-full border-t border-sky-400/30 bg-zinc-950 font-sans text-white'>
           <div className='mx-auto grid max-w-6xl grid-cols-1 gap-8 px-6 py-10 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr] lg:items-start lg:gap-6'>
             <div className='flex flex-col items-start'>
               <img src='/logo.png' alt='ActualNow' className='mb-1 h-28 w-auto object-contain object-left' />
