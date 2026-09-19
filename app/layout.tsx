@@ -118,7 +118,7 @@ export default async function RootLayout({
           </nav>
         </header>
 
-        <div className='flex-grow'>{children}</div>
+        <main className='flex-grow bg-black'>{children}</main>
 
         {/* Footer principal restaurado */}
         <footer className='mt-16 block w-full border-t border-sky-400/30 bg-black font-sans text-white'>
@@ -165,7 +165,7 @@ export default async function RootLayout({
               </h3>
               <Link
                 href='/contacto'
-                className='news-button mb-4'
+                className='inline-flex rounded-full border border-sky-400/30 bg-white/5 px-4 py-2 text-[10px] font-black uppercase tracking-widest text-zinc-300 transition hover:border-sky-400 hover:text-sky-400 mb-4'
               >
                 Escríbenos
               </Link>
