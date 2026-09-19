@@ -42,14 +42,14 @@ export default function LatestNewsBanner({ posts }: { posts: NewsPost[] }) {
   const image = activePost._embedded?.["wp:featuredmedia"]?.[0]?.source_url;
 
   return (
-    <section aria-label="Últimas noticias" className="news-surface news-chrome">
+    <section aria-label="Últimas noticias" className="news-surface news-chrome h-[380px] md:h-[430px]">
       <div className="flex items-center justify-between border-b border-white/10 px-5 py-3">
         <p className="text-[11px] font-black uppercase tracking-[0.28em] text-sky-400">
           Últimas noticias
         </p>
       </div>
 
-      <Link href={activePost.slug ? `/${activePost.slug}` : "/"} className="group grid min-h-[230px] md:grid-cols-[0.9fr_1.1fr]">
+      <Link href={activePost.slug ? `/${activePost.slug}` : "/"} className="group grid h-[calc(100%-57px)] min-h-0 md:grid-cols-[0.9fr_1.1fr]">
         <div className="relative min-h-[180px] overflow-hidden bg-zinc-950">
           {image ? (
             <img
