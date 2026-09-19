@@ -54,7 +54,7 @@ export default async function RootLayout({
       </head>
       <body className='bg-black text-white min-h-screen flex flex-col'>
         <header className='max-w-6xl mx-auto w-full p-6 pb-0'>
-          <div className='flex justify-end mb-2 text-xs font-bold text-gray-500 uppercase tracking-widest'>
+          <div className='flex justify-end mb-2 text-[10px] font-bold text-gray-500 uppercase tracking-widest'>
             <SafeDate />
           </div>
 
