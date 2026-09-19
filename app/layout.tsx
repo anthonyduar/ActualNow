@@ -23,7 +23,7 @@ export default async function RootLayout({
 
   try {
     const res = await fetchWpNoticias(
-      `per_page=5&categories_exclude=77&v=${Date.now()}`,
+      `_embed&per_page=5&categories_exclude=77&v=${Date.now()}`,
       { cache: "no-store" },
     );
     if (res.ok) {
@@ -66,7 +66,7 @@ export default async function RootLayout({
         </header>
 
         <div className='contents'>
-          <nav className='news-surface news-chrome sticky top-3 z-40 mx-auto mt-3 mb-4 flex w-[calc(100%-3rem)] max-w-6xl items-center justify-between px-4 py-3 font-sans text-base'>
+          <nav className='news-surface news-chrome sticky top-3 z-40 mx-auto mt-3 mb-4 flex w-[calc(100%-3rem)] max-w-[72rem] items-center justify-between px-4 py-3 font-sans text-base'>
             <div className='flex items-center gap-x-3'>
               <Link
                 href='/'

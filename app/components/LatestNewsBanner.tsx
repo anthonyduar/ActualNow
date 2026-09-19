@@ -12,8 +12,18 @@ type NewsPost = {
   slug: string;
   title: { rendered: string };
   excerpt?: { rendered: string };
+  jetpack_featured_media_url?: string;
   _embedded?: {
-    [key: string]: Array<{ source_url?: string }>;
+    [key: string]: Array<{
+      source_url?: string;
+      media_details?: {
+        sizes?: {
+          large?: { source_url?: string };
+          medium_large?: { source_url?: string };
+          full?: { source_url?: string };
+        };
+      };
+    }>;
   };
 };
 
@@ -39,7 +49,13 @@ export default function LatestNewsBanner({ posts }: { posts: NewsPost[] }) {
   }
 
   const activePost = posts[activeIndex];
-  const image = activePost._embedded?.["wp:featuredmedia"]?.[0]?.source_url;
+  const featuredMedia = activePost._embedded?.["wp:featuredmedia"]?.[0];
+  const image =
+    featuredMedia?.source_url ??
+    featuredMedia?.media_details?.sizes?.large?.source_url ??
+    featuredMedia?.media_details?.sizes?.medium_large?.source_url ??
+    featuredMedia?.media_details?.sizes?.full?.source_url ??
+    activePost.jetpack_featured_media_url;
 
   return (
     <section aria-label="Últimas noticias" className="news-surface news-chrome h-[380px] md:h-[430px]">
@@ -49,12 +65,12 @@ export default function LatestNewsBanner({ posts }: { posts: NewsPost[] }) {
         </p>
       </div>
 
-      <Link href={activePost.slug ? `/${activePost.slug}` : "/"} className="group grid h-[calc(100%-57px)] min-h-0 md:grid-cols-[0.9fr_1.1fr]">
+      <Link href={activePost.slug ? `/${activePost.slug}` : "/"} className="group grid h-[calc(100%_-_57px)] min-h-0 md:grid-cols-[0.9fr_1.1fr]">
         <div className="relative min-h-[180px] overflow-hidden bg-zinc-950">
           {image ? (
             <img
               src={image}
-              alt=""
+              alt={plainText(activePost.title.rendered)}
               className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
             />
           ) : null}
