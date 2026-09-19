@@ -90,7 +90,7 @@ export default function Home() {
             {footballPosts.map((post: any) => (
               <article
                 key={post.id}
-                className='news-card group flex h-[510px] w-[300px] flex-shrink-0 flex-col md:w-[calc(33.33%-22px)]'
+                className='news-card group flex h-[445px] w-[300px] flex-shrink-0 flex-col md:w-[calc(33.33%-22px)]'
               >
                 <Link href={post.slug ? `/${post.slug}` : "/"} className='group flex h-full flex-col'>
                   <div className='relative aspect-video w-full shrink-0 overflow-hidden bg-zinc-900'>
@@ -115,7 +115,7 @@ export default function Home() {
                     <p className='text-zinc-400 text-sm line-clamp-3 leading-relaxed'>
                       {plainText(post.excerpt.rendered) + "..."}
                     </p>
-                    <span className='inline-flex items-center rounded-lg border border-sky-500/10 bg-[#081923] px-3 py-2 text-[10px] font-black uppercase tracking-widest text-sky-400 transition hover:border-sky-400/30 hover:bg-sky-500 hover:text-white'>
+                    <span className='inline-flex w-fit self-start items-center rounded-lg border border-sky-500/10 bg-[#081923] px-3 py-2 text-[10px] font-black uppercase tracking-widest text-sky-400 transition hover:border-sky-400/30 hover:bg-sky-500 hover:text-white'>
                       Leer
                     </span>
                   </div>
