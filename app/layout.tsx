@@ -122,15 +122,15 @@ export default async function RootLayout({
 
         {/* FOOTER COMPLETO RESTAURADO */}
         <footer className='mt-16 border-t border-sky-400/30 bg-zinc-950 text-white font-sans'>
-          <div className='mx-auto grid max-w-6xl grid-cols-1 gap-12 px-6 py-14 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr] lg:gap-20'>
+          <div className='mx-auto grid max-w-6xl grid-cols-1 gap-8 px-6 py-10 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr] lg:gap-12'>
             <div>
-              <img src='/logo.png' alt='ActualNow' className='mb-4 h-24 w-auto object-contain object-left' />
-              <p className='mb-6 max-w-xs text-sm leading-relaxed text-zinc-400'>
+              <img src='/logo.png' alt='ActualNow' className='mb-3 h-28 w-auto object-contain object-left' />
+              <p className='mb-4 max-w-xs text-sm leading-relaxed text-zinc-400'>
                 Noticias deportivas al instante.
               </p>
               <Link
                 href='/acerca-de'
-                className='inline-flex rounded-full border border-white/10 px-4 py-2 text-[10px] font-black uppercase tracking-widest text-zinc-300 transition hover:border-sky-400/50 hover:text-sky-400'
+                className='inline-flex rounded-full border border-sky-400/30 bg-white/5 px-4 py-2 text-[10px] font-black uppercase tracking-widest text-zinc-300 transition hover:border-sky-400 hover:text-sky-400'
               >
                 Acerca de
               </Link>
@@ -168,7 +168,7 @@ export default async function RootLayout({
               </h3>
               <Link
                 href='/contacto'
-                className='inline-block bg-sky-500 text-white text-center py-2 px-1 rounded-full font-bold uppercase text-[9px] tracking-widest hover:bg-sky-600 transition mb-8'
+                className='news-button mb-4'
               >
                 Escríbenos
               </Link>

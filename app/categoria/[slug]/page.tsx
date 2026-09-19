@@ -95,12 +95,12 @@ export default async function CategoryPage({
 
         <div className='grid gap-8'>
           {posts.map((post: any) => (
-            <article key={post.id} className='border-b border-zinc-900 pb-8'>
+            <article key={post.id} className='news-card p-4 md:p-5'>
               <Link
                 href={`/${post.slug}`}
                 className='flex flex-col md:flex-row gap-6 group'
               >
-                <div className='md:w-1/4 aspect-square overflow-hidden rounded bg-zinc-800'>
+                <div className='md:w-1/4 aspect-square overflow-hidden rounded-xl bg-zinc-800'>
                   {post._embedded?.["wp:featuredmedia"]?.[0]?.source_url && (
                     <img
                       src={post._embedded["wp:featuredmedia"][0].source_url}
@@ -129,7 +129,7 @@ export default async function CategoryPage({
                     />
                   </div>
                   <div className='md:absolute bottom-0 right-0'>
-                    <span className='inline-block bg-sky-500 text-white text-[10px] font-bold uppercase tracking-widest px-6 py-2 rounded-full shadow-lg shadow-sky-500/20'>
+                    <span className='news-button'>
                       Leer
                     </span>
                   </div>
@@ -196,7 +196,7 @@ export default async function CategoryPage({
           </h3>
           <div className='grid grid-cols-2 md:grid-cols-4 gap-6'>
             {recommended.map((rec: any) => (
-              <Link key={rec.id} href={`/${rec.slug}`} className='group'>
+              <Link key={rec.id} href={`/${rec.slug}`} className='news-card group block p-3'>
                 <div className='aspect-square mb-3 overflow-hidden rounded bg-zinc-800'>
                   {rec._embedded?.["wp:featuredmedia"]?.[0]?.source_url && (
                     <img
