@@ -41,10 +41,7 @@ export default function LatestNewsBanner({ posts }: { posts: NewsPost[] }) {
     <section aria-label="Últimas noticias" className="overflow-hidden rounded-xl bg-black shadow-2xl ring-1 ring-white/10">
       <div className="flex items-center justify-between border-b border-white/10 px-5 py-3">
         <p className="text-[11px] font-black uppercase tracking-[0.28em] text-sky-400">
-          Actualidad · Últimas noticias
-        </p>
-        <p className="text-[10px] font-bold tabular-nums text-zinc-500">
-          {String(activeIndex + 1).padStart(2, "0")} / {String(posts.length).padStart(2, "0")}
+          Últimas noticias
         </p>
       </div>
 

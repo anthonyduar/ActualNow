@@ -59,23 +59,7 @@ export default async function RootLayout({
           </div>
 
           <div className='relative w-full mb-6'>
-            <video
-              src='/banner-actualnow.mp4'
-              className='w-full h-auto max-h-64 object-contain md:object-cover md:object-[center_20%] rounded-lg shadow-md border border-[#06B4E7]'
-              autoPlay
-              loop
-              muted
-              playsInline
-            />
-            <div className='absolute inset-0 flex items-center pl-15 md:pl-20'>
-              <Link href='/'>
-                <img
-                  src='/logo.png'
-                  alt='ActualNow'
-                  className='h-24 md:h-36 w-auto drop-shadow-2xl'
-                />
-              </Link>
-            </div>
+
           </div>
 
           <LatestNewsBanner posts={tickerPosts} />
