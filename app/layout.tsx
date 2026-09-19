@@ -138,32 +138,6 @@ export default async function RootLayout({
 
             <div>
               <h3 className='font-bold text-sky-500 mb-4 uppercase text-xs tracking-widest'>
-                Secciones
-              </h3>
-              <div className='flex flex-col gap-2 text-sm text-gray-300'>
-                <Link
-                  href='/categoria/futbol'
-                  className='hover:text-white transition'
-                >
-                  Fútbol
-                </Link>
-                <Link
-                  href='/categoria/beisbol'
-                  className='hover:text-white transition'
-                >
-                  Béisbol
-                </Link>
-                <Link
-                  href='/categoria/baloncesto'
-                  className='hover:text-white transition'
-                >
-                  Baloncesto
-                </Link>
-              </div>
-            </div>
-
-            <div>
-              <h3 className='font-bold text-sky-500 mb-4 uppercase text-xs tracking-widest'>
                 Información
               </h3>
               <div className='flex flex-col gap-2 text-sm text-gray-300'>

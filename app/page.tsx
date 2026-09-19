@@ -4,50 +4,6 @@ import Link from "next/link";
 import CookieBanner from "./components/CookieBanner";
 import { fetchWpNoticias, getWordPressBaseUrl } from "@/lib/wordpress";
 
-function FeaturedCarousel({ posts }: { posts: any[] }) {
-  const [index, setIndex] = useState(0);
-  useEffect(() => {
-    if (posts.length === 0) return;
-    const timer = setInterval(() => {
-      setIndex((prev) => (prev + 1) % posts.length);
-    }, 6000);
-    return () => clearInterval(timer);
-  }, [posts.length]);
-
-  return (
-    <div className='relative w-full h-[450px] rounded-2xl bg-zinc-900 shadow-xl'>
-      {" "}
-      {posts.slice(0, 1).map((post, i) => (
-        <div
-          key={post.id}
-          className='absolute inset-0 transition-opacity duration-1000 ease-in-out'
-          style={{ opacity: i === index ? 1 : 0, zIndex: i === index ? 10 : 0 }}
-        >
-          <Link
-            href={`/${post.slug}`}
-            className='block h-full relative overflow-hidden rounded-2xl'
-          >
-            {" "}
-            {post._embedded?.["wp:featuredmedia"]?.[0]?.source_url && (
-              <img
-                src={post._embedded["wp:featuredmedia"][0].source_url}
-                className='object-cover w-full h-full'
-                alt=''
-              />
-            )}
-            <div className='absolute bottom-0 p-8 z-20'>
-              <h3
-                className='text-3xl md:text-4xl font-black text-white leading-tight uppercase tracking-tighter line-clamp-2'
-                dangerouslySetInnerHTML={{ __html: post.title.rendered }}
-              />
-            </div>
-          </Link>
-        </div>
-      ))}
-    </div>
-  );
-}
-
 export default function Home() {
   const [posts, setPosts] = useState<any[]>([]);
   const [footballPosts, setFootballPosts] = useState<any[]>([]);
@@ -121,25 +77,9 @@ export default function Home() {
 
   if (!isClient) return <div className='min-h-screen bg-zinc-950' />;
 
-  // Definición segura de las variables de segmentación
-  const featuredPosts = Array.isArray(posts) ? posts.slice(0, 5) : [];
-
   return (
     <main className='min-h-screen bg-zinc-950 text-white'>
       <div className='max-w-6xl mx-auto p-6'>
-        {/* CABECERA */}
-        <div className='flex flex-col md:flex-row gap-6 mb-10 pt-8'>
-          <div className='md:w-[70%]'>
-            {featuredPosts.length > 0 ? (
-              <FeaturedCarousel posts={featuredPosts} />
-            ) : (
-              <div className='w-full h-[450px] bg-zinc-900 animate-pulse rounded-2xl' />
-            )}
-          </div>
-
-
-        </div>
-
         {/* SECCIÓN FÚTBOL */}
         <section className='mb-12'>
           <div className='mb-6'>
