@@ -118,6 +118,7 @@ export default function Home() {
                             .trim() + "...",
                       }}
                     />
+                    <span className='news-button mt-2'>Leer noticia</span>
                   </div>
                 </Link>
               </article>
@@ -134,9 +135,9 @@ export default function Home() {
               return (
                 <article
                   key={post.id}
-                  className='group border-b border-zinc-900 pb-12 last:border-b-0'
+                  className='news-card group p-4 md:p-5'
                 >
-                  <div className='flex flex-col md:flex-row gap-10'>
+                  <div className='flex flex-col gap-6 md:flex-row'>
                     <div className='md:w-1/3 relative'>
                       <Link href={`/${post.slug}`}>
                         <div className='overflow-hidden rounded-2xl bg-zinc-900 border border-zinc-800'>
@@ -184,7 +185,7 @@ export default function Home() {
                       <div className='md:absolute bottom-0 right-0'>
                         <Link
                           href={`/${post.slug}`}
-                          className='inline-block bg-sky-500 text-white text-[10px] font-bold uppercase tracking-widest px-6 py-2 rounded-full hover:bg-sky-600 transition shadow-lg shadow-sky-500/20'
+                          className='news-button'
                         >
                           Leer
                         </Link>

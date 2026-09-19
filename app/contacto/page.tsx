@@ -88,7 +88,7 @@ export default async function Contacto() {
           </div>
           <button
             type='submit'
-            className='bg-sky-500 text-white font-bold py-3 rounded-full uppercase text-xs tracking-widest hover:bg-sky-600 transition shadow-lg shadow-sky-500/20'
+            className='news-button w-full py-3'
           >
             Enviar Mensaje
           </button>
@@ -98,7 +98,7 @@ export default async function Contacto() {
       <div className='text-center mt-10'>
         <Link
           href='/'
-          className='inline-block bg-sky-500 text-white px-8 py-2 rounded-full font-bold uppercase text-[10px] tracking-widest hover:bg-sky-600 transition'
+          className='news-button'
         >
           Volver al Inicio
         </Link>

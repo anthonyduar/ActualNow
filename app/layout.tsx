@@ -162,7 +162,7 @@ export default async function RootLayout({
               </div>
             </div>
 
-            <div>
+            <div className='lg:justify-self-end lg:min-w-[190px]'>
               <h3 className='mb-5 text-[10px] font-black uppercase tracking-[0.25em] text-sky-400'>
                 Contacto
               </h3>

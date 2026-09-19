@@ -98,7 +98,7 @@ export default async function CategoryPage({
             <article key={post.id} className='news-card p-4 md:p-5'>
               <Link
                 href={`/${post.slug}`}
-                className='flex flex-col md:flex-row gap-6 group'
+                className='flex flex-col gap-6 md:flex-row group'
               >
                 <div className='md:w-1/4 aspect-square overflow-hidden rounded-xl bg-zinc-800'>
                   {post._embedded?.["wp:featuredmedia"]?.[0]?.source_url && (
@@ -145,7 +145,7 @@ export default async function CategoryPage({
             {currentPage > 1 && (
               <Link
                 href={`/categoria/${slug}?page=${currentPage - 1}`}
-                className='px-4 py-2 bg-zinc-900 border border-zinc-800 rounded hover:bg-sky-500 transition'
+                className='news-button px-4 py-2'
               >
                 «
               </Link>
@@ -164,7 +164,7 @@ export default async function CategoryPage({
                 <Link
                   key={num}
                   href={`/categoria/${slug}?page=${num}`}
-                  className={`px-4 py-2 rounded font-bold border ${num === currentPage ? "bg-sky-500 border-sky-500 text-white" : "bg-zinc-900 border-zinc-800 text-zinc-400 hover:border-sky-500"}`}
+                  className={`news-button px-4 py-2 ${num === currentPage ? "" : "opacity-60"}`}
                 >
                   {num}
                 </Link>
@@ -173,7 +173,7 @@ export default async function CategoryPage({
             {currentPage < totalPages && (
               <Link
                 href={`/categoria/${slug}?page=${currentPage + 1}`}
-                className='px-4 py-2 bg-zinc-900 border border-zinc-800 rounded hover:bg-sky-500 transition'
+                className='news-button px-4 py-2'
               >
                 »
               </Link>
@@ -184,7 +184,7 @@ export default async function CategoryPage({
         <div className='text-center mt-10'>
           <Link
             href='/'
-            className='inline-block bg-sky-500 text-white px-8 py-2 rounded-full font-bold uppercase text-[10px] tracking-widest hover:bg-sky-600 transition'
+            className='news-button'
           >
             Volver al Inicio
           </Link>
