@@ -65,8 +65,9 @@ export default async function RootLayout({
           <LatestNewsBanner posts={tickerPosts} />
         </header>
 
-        <div className='mx-auto w-full max-w-6xl px-6'>
-          <nav className='news-surface news-chrome sticky top-3 z-40 mt-3 mb-4 flex w-full items-center justify-between px-4 py-3 font-sans text-base'>
+        <div className='flex min-h-0 flex-1 flex-col'>
+          <div className='contents'>
+            <nav className='news-surface news-chrome sticky top-3 z-40 mx-auto mt-3 mb-4 flex w-[calc(100%-3rem)] max-w-6xl self-start items-center justify-between px-4 py-3 font-sans text-base'>
             <div className='flex items-center gap-x-3'>
               <Link
                 href='/'
@@ -191,6 +192,7 @@ export default async function RootLayout({
             </p>
           </div>
         </footer>
+        </div>
         <GoogleAnalytics gaId='G-QC35JH2V91' />
       </body>
     </html>
