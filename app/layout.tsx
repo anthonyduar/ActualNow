@@ -64,7 +64,7 @@ export default async function RootLayout({
 
           <LatestNewsBanner posts={tickerPosts} />
 
-          <nav className='mt-3 mb-4 flex items-center justify-between rounded-2xl border border-white/10 bg-zinc-950/80 px-4 py-3 font-sans text-base shadow-lg shadow-black/20 backdrop-blur-md relative'>
+          <nav className='mt-3 mb-4 flex items-center justify-between rounded-2xl border border-white/10 bg-black px-4 py-3 font-sans text-base shadow-lg shadow-black/20 backdrop-blur-md relative'>
             <div className='flex items-center gap-x-3'>
               <Link
                 href='/'
@@ -121,7 +121,7 @@ export default async function RootLayout({
         <div className='flex-grow'>{children}</div>
 
         {/* Footer principal restaurado */}
-        <footer className='mt-16 block w-full border-t border-sky-400/30 bg-zinc-950 font-sans text-white'>
+        <footer className='mt-16 block w-full border-t border-sky-400/30 bg-black font-sans text-white'>
           <div className='mx-auto grid max-w-6xl grid-cols-1 gap-8 px-6 py-10 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr] lg:items-start lg:gap-6'>
             <div className='flex flex-col items-start'>
               <img src='/logo.png' alt='ActualNow' className='mb-1 h-28 w-auto object-contain object-left' />
