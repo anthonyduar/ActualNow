@@ -122,7 +122,7 @@ export default async function RootLayout({
 
         {/* FOOTER COMPLETO RESTAURADO */}
         <footer className='mt-16 border-t border-sky-400/30 bg-zinc-950 text-white font-sans'>
-          <div className='mx-auto grid max-w-6xl grid-cols-1 gap-8 px-6 py-10 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr] lg:gap-12'>
+          <div className='mx-auto grid max-w-6xl grid-cols-1 gap-8 px-6 py-10 sm:grid-cols-2 lg:grid-cols-[1.2fr_1fr_1fr] lg:items-start lg:gap-12'>
             <div>
               <img src='/logo.png' alt='ActualNow' className='mb-3 h-28 w-auto object-contain object-left' />
               <p className='mb-4 max-w-xs text-sm leading-relaxed text-zinc-400'>
@@ -162,7 +162,7 @@ export default async function RootLayout({
               </div>
             </div>
 
-            <div className='lg:justify-self-end lg:min-w-[190px]'>
+            <div className='lg:justify-self-end lg:min-w-[190px] lg:pt-0'>
               <h3 className='mb-5 text-[10px] font-black uppercase tracking-[0.25em] text-sky-400'>
                 Contacto
               </h3>
