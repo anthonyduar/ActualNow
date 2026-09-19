@@ -90,7 +90,7 @@ export default function Home() {
               >
                 <Link href={`/${post.slug}`} className='group'>
                   <div className='relative h-64 w-full overflow-hidden bg-zinc-900'>
-                    <span className='absolute left-3 top-3 z-10 rounded-md bg-sky-500 px-3 py-1.5 text-[10px] font-black uppercase tracking-widest text-white shadow-lg'>
+                    <span className='absolute left-3 top-3 z-10 rounded-lg border border-sky-500/10 bg-[#081923] px-3 py-2 text-[10px] font-black uppercase tracking-widest text-sky-400 shadow-lg shadow-black/20 transition hover:border-sky-400/30 hover:bg-sky-500 hover:text-white'>
                       Fútbol
                     </span>
                     <img
@@ -153,7 +153,7 @@ export default function Home() {
                       </Link>
                       {category && (
                         <div className='absolute left-3 top-3 z-10'>
-                          <span className='rounded-md bg-sky-500 px-3 py-1.5 text-[10px] font-black uppercase tracking-widest text-white shadow-lg'>
+                          <span className='rounded-lg border border-sky-500/10 bg-[#081923] px-3 py-2 text-[10px] font-black uppercase tracking-widest text-sky-400 shadow-lg shadow-black/20 transition hover:border-sky-400/30 hover:bg-sky-500 hover:text-white'>
                             {category.name}
                           </span>
                         </div>
