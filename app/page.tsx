@@ -93,7 +93,7 @@ export default function Home() {
                 className='news-card group flex h-[510px] w-[300px] flex-shrink-0 flex-col md:w-[calc(33.33%-22px)]'
               >
                 <Link href={post.slug ? `/${post.slug}` : "/"} className='group flex h-full flex-col'>
-                  <div className='relative h-64 w-full overflow-hidden bg-zinc-900'>
+                  <div className='relative aspect-video w-full shrink-0 overflow-hidden bg-zinc-900'>
                     <span className='absolute left-3 top-3 z-10 rounded-lg border border-sky-500/10 bg-[#081923] px-3 py-2 text-[10px] font-black uppercase tracking-widest text-sky-400 shadow-lg shadow-black/20 transition hover:border-sky-400/30 hover:bg-sky-500 hover:text-white'>
                       Fútbol
                     </span>
@@ -105,7 +105,7 @@ export default function Home() {
                       alt=''
                     />
                   </div>
-                  <div className='flex min-h-0 flex-1 flex-col gap-3 p-5'>
+                  <div className='flex min-h-0 flex-1 flex-col gap-2 p-5'>
                     <h3 className='text-lg font-bold text-white leading-tight uppercase line-clamp-2 group-hover:text-sky-500 transition'>
                       {plainText(post.title.rendered)}
                     </h3>
@@ -137,7 +137,7 @@ export default function Home() {
                   className='news-card group flex h-[510px] w-full max-w-3xl flex-shrink-0 p-0'
                 >
                   <div className='flex h-full flex-col'>
-                    <div className='relative h-64 w-full overflow-hidden bg-zinc-900'>
+                    <div className='relative aspect-video w-full shrink-0 overflow-hidden bg-zinc-900'>
                       <Link href={post.slug ? `/${post.slug}` : "/"}>
                         <div className='h-full w-full overflow-hidden bg-zinc-900'>
                           <img
@@ -159,7 +159,7 @@ export default function Home() {
                       )}
                     </div>
 
-                    <div className='flex min-h-0 flex-1 flex-col gap-3 p-5'>
+                    <div className='flex min-h-0 flex-1 flex-col gap-2 p-5'>
 <Link href={post.slug ? `/${post.slug}` : "/"} className='block'>
                         <h2 className='line-clamp-2 text-lg font-bold uppercase leading-tight text-white transition group-hover:text-sky-400'>
                           {plainText(post.title.rendered)}
@@ -172,12 +172,12 @@ export default function Home() {
                         </p>
                       </Link>
 
-                      <div className='pt-1'>
+                      <div className='mt-auto pt-2'>
                         <Link
                           href={post.slug ? `/${post.slug}` : "/"}
-                          className='inline-flex items-center rounded-lg border border-sky-500/10 bg-[#081923] px-3 py-2 text-[10px] font-black uppercase tracking-widest text-sky-400 transition hover:border-sky-400/30 hover:bg-sky-500 hover:text-white'
-                        >
-                          Leer
+className='inline-flex w-fit self-start items-center rounded-lg border border-sky-500/10 bg-[#081923] px-3 py-2 text-[10px] font-black uppercase tracking-widest text-sky-400 transition hover:border-sky-400/30 hover:bg-sky-500 hover:text-white'
+                    >
+                      Leer
                         </Link>
                       </div>
                     </div>
