@@ -3,6 +3,7 @@ import Link from "next/link";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { SafeDate, SearchButton } from "./components/ClientElements";
 import { fetchWpNoticias } from "@/lib/wordpress";
+import LatestNewsBanner from "./components/LatestNewsBanner";
 
 export const metadata = {
   title: "ActualNow | Noticias Deportivas al Instante",
@@ -51,7 +52,7 @@ export default async function RootLayout({
           crossOrigin='anonymous'
         ></script>
       </head>
-      <body className='bg-white text-black min-h-screen flex flex-col'>
+      <body className='bg-black text-white min-h-screen flex flex-col'>
         <header className='max-w-6xl mx-auto w-full p-6 pb-0'>
           <div className='flex justify-end mb-2 text-xs font-bold text-gray-500 uppercase tracking-widest'>
             <SafeDate />
@@ -77,25 +78,7 @@ export default async function RootLayout({
             </div>
           </div>
 
-          <div className='bg-black text-white p-2 mb-4 flex overflow-hidden border-y border-gray-800 font-sans'>
-            <span className='font-bold text-red-600 mr-4 bg-black z-10 whitespace-nowrap px-2'>
-              ÚLTIMA HORA:
-            </span>
-            <div className='flex overflow-hidden'>
-              <div className='animate-marquee whitespace-nowrap'>
-                {tickerPosts.map((post: any) => (
-                  <Link
-                    key={post.id}
-                    href={`/${post.slug}`}
-                    className='mx-10 text-base font-medium uppercase hover:text-sky-400 transition'
-                  >
-                    {post.title.rendered}{" "}
-                    <span className='text-red-600 px-2'>•</span>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </div>
+          <LatestNewsBanner posts={tickerPosts} />
 
           <nav className='flex items-center justify-between mb-4 font-sans border-b border-[#06B4E7] pb-4 text-base relative'>
             <div className='flex items-center gap-x-4'>
