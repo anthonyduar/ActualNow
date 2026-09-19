@@ -121,23 +121,23 @@ export default async function RootLayout({
         <div className='flex-grow'>{children}</div>
 
         {/* FOOTER COMPLETO RESTAURADO */}
-        <footer className='bg-black text-white mt-10 border-t-4 border-sky-500 font-sans'>
-          <div className='max-w-6xl mx-auto p-10 grid grid-cols-1 md:grid-cols-4 gap-10'>
+        <footer className='mt-16 border-t border-sky-400/30 bg-zinc-950 text-white font-sans'>
+          <div className='mx-auto grid max-w-6xl grid-cols-1 gap-12 px-6 py-14 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr] lg:gap-20'>
             <div>
-              <img src='/logo.png' alt='Logo' className='h-12 w-auto mb-1' />
-              <p className='text-gray-400 text-xs mb-5'>
+              <img src='/logo.png' alt='ActualNow' className='mb-4 h-24 w-auto object-contain object-left' />
+              <p className='mb-6 max-w-xs text-sm leading-relaxed text-zinc-400'>
                 Noticias deportivas al instante.
               </p>
               <Link
                 href='/acerca-de'
-                className='text-sm text-gray-300 hover:text-white transition block'
+                className='inline-flex rounded-full border border-white/10 px-4 py-2 text-[10px] font-black uppercase tracking-widest text-zinc-300 transition hover:border-sky-400/50 hover:text-sky-400'
               >
                 Acerca de
               </Link>
             </div>
 
             <div>
-              <h3 className='font-bold text-sky-500 mb-4 uppercase text-xs tracking-widest'>
+              <h3 className='mb-5 text-[10px] font-black uppercase tracking-[0.25em] text-sky-400'>
                 Información
               </h3>
               <div className='flex flex-col gap-2 text-sm text-gray-300'>
@@ -163,7 +163,7 @@ export default async function RootLayout({
             </div>
 
             <div>
-              <h3 className='font-bold text-sky-500 mb-4 uppercase text-xs tracking-widest'>
+              <h3 className='mb-5 text-[10px] font-black uppercase tracking-[0.25em] text-sky-400'>
                 Contacto
               </h3>
               <Link

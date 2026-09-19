@@ -86,10 +86,10 @@ export default function Home() {
             {footballPosts.map((post: any) => (
               <article
                 key={post.id}
-                className='flex-shrink-0 w-[300px] md:w-[calc(33.33%-22px)]'
+                className='group flex-shrink-0 w-[300px] md:w-[calc(33.33%-22px)] overflow-hidden rounded-2xl border border-white/10 bg-zinc-900/70 shadow-lg shadow-black/20 backdrop-blur-sm transition duration-300 hover:-translate-y-1 hover:border-sky-400/40 hover:shadow-sky-950/40'
               >
                 <Link href={`/${post.slug}`} className='group'>
-                  <div className='relative h-64 w-full overflow-hidden rounded-2xl bg-zinc-900 mb-4 border border-zinc-800'>
+                  <div className='relative h-64 w-full overflow-hidden bg-zinc-900'>
                     <span className='absolute left-3 top-3 z-10 rounded-md bg-sky-500 px-3 py-1.5 text-[10px] font-black uppercase tracking-widest text-white shadow-lg'>
                       Fútbol
                     </span>
@@ -97,11 +97,11 @@ export default function Home() {
                       src={
                         post._embedded?.["wp:featuredmedia"]?.[0]?.source_url
                       }
-                      className='object-cover w-full h-full'
+                      className='h-full w-full object-cover transition duration-500 group-hover:scale-105'
                       alt=''
                     />
                   </div>
-                  <div className='space-y-2 px-1'>
+                  <div className='space-y-3 p-5'>
                     <h3
                       className='text-lg font-bold text-white leading-tight uppercase line-clamp-2 group-hover:text-sky-500 transition'
                       dangerouslySetInnerHTML={{ __html: post.title.rendered }}
@@ -160,7 +160,7 @@ export default function Home() {
                     </div>
 
                     <div className='md:w-2/3 relative flex flex-col justify-center min-h-[200px]'>
-                      <Link href={`/${post.slug}`} className='group'>
+<Link href={`/${post.slug}`} className='block'>
                         <h2
                           className='text-base md:text-lg font-bold text-white mb-4 leading-tight uppercase group-hover:text-sky-500 transition'
                           dangerouslySetInnerHTML={{
