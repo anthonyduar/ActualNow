@@ -86,7 +86,7 @@ export default async function RootLayout({
                   {categorias.map((cat) => (
                     <Link
                       key={cat.slug}
-                      href={`/categoria/${cat.slug}`}
+                      href={cat.slug ? `/categoria/${cat.slug}` : "/"}
                       className='font-bold hover:text-sky-500 transition uppercase text-sm'
                     >
                       {cat.nombre}
@@ -99,7 +99,7 @@ export default async function RootLayout({
                 {categorias.map((cat) => (
                   <Link
                     key={cat.slug}
-                    href={`/categoria/${cat.slug}`}
+                    href={cat.slug ? `/categoria/${cat.slug}` : "/"}
                     className='font-bold hover:text-sky-500 transition uppercase'
                   >
                     {cat.nombre}
