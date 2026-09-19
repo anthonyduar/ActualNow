@@ -4,60 +4,13 @@ import Link from "next/link";
 import CookieBanner from "./components/CookieBanner";
 import { fetchWpNoticias, getWordPressBaseUrl } from "@/lib/wordpress";
 
-function FeaturedCarousel({ posts }: { posts: any[] }) {
-  const [index, setIndex] = useState(0);
-  useEffect(() => {
-    if (posts.length === 0) return;
-    const timer = setInterval(() => {
-      setIndex((prev) => (prev + 1) % posts.length);
-    }, 6000);
-    return () => clearInterval(timer);
-  }, [posts.length]);
-
-  return (
-    <div className='relative w-full h-[450px] rounded-2xl bg-zinc-900 shadow-xl'>
-      {" "}
-      <div className='absolute -top-12 left-0 z-20'>
-        <h2 className='bg-sky-500 text-white text-sm md:text-base font-black uppercase tracking-tighter px-4 py-2 rounded-md shadow-lg'>
-          Noticias Destacadas
-        </h2>
-      </div>
-      {posts.map((post, i) => (
-        <div
-          key={post.id}
-          className='absolute inset-0 transition-opacity duration-1000 ease-in-out'
-          style={{ opacity: i === index ? 1 : 0, zIndex: i === index ? 10 : 0 }}
-        >
-          <Link
-            href={`/${post.slug}`}
-            className='block h-full relative overflow-hidden rounded-2xl'
-          >
-            {" "}
-            {post._embedded?.["wp:featuredmedia"]?.[0]?.source_url && (
-              <img
-                src={post._embedded["wp:featuredmedia"][0].source_url}
-                className='object-cover w-full h-full'
-                alt=''
-              />
-            )}
-            <div className='absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent' />
-            <div className='absolute bottom-0 p-8 z-20'>
-              <h3
-                className='text-3xl md:text-4xl font-black text-white leading-tight uppercase tracking-tighter line-clamp-2'
-                dangerouslySetInnerHTML={{ __html: post.title.rendered }}
-              />
-            </div>
-          </Link>
-        </div>
-      ))}
-    </div>
-  );
+function plainText(html = "") {
+  return html.replace(/<[^>]*>/g, "").replace(/&nbsp;/g, " ").trim();
 }
 
 export default function Home() {
   const [posts, setPosts] = useState<any[]>([]);
   const [footballPosts, setFootballPosts] = useState<any[]>([]);
-  const [adPost, setAdPost] = useState<any>(null);
   const [isClient, setIsClient] = useState(false);
 
     useEffect(() => {
@@ -126,146 +79,45 @@ export default function Home() {
     getFootballData();
   }, []);
 
-  useEffect(() => {
-    async function getAdData() {
-      try {
-        const res = await fetchWpNoticias(
-          `_embed&categories=77&per_page=1&v=${Date.now()}`,
-          { cache: "no-store" },
-        );
-        
-        // CORRECCIÓN 3: Evita que la publicidad rompa la web al navegar
-        if (!res.ok) return;
-
-        const data = await res.json();
-        if (Array.isArray(data) && data.length > 0) setAdPost(data[0]);
-      } catch (error) {
-        console.warn("Petición de publicidad gestionada o interrumpida de forma segura.");
-      }
-    }
-    getAdData();
-  }, []);
-
   if (!isClient) return <div className='min-h-screen bg-zinc-950' />;
 
-  // Definición segura de las variables de segmentación
-  const featuredPosts = Array.isArray(posts) ? posts.slice(0, 5) : [];
-
   return (
-    <main className='min-h-screen bg-zinc-950 text-white'>
-      <div className='max-w-6xl mx-auto p-6'>
-        {/* CABECERA */}
-        <div className='flex flex-col md:flex-row gap-6 mb-10 pt-8'>
-          <div className='md:w-[70%]'>
-            {featuredPosts.length > 0 ? (
-              <FeaturedCarousel posts={featuredPosts} />
-            ) : (
-              <div className='w-full h-[450px] bg-zinc-900 animate-pulse rounded-2xl' />
-            )}
-          </div>
-
-          <div className='md:w-[30%] h-[450px] hidden md:flex bg-zinc-900 rounded-2xl border-2 border-zinc-800 overflow-hidden relative group flex-col'>
-            {/* TICKER SUPERIOR - RÁPIDO */}
-            <a
-              href='https://eparadise.vercel.app/'
-              target='_blank'
-              rel='noopener noreferrer'
-              className='bg-white w-full overflow-hidden py-1.5 block'
-            >
-              <div className='whitespace-nowrap animate-marquee-reverse-custom font-black text-[10px] uppercase tracking-widest text-black'>
-                OFERTAS EXCLUSIVAS • LICENCIAS DIGITALES • COMPRA AHORA •
-                ACCESORIOS TECH • STOCK LIMITADO • OFERTAS EXCLUSIVAS •
-                LICENCIAS DIGITALES • COMPRA AHORA • ACCESORIOS TECH • STOCK
-                LIMITADO •
-              </div>
-            </a>
-
-            {adPost ? (
-              <a
-                href={adPost.content.rendered.replace(/<[^>]*>?/gm, "").trim()}
-                target='_blank'
-                className='flex-1 relative'
-              >
-                <a
-                  href='https://eparadise.vercel.app/'
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  className='absolute top-[-70px] left-1/2 -translate-x-1/2 z-50 w-[240px]'
-                >
-                  <img
-                    src='/gif.gif'
-                    className='w-full h-auto'
-                    alt='Click Here'
-                  />
-                </a>
-                <img
-                  src={adPost._embedded?.["wp:featuredmedia"]?.[0]?.source_url}
-                  className='object-cover w-full h-full group-hover:scale-105 transition duration-500'
-                  alt='Publicidad'
-                />
-              </a>
-            ) : (
-              <p className='m-auto text-zinc-600 text-xs font-bold uppercase tracking-widest'>
-                Publicidad
-              </p>
-            )}
-
-            {/* TICKER INFERIOR - RÁPIDO REVERSA */}
-            <a
-              href='https://eparadise.vercel.app/'
-              target='_blank'
-              rel='noopener noreferrer'
-              className='bg-white w-full overflow-hidden py-1.5 block'
-            >
-              <div className='whitespace-nowrap animate-marquee-custom font-black text-[10px] uppercase tracking-widest text-black'>
-                HARDWARE TECH • LICENCIAS DIGITALES • ACCESORIOS GAMING • LO
-                ÚLTIMO EN TECNOLOGÍA • HARDWARE TECH • LICENCIAS DIGITALES •
-                ACCESORIOS GAMING • LO ÚLTIMO EN TECNOLOGÍA •
-              </div>
-            </a>
-          </div>
-        </div>
-
+    <main className='min-h-screen bg-black text-white'>
+      <div className='mx-auto max-w-6xl px-6 pb-6 pt-3'>
         {/* SECCIÓN FÚTBOL */}
         <section className='mb-12'>
-          <div className='mb-6'>
-            <span className='bg-sky-500 text-white text-xs font-black uppercase tracking-tighter px-4 py-2 rounded-md'>
-              Fútbol
-            </span>
-          </div>
-          <div className='flex flex-row gap-8 overflow-x-auto pb-4 scrollbar-hide'>
+          <div className='flex flex-row flex-wrap justify-center gap-8 pb-4'>
             {footballPosts.map((post: any) => (
               <article
                 key={post.id}
-                className='flex-shrink-0 w-[300px] md:w-[calc(33.33%-22px)]'
+                className='news-card group flex h-[445px] w-[300px] flex-shrink-0 flex-col md:w-[calc(33.33%-22px)]'
               >
-                <Link href={`/${post.slug}`} className='group'>
-                  <div className='relative h-64 w-full overflow-hidden rounded-2xl bg-zinc-900 mb-4 border border-zinc-800'>
+                <Link href={post.slug ? `/${post.slug}` : "/"} className='group flex h-full flex-col'>
+                  <div className='relative aspect-video w-full shrink-0 overflow-hidden bg-zinc-900'>
+                    <span className='absolute left-3 top-3 z-10 rounded-lg border border-sky-500/10 bg-[#081923] px-3 py-2 text-[10px] font-black uppercase tracking-widest text-sky-400 shadow-lg shadow-black/20 transition hover:border-sky-400/30 hover:bg-sky-500 hover:text-white'>
+                      Fútbol
+                    </span>
                     <img
                       src={
                         post._embedded?.["wp:featuredmedia"]?.[0]?.source_url
                       }
-                      className='object-cover w-full h-full'
+                      className='h-full w-full object-cover transition duration-500 group-hover:scale-105'
                       alt=''
                     />
                   </div>
-                  <div className='space-y-2 px-1'>
-                    <h3
-                      className='text-lg font-bold text-white leading-tight uppercase line-clamp-2 group-hover:text-sky-500 transition'
-                      dangerouslySetInnerHTML={{ __html: post.title.rendered }}
-                    />
+                  <div className='flex min-h-0 flex-1 flex-col gap-2 p-5'>
+                    <h3 className='text-lg font-bold text-white leading-tight uppercase line-clamp-2 group-hover:text-sky-500 transition'>
+                      {plainText(post.title.rendered)}
+                    </h3>
                     <p className='text-zinc-500 text-[10px] font-bold uppercase py-1'>
                       {new Date(post.date).toLocaleDateString()}
                     </p>
-                    <div
-                      className='text-zinc-400 text-sm line-clamp-3 leading-relaxed'
-                      dangerouslySetInnerHTML={{
-                        __html:
-                          post.excerpt.rendered
-                            .replace(/<[^>]*>?/gm, "")
-                            .trim() + "...",
-                      }}
-                    />
+                    <p className='text-zinc-400 text-sm line-clamp-3 leading-relaxed'>
+                      {plainText(post.excerpt.rendered) + "..."}
+                    </p>
+                    <span className='inline-flex w-fit self-start items-center rounded-lg border border-sky-500/10 bg-[#081923] px-3 py-2 text-[10px] font-black uppercase tracking-widest text-sky-400 transition hover:border-sky-400/30 hover:bg-sky-500 hover:text-white'>
+                      Leer
+                    </span>
                   </div>
                 </Link>
               </article>
@@ -274,7 +126,7 @@ export default function Home() {
         </section>
 
         {/* SECCIÓN VERTICAL */}
-        <div className='grid gap-12 max-w-5xl'>
+        <div className='mx-auto grid max-w-5xl justify-items-center gap-12'>
           {posts
             .filter((p: any) => !p.categories?.includes(3))
             .map((post: any) => {
@@ -282,59 +134,50 @@ export default function Home() {
               return (
                 <article
                   key={post.id}
-                  className='group border-b border-zinc-900 pb-12 last:border-b-0'
+                  className='news-card group flex h-[510px] w-full max-w-3xl flex-shrink-0 p-0'
                 >
-                  <div className='flex flex-col md:flex-row gap-10'>
-                    <div className='md:w-1/3 relative'>
-                      <Link href={`/${post.slug}`}>
-                        <div className='overflow-hidden rounded-2xl bg-zinc-900 border border-zinc-800'>
+                  <div className='flex h-full flex-col'>
+                    <div className='relative aspect-video w-full shrink-0 overflow-hidden bg-zinc-900'>
+                      <Link href={post.slug ? `/${post.slug}` : "/"}>
+                        <div className='h-full w-full overflow-hidden bg-zinc-900'>
                           <img
                             src={
                               post._embedded?.["wp:featuredmedia"]?.[0]
                                 ?.source_url
                             }
-                            className='object-cover h-60 w-full group-hover:scale-105 transition duration-300'
+                            className='h-full w-full object-cover transition duration-500 group-hover:scale-105'
                             alt=''
                           />
                         </div>
                       </Link>
                       {category && (
-                        <div className='absolute top-3 left-3 z-10'>
-                          <span className='bg-sky-500 text-white text-[10px] font-black uppercase tracking-tighter px-3 py-1.5 rounded-md shadow-md'>
+                        <div className='absolute left-3 top-3 z-10'>
+                          <span className='rounded-lg border border-sky-500/10 bg-[#081923] px-3 py-2 text-[10px] font-black uppercase tracking-widest text-sky-400 shadow-lg shadow-black/20 transition hover:border-sky-400/30 hover:bg-sky-500 hover:text-white'>
                             {category.name}
                           </span>
                         </div>
                       )}
                     </div>
 
-                    <div className='md:w-2/3 relative flex flex-col justify-center min-h-[200px]'>
-                      <Link href={`/${post.slug}`} className='group'>
-                        <h2
-                          className='text-base md:text-lg font-bold text-white mb-4 leading-tight uppercase group-hover:text-sky-500 transition'
-                          dangerouslySetInnerHTML={{
-                            __html: post.title.rendered,
-                          }}
-                        />
-                        <p className='text-zinc-500 text-[10px] font-bold uppercase mb-4'>
+                    <div className='flex min-h-0 flex-1 flex-col gap-2 p-5'>
+<Link href={post.slug ? `/${post.slug}` : "/"} className='block'>
+                        <h2 className='line-clamp-2 text-lg font-bold uppercase leading-tight text-white transition group-hover:text-sky-400'>
+                          {plainText(post.title.rendered)}
+                        </h2>
+                        <p className='py-1 text-[10px] font-bold uppercase text-zinc-500'>
                           {new Date(post.date).toLocaleDateString()}
                         </p>
-                        <div
-                          className='text-zinc-400 line-clamp-3 text-sm leading-relaxed mb-6'
-                          dangerouslySetInnerHTML={{
-                            __html:
-                              post.excerpt.rendered
-                                .replace(/<[^>]*>?/gm, "")
-                                .trim() + "...",
-                          }}
-                        />
+                        <p className='line-clamp-3 text-sm leading-relaxed text-zinc-400'>
+                          {plainText(post.excerpt.rendered) + "..."}
+                        </p>
                       </Link>
 
-                      <div className='md:absolute bottom-0 right-0'>
+                      <div className='mt-auto pt-2'>
                         <Link
-                          href={`/${post.slug}`}
-                          className='inline-block bg-sky-500 text-white text-[10px] font-bold uppercase tracking-widest px-6 py-2 rounded-full hover:bg-sky-600 transition shadow-lg shadow-sky-500/20'
-                        >
-                          Leer
+                          href={post.slug ? `/${post.slug}` : "/"}
+className='inline-flex w-fit self-start items-center rounded-lg border border-sky-500/10 bg-[#081923] px-3 py-2 text-[10px] font-black uppercase tracking-widest text-sky-400 transition hover:border-sky-400/30 hover:bg-sky-500 hover:text-white'
+                    >
+                      Leer
                         </Link>
                       </div>
                     </div>

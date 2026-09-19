@@ -3,6 +3,7 @@ import Link from "next/link";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { SafeDate, SearchButton } from "./components/ClientElements";
 import { fetchWpNoticias } from "@/lib/wordpress";
+import LatestNewsBanner from "./components/LatestNewsBanner";
 
 export const metadata = {
   title: "ActualNow | Noticias Deportivas al Instante",
@@ -22,7 +23,7 @@ export default async function RootLayout({
 
   try {
     const res = await fetchWpNoticias(
-      `per_page=5&categories_exclude=77&v=${Date.now()}`,
+      `_embed&per_page=5&categories_exclude=77&v=${Date.now()}`,
       { cache: "no-store" },
     );
     if (res.ok) {
@@ -51,57 +52,26 @@ export default async function RootLayout({
           crossOrigin='anonymous'
         ></script>
       </head>
-      <body className='bg-white text-black min-h-screen flex flex-col'>
+      <body className='bg-black text-white min-h-screen flex flex-col'>
         <header className='max-w-6xl mx-auto w-full p-6 pb-0'>
-          <div className='flex justify-end mb-2 text-xs font-bold text-gray-500 uppercase tracking-widest'>
+          <div className='flex justify-end mb-2 text-[10px] font-bold text-gray-500 uppercase tracking-widest'>
             <SafeDate />
           </div>
 
           <div className='relative w-full mb-6'>
-            <video
-              src='/banner-actualnow.mp4'
-              className='w-full h-auto max-h-64 object-contain md:object-cover md:object-[center_20%] rounded-lg shadow-md border border-[#06B4E7]'
-              autoPlay
-              loop
-              muted
-              playsInline
-            />
-            <div className='absolute inset-0 flex items-center pl-15 md:pl-20'>
-              <Link href='/'>
-                <img
-                  src='/logo.png'
-                  alt='ActualNow'
-                  className='h-24 md:h-36 w-auto drop-shadow-2xl'
-                />
-              </Link>
-            </div>
+
           </div>
 
-          <div className='bg-black text-white p-2 mb-4 flex overflow-hidden border-y border-gray-800 font-sans'>
-            <span className='font-bold text-red-600 mr-4 bg-black z-10 whitespace-nowrap px-2'>
-              ÚLTIMA HORA:
-            </span>
-            <div className='flex overflow-hidden'>
-              <div className='animate-marquee whitespace-nowrap'>
-                {tickerPosts.map((post: any) => (
-                  <Link
-                    key={post.id}
-                    href={`/${post.slug}`}
-                    className='mx-10 text-base font-medium uppercase hover:text-sky-400 transition'
-                  >
-                    {post.title.rendered}{" "}
-                    <span className='text-red-600 px-2'>•</span>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </div>
+          <LatestNewsBanner posts={tickerPosts} />
+        </header>
 
-          <nav className='flex items-center justify-between mb-4 font-sans border-b border-[#06B4E7] pb-4 text-base relative'>
-            <div className='flex items-center gap-x-4'>
+        <div className='flex min-h-0 flex-1 flex-col'>
+          <div className='contents'>
+            <nav className='news-surface news-chrome sticky top-3 z-40 mx-auto mt-3 mb-4 flex w-[calc(100%-3rem)] max-w-6xl self-start items-center justify-between px-4 py-3 font-sans text-base'>
+            <div className='flex items-center gap-x-3'>
               <Link
                 href='/'
-                className='font-bold hover:text-sky-500 transition uppercase text-sky-500 text-sm'
+                className='rounded-lg bg-sky-500/10 px-3 py-2 text-[11px] font-black uppercase tracking-widest text-sky-400 transition hover:bg-sky-500 hover:text-white'
               >
                 Inicio
               </Link>
@@ -117,7 +87,7 @@ export default async function RootLayout({
                   {categorias.map((cat) => (
                     <Link
                       key={cat.slug}
-                      href={`/categoria/${cat.slug}`}
+                      href={cat.slug ? `/categoria/${cat.slug}` : "/"}
                       className='font-bold hover:text-sky-500 transition uppercase text-sm'
                     >
                       {cat.nombre}
@@ -130,7 +100,7 @@ export default async function RootLayout({
                 {categorias.map((cat) => (
                   <Link
                     key={cat.slug}
-                    href={`/categoria/${cat.slug}`}
+                    href={cat.slug ? `/categoria/${cat.slug}` : "/"}
                     className='font-bold hover:text-sky-500 transition uppercase'
                   >
                     {cat.nombre}
@@ -149,54 +119,25 @@ export default async function RootLayout({
               </Link>
             </div>
           </nav>
-        </header>
+        </div>
 
-        <div className='flex-grow'>{children}</div>
+        <main className='flex-grow bg-black'>{children}</main>
 
-        {/* FOOTER COMPLETO RESTAURADO */}
-        <footer className='bg-black text-white mt-10 border-t-4 border-sky-500 font-sans'>
-          <div className='max-w-6xl mx-auto p-10 grid grid-cols-1 md:grid-cols-4 gap-10'>
-            <div>
-              <img src='/logo.png' alt='Logo' className='h-12 w-auto mb-1' />
-              <p className='text-gray-400 text-xs mb-5'>
-                Noticias deportivas al instante.
-              </p>
+        {/* Footer principal restaurado */}
+        <footer className='mt-16 block w-full border-t border-sky-400/30 bg-black font-sans text-white'>
+          <div className='mx-auto grid max-w-6xl grid-cols-1 gap-8 px-6 py-10 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr] lg:items-start lg:gap-6'>
+            <div className='flex flex-col items-start'>
+              <img src='/logo.png' alt='ActualNow' className='mb-1 h-28 w-auto object-contain object-left' />
               <Link
                 href='/acerca-de'
-                className='text-sm text-gray-300 hover:text-white transition block'
+                className='inline-flex rounded-full border border-sky-400/30 bg-white/5 px-4 py-2 text-[10px] font-black uppercase tracking-widest text-zinc-300 transition hover:border-sky-400 hover:text-sky-400'
               >
                 Acerca de
               </Link>
             </div>
 
             <div>
-              <h3 className='font-bold text-sky-500 mb-4 uppercase text-xs tracking-widest'>
-                Secciones
-              </h3>
-              <div className='flex flex-col gap-2 text-sm text-gray-300'>
-                <Link
-                  href='/categoria/futbol'
-                  className='hover:text-white transition'
-                >
-                  Fútbol
-                </Link>
-                <Link
-                  href='/categoria/beisbol'
-                  className='hover:text-white transition'
-                >
-                  Béisbol
-                </Link>
-                <Link
-                  href='/categoria/baloncesto'
-                  className='hover:text-white transition'
-                >
-                  Baloncesto
-                </Link>
-              </div>
-            </div>
-
-            <div>
-              <h3 className='font-bold text-sky-500 mb-4 uppercase text-xs tracking-widest'>
+              <h3 className='mb-5 text-[10px] font-black uppercase tracking-[0.25em] text-sky-400'>
                 Información
               </h3>
               <div className='flex flex-col gap-2 text-sm text-gray-300'>
@@ -221,13 +162,13 @@ export default async function RootLayout({
               </div>
             </div>
 
-            <div>
-              <h3 className='font-bold text-sky-500 mb-4 uppercase text-xs tracking-widest'>
+            <div className='lg:justify-self-end lg:min-w-[190px] lg:pt-0'>
+              <h3 className='mb-5 text-[10px] font-black uppercase tracking-[0.25em] text-sky-400'>
                 Contacto
               </h3>
               <Link
                 href='/contacto'
-                className='inline-block bg-sky-500 text-white text-center py-2 px-1 rounded-full font-bold uppercase text-[9px] tracking-widest hover:bg-sky-600 transition mb-8'
+                className='inline-flex rounded-full border border-sky-400/30 bg-white/5 px-4 py-2 text-[10px] font-black uppercase tracking-widest text-zinc-300 transition hover:border-sky-400 hover:text-sky-400 mb-4'
               >
                 Escríbenos
               </Link>
@@ -251,6 +192,7 @@ export default async function RootLayout({
             </p>
           </div>
         </footer>
+        </div>
         <GoogleAnalytics gaId='G-QC35JH2V91' />
       </body>
     </html>

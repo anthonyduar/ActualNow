@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #000000;
+  --foreground: #ffffff;
 }
 
 @theme inline {
@@ -14,8 +14,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #000000;
+    --foreground: #ffffff;
   }
 }
 
@@ -23,6 +23,24 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer components {
+  .news-surface {
+    @apply overflow-hidden rounded-2xl border border-sky-400/30 bg-zinc-950/90 shadow-2xl shadow-black/50 backdrop-blur-md;
+  }
+
+  .news-chrome {
+    @apply border-sky-400/30 bg-black shadow-2xl shadow-black/60;
+  }
+
+  .news-card {
+    @apply overflow-hidden rounded-2xl border border-sky-400/30 bg-zinc-950/90 shadow-2xl shadow-black/50 backdrop-blur-md transition duration-300 hover:-translate-y-1 hover:border-sky-400/60;
+  }
+
+  .news-button {
+    @apply inline-flex items-center justify-center rounded-full border border-sky-400/40 bg-sky-500 px-5 py-2 text-[10px] font-black uppercase tracking-widest text-white shadow-lg shadow-sky-950/30 transition hover:bg-sky-400 hover:shadow-sky-500/20;
+  }
 }
 
 /* EL PRINCIPAL (Noticias arriba - LENTO) */

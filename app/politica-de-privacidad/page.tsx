@@ -42,7 +42,7 @@ export default async function PrivacidadPage() {
     return (
       <div className='p-20 text-center text-white font-sans min-h-screen bg-zinc-950 flex flex-col items-center justify-center gap-4'>
         <p>Política de Privacidad no disponible temporalmente.</p>
-        <Link href='/' className='bg-sky-500 text-white px-6 py-2 rounded-full font-bold uppercase text-[10px] tracking-widest hover:bg-sky-600 transition-colors'>
+        <Link href='/' className='news-button'>
           Volver al Inicio
         </Link>
       </div>
@@ -73,7 +73,7 @@ export default async function PrivacidadPage() {
       <div className='text-center mt-10'>
         <Link
           href='/'
-          className='inline-block bg-sky-500 text-white px-8 py-2 rounded-full font-bold uppercase text-[10px] tracking-widest hover:bg-sky-600 transition-colors'
+          className='news-button'
         >
           Volver al Inicio
         </Link>
@@ -88,7 +88,7 @@ export default async function PrivacidadPage() {
           {recommended.slice(0, 4).map((rec: any) => {
             const img = rec._embedded?.["wp:featuredmedia"]?.[0]?.source_url;
             return (
-              <Link key={rec.id} href={`/${rec.slug}`} className='group'>
+              <Link key={rec.id} href={rec.slug ? `/${rec.slug}` : "/"} className='group'>
                 <div className='aspect-square mb-3 overflow-hidden rounded bg-zinc-800'>
                   {img && (
                     <img

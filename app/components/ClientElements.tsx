@@ -58,19 +58,19 @@ export function SearchButton() {
     setSearchOpen(false);
     setSearchQuery("");
     setResults([]);
-    window.location.href = `/${slug}`;
+    if (slug?.trim()) window.location.href = `/${slug}`;
   };
 
   return (
     <>
-      <div className='flex-1 flex items-center justify-between ml-6 mr-4 md:mr-10 sm:hidden lg:flex'>
+      <div className='flex items-center ml-4 mr-2 lg:flex'>
         {/* LÍNEA SEPARADORA */}
         <div className='hidden lg:block h-4 w-[1px] bg-gray-300 -translate-x-20' />
 
         {/* BOTÓN BUSCAR */}
         <button
           onClick={() => setSearchOpen(!searchOpen)}
-          className='flex items-center gap-2 font-bold hover:text-sky-500 transition uppercase text-gray-700 sm:ml-auto lg:ml-0'
+          className='flex items-center gap-2 rounded-full border border-sky-400/30 bg-white/5 px-3 py-2 font-bold uppercase tracking-widest text-[10px] text-zinc-300 transition hover:border-sky-400 hover:bg-sky-400/10 hover:text-sky-400'
         >
           <svg
             className='w-4 h-4'
@@ -92,16 +92,16 @@ export function SearchButton() {
       {/* MODAL DE BÚSQUEDA */}
       {searchOpen && (
         <div
-          className='fixed inset-0 bg-black/50 z-40 flex items-start justify-center pt-20'
+          className='fixed inset-0 z-[100] flex items-start justify-center overflow-y-auto bg-black/80 px-4 py-10 backdrop-blur-md sm:py-16'
           onClick={() => setSearchOpen(false)}
         >
           <div
-            className='bg-white rounded-xl shadow-2xl w-full max-w-2xl mx-4 overflow-hidden'
+            className='news-surface news-chrome w-full max-w-2xl overflow-hidden rounded-2xl border border-sky-400/30 shadow-2xl shadow-black/70'
             onClick={(e) => e.stopPropagation()}
           >
             {/* HEADER DEL MODAL */}
-            <div className='bg-gradient-to-r from-sky-500 to-sky-600 p-4 flex justify-between items-center'>
-              <h2 className='text-white font-bold uppercase tracking-wide'>
+            <div className='flex items-center justify-between border-b border-sky-400/20 bg-black/60 p-5'>
+              <h2 className='font-black uppercase tracking-widest text-sky-400'>
                 Buscar noticia
               </h2>
               <button
@@ -113,14 +113,14 @@ export function SearchButton() {
             </div>
 
             {/* INPUT DE BÚSQUEDA */}
-            <div className='p-4 border-b border-gray-200'>
+            <div className='border-b border-sky-400/10 p-5'>
               <input
                 type='text'
                 value={searchQuery}
                 onChange={handleInputChange}
                 placeholder='Escribe el nombre de la noticia...'
                 autoFocus
-                className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-sky-500 text-gray-700'
+                className='w-full rounded-xl border border-sky-400/20 bg-black/60 px-4 py-3 text-sm text-white outline-none placeholder:text-zinc-500 focus:border-sky-400'
               />
             </div>
 

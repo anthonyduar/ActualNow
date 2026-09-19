@@ -4,6 +4,10 @@ import { notFound } from "next/navigation";
 import XIGEmbed from "../components/XIGEmbed";
 import { getPostOrNoticiaBySlug, fetchWpNoticias } from "@/lib/wordpress";
 
+function plainText(html = "") {
+  return html.replace(/<[^>]*>/g, "").replace(/&nbsp;/g, " ").trim();
+}
+
 function formatDate(dateString: string) {
   return new Date(dateString).toLocaleDateString("es-ES", {
     weekday: "long",
@@ -108,10 +112,9 @@ export default async function PostPage({
       <div className='max-w-4xl mx-auto p-4 md:pt-8 flex-grow'>
         {/* TÍTULO Y ACTUALNOW */}
         <div className='text-center mb-10'>
-          <h1
-            className='text-3xl md:text-5xl font-black uppercase tracking-tighter leading-none mb-4 text-white'
-            dangerouslySetInnerHTML={{ __html: post.title.rendered }}
-          />
+          <h1 className='text-3xl md:text-5xl font-black uppercase tracking-tighter leading-none mb-4 text-white'>
+            {plainText(post.title.rendered)}
+          </h1>
           <p className='text-[10px] text-zinc-500 font-bold uppercase tracking-[0.5em]'>
             ActualNow
           </p>
@@ -124,10 +127,9 @@ export default async function PostPage({
               <img src={img} className='w-full h-full object-cover' alt='' />
             </div>
             {caption && (
-              <div
-                className='text-[10px] text-zinc-500 mt-3 ml-2 italic text-left'
-                dangerouslySetInnerHTML={{ __html: caption }}
-              />
+              <p className='text-[10px] text-zinc-500 mt-3 ml-2 italic text-left'>
+                {plainText(caption)}
+              </p>
             )}
           </div>
         )}
@@ -156,7 +158,7 @@ export default async function PostPage({
         {/* CUERPO DE NOTICIA: FONDO BLANCO CON TEXTO GRIS */}
         <div className='max-w-3xl mx-auto w-full'>
           <div
-            className="bg-white text-gray-600 text-lg leading-relaxed text-justify px-8 py-10 rounded-lg
+            className="news-card px-8 py-10 text-justify text-lg leading-relaxed text-zinc-300
                        [&_p]:mb-6 [&_p]:block
                        [&_br]:content-[''] [&_br]:block [&_br]:mb-3
                        [&_h2]:text-gray-800 [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:mt-8 [&_h2]:mb-4
@@ -176,7 +178,7 @@ export default async function PostPage({
         <div className='text-center mt-10 mb-10'>
           <Link
             href='/'
-            className='inline-block bg-sky-500 text-white px-8 py-2 rounded-full font-bold uppercase text-[10px] tracking-widest hover:bg-sky-600 transition shadow-lg'
+            className='news-button'
           >
             Volver al Inicio
           </Link>
@@ -189,7 +191,7 @@ export default async function PostPage({
           </h3>
           <div className='grid grid-cols-2 md:grid-cols-4 gap-6'>
             {recommended.map((rec: any) => (
-              <Link key={rec.id} href={`/${rec.slug}`} className='group'>
+              <Link key={rec.id} href={rec.slug ? `/${rec.slug}` : "/"} className='group'>
                 <div className='aspect-square mb-3 overflow-hidden rounded bg-zinc-800'>
                   {rec._embedded?.["wp:featuredmedia"]?.[0]?.source_url && (
                     <img

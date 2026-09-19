@@ -24,7 +24,7 @@ export default function FeaturedCarousel({ posts }: { posts: any[] }) {
           }`}
           style={{ transform: `translateX(${(i - index) * 100}%)` }}
         >
-          <Link href={`/${post.slug}`} className='block h-full relative'>
+          <Link href={post.slug ? `/${post.slug}` : "/"} className='block h-full relative'>
             <img
               src={post._embedded?.["wp:featuredmedia"]?.[0]?.source_url}
               className='object-cover w-full h-full'

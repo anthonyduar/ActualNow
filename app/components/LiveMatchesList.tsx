@@ -47,7 +47,7 @@ export default function LiveMatchesList({
           matches.map((match: any) => (
             <div
               key={match.id}
-              className="bg-zinc-900 border border-zinc-800 p-6 rounded-2xl flex justify-between items-center shadow-lg transition hover:border-sky-500/50 group"
+              className="news-card p-6 flex justify-between items-center group"
             >
               {/* LOCAL CON ESCUDO */}
               <div className="flex-1 flex items-center justify-end gap-3 font-bold uppercase text-sm text-white group-hover:text-sky-400 transition text-right">
@@ -92,7 +92,7 @@ export default function LiveMatchesList({
             </div>
           ))
         ) : (
-          <div className="bg-zinc-900 border border-zinc-800 p-20 rounded-2xl text-center">
+          <div className="news-card p-20 text-center">
             <p className="text-zinc-500 uppercase tracking-widest text-sm italic">
               No hay partidos en vivo en este momento.
             </p>

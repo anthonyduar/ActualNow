@@ -34,7 +34,7 @@ export default async function Contacto() {
         <form
           action='https://api.web3forms.com/submit'
           method='POST'
-          className='grid gap-6 bg-zinc-900/50 p-8 rounded-2xl border border-zinc-800'
+          className='news-card grid gap-6 p-8'
         >
           {/* Tu Access Key de Web3Forms */}
           <input
@@ -88,7 +88,7 @@ export default async function Contacto() {
           </div>
           <button
             type='submit'
-            className='bg-sky-500 text-white font-bold py-3 rounded-full uppercase text-xs tracking-widest hover:bg-sky-600 transition shadow-lg shadow-sky-500/20'
+            className='news-button w-full py-3'
           >
             Enviar Mensaje
           </button>
@@ -98,7 +98,7 @@ export default async function Contacto() {
       <div className='text-center mt-10'>
         <Link
           href='/'
-          className='inline-block bg-sky-500 text-white px-8 py-2 rounded-full font-bold uppercase text-[10px] tracking-widest hover:bg-sky-600 transition'
+          className='news-button'
         >
           Volver al Inicio
         </Link>
@@ -111,7 +111,7 @@ export default async function Contacto() {
         </h3>
         <div className='grid grid-cols-2 md:grid-cols-4 gap-6'>
           {recommended.map((rec: any) => (
-            <Link key={rec.id} href={`/${rec.slug}`} className='group'>
+            <Link key={rec.id} href={rec.slug ? `/${rec.slug}` : "/"} className='group'>
               <div className='aspect-square mb-3 overflow-hidden rounded bg-zinc-800'>
                 {rec._embedded?.["wp:featuredmedia"]?.[0]?.source_url && (
                   <img
