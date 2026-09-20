@@ -65,13 +65,22 @@ export default function LiveMatchesList({
               </div>
 
               {/* MARCADOR */}
-              <div className="mx-4 md:mx-6 bg-black px-4 py-2 rounded-lg border border-sky-500 text-center min-w-[100px] md:min-w-[110px]">
-                <span className="text-sky-500 font-mono font-bold text-xl">
-                  {match.score.fullTime.home ?? 0} -{" "}
-                  {match.score.fullTime.away ?? 0}
+              <div className="mx-2 sm:mx-4 md:mx-6 bg-black px-3 sm:px-4 py-2 rounded-lg border border-sky-500 text-center min-w-[95px] md:min-w-[110px]">
+                {match.competition?.name && (
+                  <div className="text-[8px] sm:text-[9px] text-zinc-400 font-bold uppercase truncate max-w-[90px] mx-auto mb-0.5">
+                    {match.competition.name}
+                  </div>
+                )}
+                <span className="text-sky-500 font-mono font-bold text-lg sm:text-xl">
+                  {match.score?.fullTime?.home ?? 0} -{" "}
+                  {match.score?.fullTime?.away ?? 0}
                 </span>
-                <div className="text-[9px] text-zinc-500 font-bold tracking-tighter uppercase">
-                  En Vivo
+                <div className="text-[9px] font-bold tracking-tighter uppercase text-zinc-400">
+                  {match.status === "PAUSED" ? (
+                    <span className="text-amber-400">Entretiempo</span>
+                  ) : (
+                    <span className="text-red-400 animate-pulse">● En Vivo</span>
+                  )}
                 </div>
               </div>
 

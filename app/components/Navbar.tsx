@@ -52,7 +52,7 @@ export default function Navbar({ categorias }: { categorias: Category[] }) {
 
   return (
     <div className='sticky top-2 sm:top-3 z-40 mx-auto mt-2 sm:mt-3 mb-3 sm:mb-4 w-full max-w-6xl px-3 sm:px-6'>
-      <nav className='news-surface news-chrome flex w-full items-center justify-between px-2.5 py-2 sm:px-4 sm:py-2.5 font-sans'>
+      <nav className='news-surface news-chrome !overflow-visible relative flex w-full items-center justify-between px-2.5 py-2 sm:px-4 sm:py-2.5 font-sans'>
         {/* LADO IZQUIERDO: INICIO Y CATEGORÍAS */}
         <div className='flex items-center gap-1.5 sm:gap-3 min-w-0 flex-shrink'>
           {/* BOTÓN INICIO CON EL MISMO TAMAÑO QUE LAS CATEGORÍAS */}
@@ -93,7 +93,7 @@ export default function Navbar({ categorias }: { categorias: Category[] }) {
             </button>
 
             {dropdownOpen && (
-              <div className='absolute left-0 top-full mt-2 w-48 rounded-xl border border-sky-400/30 bg-black/95 p-2 shadow-2xl shadow-black/80 backdrop-blur-md z-50 flex flex-col gap-1'>
+              <div className='absolute left-0 top-full mt-2 w-52 rounded-xl border border-sky-400/40 bg-zinc-950 p-2 shadow-2xl shadow-black/90 backdrop-blur-xl z-[100] flex flex-col gap-1 max-h-80 overflow-y-auto'>
                 {categorias.map((cat) => {
                   const isCatActive = pathname === `/categoria/${cat.slug}`;
                   return (
@@ -102,8 +102,8 @@ export default function Navbar({ categorias }: { categorias: Category[] }) {
                       onClick={() => handleSelectCategory(cat)}
                       className={`w-full text-left rounded-lg px-3 py-2 text-xs font-bold uppercase tracking-wider transition ${
                         isCatActive
-                          ? "bg-sky-500/20 text-sky-400"
-                          : "text-zinc-300 hover:bg-white/10 hover:text-white"
+                          ? "bg-sky-500/20 text-sky-400 border border-sky-500/40"
+                          : "text-zinc-300 hover:bg-white/10 hover:text-white border border-transparent"
                       }`}
                     >
                       {cat.nombre}
@@ -115,7 +115,7 @@ export default function Navbar({ categorias }: { categorias: Category[] }) {
           </div>
 
           {/* LISTA HORIZONTAL EN ESCRITORIO (TODAS CON EL MISMO TAMAÑO) */}
-          <div className='hidden lg:flex items-center gap-x-4 xl:gap-x-6'>
+          <div className='hidden lg:flex items-center gap-x-1.5 xl:gap-x-2'>
             {categorias.map((cat) => {
               const isCatActive = pathname === `/categoria/${cat.slug}`;
               return (
@@ -123,10 +123,10 @@ export default function Navbar({ categorias }: { categorias: Category[] }) {
                   key={cat.slug}
                   href={`/categoria/${cat.slug}`}
                   onClick={() => setSelectedCategoryName(cat.nombre)}
-                  className={`text-xs md:text-sm font-bold uppercase tracking-wider transition ${
+                  className={`flex-shrink-0 rounded-lg px-2.5 sm:px-3 py-1.5 text-[11px] sm:text-xs md:text-sm font-bold uppercase tracking-wider transition ${
                     isCatActive
-                      ? "text-sky-400"
-                      : "text-zinc-300 hover:text-sky-400"
+                      ? "bg-sky-500/20 text-sky-400 border border-sky-500/40 shadow-sm shadow-sky-500/20"
+                      : "text-zinc-300 hover:text-sky-400 hover:bg-white/5 border border-transparent"
                   }`}
                 >
                   {cat.nombre}

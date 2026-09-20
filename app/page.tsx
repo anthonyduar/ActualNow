@@ -1,7 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import CookieBanner from "./components/CookieBanner";
 import { fetchWpNoticias, getWordPressBaseUrl } from "@/lib/wordpress";
 
 function plainText(html = "") {
@@ -83,14 +82,14 @@ export default function Home() {
 
   return (
     <main className='min-h-screen bg-black text-white'>
-      <div className='mx-auto max-w-6xl px-6 pb-6 pt-3'>
+      <div className='mx-auto max-w-6xl px-3 sm:px-6 pb-6 pt-3'>
         {/* SECCIÓN FÚTBOL */}
-        <section className='mb-12'>
-          <div className='flex flex-row flex-wrap justify-center gap-8 pb-4'>
+        <section className='mb-10 sm:mb-12'>
+          <div className='flex flex-nowrap overflow-x-auto snap-x snap-mandatory gap-4 pb-4 px-3 sm:px-0 sm:flex-wrap sm:justify-center sm:gap-6 md:gap-8 scrollbar-none touch-pan-x -mx-3 sm:mx-0'>
             {footballPosts.map((post: any) => (
               <article
                 key={post.id}
-                className='news-card group flex w-[300px] flex-shrink-0 flex-col md:w-[calc(33.33%-22px)]'
+                className='news-card group flex w-[82vw] max-w-[310px] sm:w-[300px] md:w-[calc(33.33%-22px)] flex-shrink-0 snap-start flex-col'
               >
                 <Link href={post.slug ? `/${post.slug}` : "/"} className='group flex h-full flex-col'>
                   <div className='relative aspect-video w-full shrink-0 overflow-hidden bg-zinc-900'>
@@ -189,7 +188,6 @@ export default function Home() {
             })}
         </div>
       </div>
-      <CookieBanner />
     </main>
   );
 }

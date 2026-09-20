@@ -3,6 +3,9 @@ import { getLiveMatches } from "@/lib/football";
 import LiveMatchesList from "../components/LiveMatchesList";
 import { fetchWpNoticias } from "@/lib/wordpress";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export default async function EnVivo() {
   // 1. Ejecutamos las consultas de forma segura con control de errores
   let initialMatches = [];
@@ -31,7 +34,7 @@ export default async function EnVivo() {
 
 
   return (
-    <main className='max-w-5xl mx-auto px-6 pt-10 text-white min-h-screen font-sans'>
+    <main className='max-w-5xl mx-auto px-3 sm:px-6 pt-4 sm:pt-10 text-white min-h-screen font-sans'>
       {/* Componente que maneja los partidos y el refresco interno */}
       <LiveMatchesList initialMatches={initialMatches} />
 
@@ -46,13 +49,13 @@ export default async function EnVivo() {
 
       {/* RECOMENDADOS */}
       <section className='mt-10 border-t border-zinc-800 pt-10'>
-        <h3 className='text-lg font-bold uppercase tracking-widest mb-8 border-l-4 border-sky-500 pl-4'>
+        <h3 className='text-base sm:text-lg font-bold uppercase tracking-widest mb-6 sm:mb-8 border-l-4 border-sky-500 pl-3 sm:pl-4'>
           Recomendados
         </h3>
-        <div className='grid grid-cols-2 md:grid-cols-4 gap-6'>
+        <div className='grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6'>
           {recommended.map((rec: any) => (
-            <Link key={rec.id} href={rec.slug ? `/${rec.slug}` : "/"} className='news-card group block p-3'>
-              <div className='aspect-square mb-3 overflow-hidden rounded bg-zinc-800'>
+            <Link key={rec.id} href={rec.slug ? `/${rec.slug}` : "/"} className='news-card group block p-2.5 sm:p-3'>
+              <div className='aspect-square mb-2 sm:mb-3 overflow-hidden rounded bg-zinc-800'>
                 {rec._embedded?.["wp:featuredmedia"]?.[0]?.source_url && (
                   <img
                     src={rec._embedded["wp:featuredmedia"][0].source_url}
@@ -62,7 +65,7 @@ export default async function EnVivo() {
                 )}
               </div>
               <h4
-                className='text-sm font-bold leading-tight group-hover:text-sky-500 transition line-clamp-3'
+                className='text-xs sm:text-sm font-bold leading-tight group-hover:text-sky-500 transition line-clamp-2 sm:line-clamp-3'
                 dangerouslySetInnerHTML={{ __html: rec.title.rendered }}
               />
             </Link>

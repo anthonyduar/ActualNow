@@ -4,7 +4,8 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import { SafeDate } from "./components/ClientElements";
 import Navbar from "./components/Navbar";
 import { fetchWpNoticias } from "@/lib/wordpress";
-import LatestNewsBanner from "./components/LatestNewsBanner";
+import HomeHeader from "./components/HomeHeader";
+import CookieBanner from "./components/CookieBanner";
 
 export const metadata = {
   title: "ActualNow | Noticias Deportivas al Instante",
@@ -54,13 +55,7 @@ export default async function RootLayout({
         ></script>
       </head>
       <body className='bg-black text-white min-h-screen flex flex-col'>
-        <header className='max-w-6xl mx-auto w-full px-6 pt-6 pb-0'>
-          <div className='flex justify-end mb-2 text-[10px] font-bold text-gray-500 uppercase tracking-widest'>
-            <SafeDate />
-          </div>
-
-          <LatestNewsBanner posts={tickerPosts} />
-        </header>
+        <HomeHeader tickerPosts={tickerPosts} />
 
         <div className='flex min-h-0 flex-1 flex-col'>
           <Navbar categorias={categorias} />
@@ -134,6 +129,7 @@ export default async function RootLayout({
             </div>
           </footer>
         </div>
+        <CookieBanner />
         <GoogleAnalytics gaId='G-QC35JH2V91' />
       </body>
     </html>
