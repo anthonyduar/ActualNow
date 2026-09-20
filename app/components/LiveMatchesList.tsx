@@ -36,7 +36,7 @@ export default function LiveMatchesList({
         <button
           onClick={refreshMatches}
           disabled={loading}
-          className="bg-sky-500 hover:bg-sky-600 text-white text-[10px] tracking-widest font-bold px-4 py-2 rounded-full transition disabled:opacity-50 uppercase shadow-lg shadow-sky-500/20"
+          className="news-button disabled:opacity-50"
         >
           {loading ? "ACTUALIZANDO..." : "ACTUALIZAR RESULTADOS"}
         </button>

@@ -90,7 +90,7 @@ export default async function Contacto() {
             type='submit'
             className='news-button w-full py-3'
           >
-            Enviar Mensaje
+            Enviar Formulario
           </button>
         </form>
       </div>

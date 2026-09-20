@@ -1,7 +1,8 @@
 import "./globals.css";
 import Link from "next/link";
 import { GoogleAnalytics } from "@next/third-parties/google";
-import { SafeDate, SearchButton } from "./components/ClientElements";
+import { SafeDate } from "./components/ClientElements";
+import Navbar from "./components/Navbar";
 import { fetchWpNoticias } from "@/lib/wordpress";
 import LatestNewsBanner from "./components/LatestNewsBanner";
 
@@ -62,129 +63,76 @@ export default async function RootLayout({
         </header>
 
         <div className='flex min-h-0 flex-1 flex-col'>
-          <div className='sticky top-3 z-40 mx-auto mt-3 mb-4 w-full max-w-6xl px-6'>
-            <nav className='news-surface news-chrome flex w-full items-center justify-between px-4 py-3 font-sans text-base'>
-            <div className='flex items-center gap-x-3'>
-              <Link
-                href='/'
-                className='rounded-lg bg-sky-500/10 px-3 py-2 text-[11px] font-black uppercase tracking-widest text-sky-400 transition hover:bg-sky-500 hover:text-white'
-              >
-                Inicio
-              </Link>
+          <Navbar categorias={categorias} />
 
-              <details className='max-sm:inline-block sm:hidden group relative'>
-                <summary className='font-bold hover:text-sky-500 transition uppercase cursor-pointer list-none inline-flex items-center gap-1 text-sm'>
-                  Categorías{" "}
-                  <span className='group-open:rotate-180 transition-transform text-xs'>
-                    ▼
-                  </span>
-                </summary>
-                <div className='absolute left-0 top-full bg-black border border-gray-800 p-4 mt-2 flex flex-col gap-3 z-50 shadow-2xl rounded-md min-w-[180px]'>
-                  {categorias.map((cat) => (
-                    <Link
-                      key={cat.slug}
-                      href={cat.slug ? `/categoria/${cat.slug}` : "/"}
-                      className='font-bold hover:text-sky-500 transition uppercase text-sm'
-                    >
-                      {cat.nombre}
-                    </Link>
-                  ))}
-                </div>
-              </details>
+          <main className='flex-grow bg-black'>{children}</main>
 
-              <div className='hidden sm:flex flex-wrap items-center gap-x-6'>
-                {categorias.map((cat) => (
+          {/* Footer principal con elementos centrados */}
+          <footer className='mt-16 block w-full border-t border-sky-400/30 bg-black font-sans text-white'>
+            <div className='mx-auto grid max-w-6xl grid-cols-1 gap-10 px-6 py-10 sm:grid-cols-3 sm:gap-8 lg:gap-12 items-center text-center'>
+              <div className='flex flex-col items-center text-center'>
+                <Link href='/'>
+                  <img src='/logo.png' alt='ActualNow' className='h-24 md:h-28 w-auto object-contain mx-auto' />
+                </Link>
+              </div>
+
+              <div className='flex flex-col items-center text-center'>
+                <Link
+                  href='/acerca-de'
+                  className='inline-flex rounded-full border border-sky-400/30 bg-white/5 px-4 py-2 text-[10px] font-black uppercase tracking-widest text-zinc-300 transition hover:border-sky-400 hover:text-sky-400 mb-5'
+                >
+                  Acerca de
+                </Link>
+                <div className='flex flex-col items-center gap-2 text-sm text-gray-300 text-center'>
                   <Link
-                    key={cat.slug}
-                    href={cat.slug ? `/categoria/${cat.slug}` : "/"}
-                    className='font-bold hover:text-sky-500 transition uppercase'
+                    href='/aviso-legal'
+                    className='hover:text-white transition'
                   >
-                    {cat.nombre}
+                    Aviso Legal
                   </Link>
-                ))}
+                  <Link
+                    href='/politica-de-privacidad'
+                    className='hover:text-white transition'
+                  >
+                    Política de Privacidad
+                  </Link>
+                  <Link
+                    href='/politica-de-cookies'
+                    className='hover:text-white transition'
+                  >
+                    Política de Cookies
+                  </Link>
+                </div>
+              </div>
+
+              <div className='flex flex-col items-center text-center'>
+                <Link
+                  href='/contacto'
+                  className='inline-flex rounded-full border border-sky-400/30 bg-white/5 px-4 py-2 text-[10px] font-black uppercase tracking-widest text-zinc-300 transition hover:border-sky-400 hover:text-sky-400 mb-5'
+                >
+                  Contacto
+                </Link>
+                <p className='text-xs text-gray-500 text-center'>
+                  Sitio web patrocinado por{" "}
+                  <a
+                    href='https://eparadise.vercel.app'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='text-sky-500 hover:underline'
+                  >
+                    eParadise
+                  </a>
+                </p>
               </div>
             </div>
 
-            <div className='flex items-center gap-x-6 ml-auto'>
-              <SearchButton />
-              <Link
-                href='/futbol-en-vivo'
-                className='bg-red-600 text-white px-3 py-1 rounded-full font-bold text-[10px] md:text-sm animate-pulse hover:bg-red-700 transition whitespace-nowrap'
-              >
-                ● FÚTBOL EN VIVO
-              </Link>
-            </div>
-          </nav>
-        </div>
-
-        <main className='flex-grow bg-black'>{children}</main>
-
-        {/* Footer principal */}
-        <footer className='mt-16 block w-full border-t border-sky-400/30 bg-black font-sans text-white'>
-          <div className='mx-auto grid max-w-6xl grid-cols-1 gap-10 px-6 py-10 sm:grid-cols-3 sm:gap-8 lg:gap-12 items-start'>
-            <div className='flex flex-col items-start'>
-              <Link href='/'>
-                <img src='/logo.png' alt='ActualNow' className='h-24 md:h-28 w-auto object-contain object-left' />
-              </Link>
-            </div>
-
-            <div className='flex flex-col items-start'>
-              <Link
-                href='/acerca-de'
-                className='inline-flex rounded-full border border-sky-400/30 bg-white/5 px-4 py-2 text-[10px] font-black uppercase tracking-widest text-zinc-300 transition hover:border-sky-400 hover:text-sky-400 mb-5'
-              >
-                Acerca de
-              </Link>
-              <div className='flex flex-col gap-2 text-sm text-gray-300'>
-                <Link
-                  href='/aviso-legal'
-                  className='hover:text-white transition'
-                >
-                  Aviso Legal
-                </Link>
-                <Link
-                  href='/politica-de-privacidad'
-                  className='hover:text-white transition'
-                >
-                  Política de Privacidad
-                </Link>
-                <Link
-                  href='/politica-de-cookies'
-                  className='hover:text-white transition'
-                >
-                  Política de Cookies
-                </Link>
-              </div>
-            </div>
-
-            <div className='flex flex-col items-start'>
-              <Link
-                href='/contacto'
-                className='inline-flex rounded-full border border-sky-400/30 bg-white/5 px-4 py-2 text-[10px] font-black uppercase tracking-widest text-zinc-300 transition hover:border-sky-400 hover:text-sky-400 mb-5'
-              >
-                Contacto
-              </Link>
-              <p className='text-xs text-gray-500'>
-                Sitio web patrocinado por{" "}
-                <a
-                  href='https://eparadise.vercel.app'
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  className='text-sky-500 hover:underline'
-                >
-                  eParadise
-                </a>
+            <div className='border-t border-gray-800 py-6 text-center text-xs text-gray-500'>
+              <p>
+                © <SafeDate format='year' /> ActualNow. Todos los derechos
+                reservados.
               </p>
             </div>
-          </div>
-
-          <div className='border-t border-gray-800 py-6 text-center text-xs text-gray-500'>
-            <p>
-              © <SafeDate format='year' /> ActualNow. Todos los derechos
-              reservados.
-            </p>
-          </div>
-        </footer>
+          </footer>
         </div>
         <GoogleAnalytics gaId='G-QC35JH2V91' />
       </body>

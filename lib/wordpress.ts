@@ -5,8 +5,17 @@
  */
 
 export function getWordPressBaseUrl(): string {
-  const rawUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL || "";
+  let rawUrl =
+    process.env.NEXT_PUBLIC_WORDPRESS_API_URL ||
+    process.env.WORDPRESS_API_URL ||
+    "https://dev-actual-now-site.pantheonsite.io/wp-json/wp/v2";
   if (!rawUrl) return "";
+
+  // If the env var accidentally contains the variable name prefix (e.g. "NEXT_PUBLIC_...=https://...")
+  if (rawUrl.includes("http")) {
+    const httpIdx = rawUrl.indexOf("http");
+    rawUrl = rawUrl.slice(httpIdx);
+  }
 
   // Strip trailing slashes and any trailing /noticias or /posts if accidentally appended in config
   return rawUrl

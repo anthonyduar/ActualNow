@@ -155,19 +155,22 @@ export default async function PostPage({
           </p>
         </div>
 
-        {/* CUERPO DE NOTICIA: FONDO BLANCO CON TEXTO GRIS */}
+        {/* CUERPO DE NOTICIA: FONDO BLANCO CON TEXTO GRIS OSCURO EDITORIAL */}
         <div className='max-w-3xl mx-auto w-full'>
-          <div
-            className="news-card px-8 py-10 text-justify text-lg leading-relaxed text-zinc-300
-                       [&_p]:mb-6 [&_p]:block
+          <article
+            className="rounded-2xl bg-white p-6 sm:p-10 shadow-2xl border border-zinc-200 text-[#1a1a1a] text-base sm:text-lg leading-relaxed text-justify
+                       [&_p]:mb-6 [&_p]:block [&_p]:text-[#222222] [&_p]:leading-relaxed
                        [&_br]:content-[''] [&_br]:block [&_br]:mb-3
-                       [&_h2]:text-gray-800 [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:mt-8 [&_h2]:mb-4
-                       [&_h3]:text-gray-800 [&_h3]:text-xl [&_h3]:font-bold [&_h3]:mt-6 [&_h3]:mb-3
-                       [&_strong]:text-gray-800 [&_strong]:font-bold
-                       [&_em]:italic [&_em]:text-gray-700
-                       [&_ul]:list-disc [&_ul]:ml-6 [&_ul]:mb-4
-                       [&_ol]:list-decimal [&_ol]:ml-6 [&_ol]:mb-4
-                       [&_a]:text-sky-500 [&_a]:underline [&_a]:hover:text-sky-600"
+                       [&_h2]:text-[#111111] [&_h2]:text-xl sm:[&_h2]:text-2xl [&_h2]:font-bold [&_h2]:mt-8 [&_h2]:mb-4
+                       [&_h3]:text-[#111111] [&_h3]:text-lg sm:[&_h3]:text-xl [&_h3]:font-bold [&_h3]:mt-6 [&_h3]:mb-3
+                       [&_strong]:text-[#111111] [&_strong]:font-bold
+                       [&_em]:italic [&_em]:text-[#333333]
+                       [&_ul]:list-disc [&_ul]:ml-6 [&_ul]:mb-6 [&_ul]:text-[#222222]
+                       [&_ol]:list-decimal [&_ol]:ml-6 [&_ol]:mb-6 [&_ol]:text-[#222222]
+                       [&_li]:mb-2
+                       [&_blockquote]:border-l-4 [&_blockquote]:border-sky-500 [&_blockquote]:pl-4 [&_blockquote]:italic [&_blockquote]:text-[#444444] [&_blockquote]:my-6
+                       [&_a]:text-sky-600 [&_a]:underline [&_a]:hover:text-sky-800 [&_a]:font-medium
+                       [&_img]:rounded-xl [&_img]:mx-auto [&_img]:my-6 [&_img]:shadow-md"
             dangerouslySetInnerHTML={{ __html: post.content.rendered }}
           />
         </div>

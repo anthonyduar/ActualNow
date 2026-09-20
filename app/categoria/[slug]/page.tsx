@@ -129,7 +129,7 @@ export default async function CategoryPage({
                     />
                   </div>
                   <div className='md:absolute bottom-0 right-0'>
-                    <span className='news-button'>
+                    <span className='news-read-button'>
                       Leer
                     </span>
                   </div>
@@ -145,7 +145,7 @@ export default async function CategoryPage({
             {currentPage > 1 && (
               <Link
                 href={`/categoria/${slug}?page=${currentPage - 1}`}
-                className='news-button px-4 py-2'
+                className='news-button px-3.5 py-1.5'
               >
                 «
               </Link>
@@ -164,7 +164,11 @@ export default async function CategoryPage({
                 <Link
                   key={num}
                   href={`/categoria/${slug}?page=${num}`}
-                  className={`news-button px-4 py-2 ${num === currentPage ? "" : "opacity-60"}`}
+                  className={`news-button px-3.5 py-1.5 min-w-[38px] text-center ${
+                    num === currentPage
+                      ? "border-sky-400 bg-sky-400/20 text-sky-400 font-black shadow-md shadow-sky-400/10"
+                      : "opacity-70 hover:opacity-100"
+                  }`}
                 >
                   {num}
                 </Link>
@@ -173,7 +177,7 @@ export default async function CategoryPage({
             {currentPage < totalPages && (
               <Link
                 href={`/categoria/${slug}?page=${currentPage + 1}`}
-                className='news-button px-4 py-2'
+                className='news-button px-3.5 py-1.5'
               >
                 »
               </Link>

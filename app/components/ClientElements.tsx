@@ -26,54 +26,64 @@ export function SearchButton() {
   const [results, setResults] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
 
-  const handleSearch = async (query: string) => {
-    if (!query.trim()) {
+  useEffect(() => {
+    if (!searchQuery.trim()) {
       setResults([]);
+      setLoading(false);
       return;
     }
 
     setLoading(true);
-    try {
-      const res = await fetchWpNoticias(
-        `search=${encodeURIComponent(query)}&_embed&per_page=10&categories_exclude=77&v=${Date.now()}`,
-        { cache: "no-store" },
-      );
-      const data = await res.json();
-      setResults(Array.isArray(data) ? data : []);
-    } catch (error) {
-      console.error("Error en búsqueda:", error);
-      setResults([]);
-    } finally {
-      setLoading(false);
-    }
-  };
+    const timer = setTimeout(async () => {
+      try {
+        const res = await fetch(`/api/search?q=${encodeURIComponent(searchQuery)}`);
+        if (res.ok) {
+          const data = await res.json();
+          setResults(Array.isArray(data) ? data : []);
+        } else {
+          setResults([]);
+        }
+      } catch (error) {
+        console.error("Error en búsqueda:", error);
+        setResults([]);
+      } finally {
+        setLoading(false);
+      }
+    }, 300);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const query = e.target.value;
-    setSearchQuery(query);
-    handleSearch(query);
-  };
+    return () => clearTimeout(timer);
+  }, [searchQuery]);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && searchOpen) {
+        setSearchOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [searchOpen]);
 
   const handleSelectResult = (slug: string) => {
     setSearchOpen(false);
     setSearchQuery("");
     setResults([]);
-    if (slug?.trim()) window.location.href = `/${slug}`;
+    if (slug?.trim()) {
+      window.location.href = `/${slug}`;
+    }
   };
 
   return (
     <>
-      <div className='flex items-center ml-4 mr-2 lg:flex'>
-        {/* LÍNEA SEPARADORA */}
-        <div className='hidden lg:block h-4 w-[1px] bg-gray-300 -translate-x-20' />
-
+      <div className='flex items-center'>
         {/* BOTÓN BUSCAR */}
         <button
           onClick={() => setSearchOpen(!searchOpen)}
-          className='flex items-center gap-2 rounded-full border border-sky-400/30 bg-white/5 px-3 py-2 font-bold uppercase tracking-widest text-[10px] text-zinc-300 transition hover:border-sky-400 hover:bg-sky-400/10 hover:text-sky-400'
+          aria-label='Buscar'
+          className='flex items-center gap-1.5 rounded-full border border-sky-400/30 bg-white/5 px-2.5 py-1.5 sm:px-3 sm:py-2 text-[10px] sm:text-xs font-bold uppercase tracking-widest text-zinc-300 transition hover:border-sky-400 hover:bg-sky-400/10 hover:text-sky-400'
         >
           <svg
-            className='w-4 h-4'
+            className='h-3.5 w-3.5 sm:h-4 sm:w-4'
             fill='none'
             stroke='currentColor'
             viewBox='0 0 24 24'
@@ -81,106 +91,112 @@ export function SearchButton() {
             <path
               strokeLinecap='round'
               strokeLinejoin='round'
-              strokeWidth='3'
+              strokeWidth='2.5'
               d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'
             />
           </svg>
-          <span className='hidden lg:inline'>Buscar</span>
+          <span className='hidden md:inline'>Buscar</span>
         </button>
       </div>
 
       {/* MODAL DE BÚSQUEDA */}
       {searchOpen && (
         <div
-          className='fixed inset-0 z-[100] flex items-start justify-center overflow-y-auto bg-black/80 px-4 py-10 backdrop-blur-md sm:py-16'
+          className='fixed inset-0 z-[100] flex items-start justify-center overflow-y-auto bg-black/85 px-4 py-8 backdrop-blur-md sm:py-16'
           onClick={() => setSearchOpen(false)}
         >
           <div
-            className='news-surface news-chrome w-full max-w-2xl overflow-hidden rounded-2xl border border-sky-400/30 shadow-2xl shadow-black/70'
+            className='w-full max-w-2xl overflow-hidden rounded-2xl border border-sky-400/30 bg-zinc-950 shadow-2xl shadow-black/80'
             onClick={(e) => e.stopPropagation()}
           >
             {/* HEADER DEL MODAL */}
-            <div className='flex items-center justify-between border-b border-sky-400/20 bg-black/60 p-5'>
-              <h2 className='font-black uppercase tracking-widest text-sky-400'>
+            <div className='flex items-center justify-between border-b border-zinc-800 bg-black/80 px-5 py-4'>
+              <h2 className='text-xs sm:text-sm font-black uppercase tracking-widest text-sky-400'>
                 Buscar noticia
               </h2>
               <button
                 onClick={() => setSearchOpen(false)}
-                className='text-white hover:bg-white/20 p-1 rounded transition'
+                className='rounded-lg p-1.5 text-zinc-400 transition hover:bg-white/10 hover:text-white'
               >
                 ✕
               </button>
             </div>
 
             {/* INPUT DE BÚSQUEDA */}
-            <div className='border-b border-sky-400/10 p-5'>
+            <div className='border-b border-zinc-800 p-4 sm:p-5 bg-black/40'>
               <input
                 type='text'
                 value={searchQuery}
-                onChange={handleInputChange}
-                placeholder='Escribe el nombre de la noticia...'
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder='Escribe el título o tema de la noticia...'
                 autoFocus
-                className='w-full rounded-xl border border-sky-400/20 bg-black/60 px-4 py-3 text-sm text-white outline-none placeholder:text-zinc-500 focus:border-sky-400'
+                className='w-full rounded-xl border border-sky-400/30 bg-black/80 px-4 py-3 text-sm text-white outline-none placeholder:text-zinc-500 focus:border-sky-400 focus:ring-1 focus:ring-sky-400'
               />
             </div>
 
             {/* RESULTADOS */}
-            <div className='max-h-96 overflow-y-auto'>
+            <div className='max-h-[60vh] overflow-y-auto p-2 sm:p-3'>
               {loading && (
-                <div className='p-8 text-center text-gray-500'>
-                  <p>Buscando...</p>
+                <div className='p-8 text-center text-zinc-400'>
+                  <div className='inline-block h-6 w-6 animate-spin rounded-full border-2 border-sky-400 border-t-transparent mb-2' />
+                  <p className='text-xs uppercase tracking-widest'>Buscando...</p>
                 </div>
               )}
 
               {!loading && searchQuery && results.length === 0 && (
-                <div className='p-8 text-center text-gray-500'>
-                  <p>No se encontraron resultados</p>
+                <div className='p-8 text-center text-zinc-400'>
+                  <p className='text-sm'>No se encontraron noticias para &quot;{searchQuery}&quot;</p>
                 </div>
               )}
 
               {!loading && results.length > 0 && (
-                <div className='divide-y divide-gray-200'>
-                  {results.map((result: any) => (
-                    <button
-                      key={result.id}
-                      onClick={() => handleSelectResult(result.slug)}
-                      className='w-full flex gap-3 p-3 hover:bg-gray-50 transition text-left'
-                    >
-                      {/* ICONO PEQUEÑO */}
-                      <div className='w-16 h-16 flex-shrink-0 rounded overflow-hidden bg-gray-200'>
-                        {result._embedded?.["wp:featuredmedia"]?.[0]
-                          ?.source_url && (
-                          <img
-                            src={
-                              result._embedded["wp:featuredmedia"][0].source_url
-                            }
-                            className='w-full h-full object-cover'
-                            alt=''
+                <div className='flex flex-col gap-1'>
+                  {results.map((result: any) => {
+                    const imgUrl =
+                      result._embedded?.["wp:featuredmedia"]?.[0]?.source_url;
+                    return (
+                      <button
+                        key={result.id}
+                        onClick={() => handleSelectResult(result.slug)}
+                        className='group flex w-full items-center gap-3 rounded-xl p-3 text-left transition hover:bg-zinc-900 border border-transparent hover:border-zinc-800'
+                      >
+                        {/* ICONO PEQUEÑO */}
+                        <div className='h-14 w-14 sm:h-16 sm:w-16 flex-shrink-0 overflow-hidden rounded-lg bg-zinc-900'>
+                          {imgUrl ? (
+                            <img
+                              src={imgUrl}
+                              className='h-full w-full object-cover transition duration-300 group-hover:scale-105'
+                              alt=''
+                            />
+                          ) : (
+                            <div className='flex h-full w-full items-center justify-center text-zinc-700 text-xs'>
+                              ActualNow
+                            </div>
+                          )}
+                        </div>
+                        {/* CONTENIDO */}
+                        <div className='min-w-0 flex-1'>
+                          <h3
+                            className='line-clamp-2 text-xs sm:text-sm font-bold text-white transition group-hover:text-sky-400'
+                            dangerouslySetInnerHTML={{
+                              __html: result.title.rendered,
+                            }}
                           />
-                        )}
-                      </div>
-                      {/* CONTENIDO */}
-                      <div className='flex-1 min-w-0'>
-                        <h3
-                          className='font-bold text-gray-900 text-sm leading-tight line-clamp-2'
-                          dangerouslySetInnerHTML={{
-                            __html: result.title.rendered,
-                          }}
-                        />
-                        <p className='text-gray-500 text-xs mt-1 line-clamp-1'>
-                          {result.excerpt.rendered
-                            ? result.excerpt.rendered.replace(/<[^>]*>/g, "")
-                            : "Sin descripción"}
-                        </p>
-                      </div>
-                    </button>
-                  ))}
+                          <p className='mt-1 line-clamp-1 text-[11px] text-zinc-400'>
+                            {result.excerpt?.rendered
+                              ? result.excerpt.rendered.replace(/<[^>]*>/g, "")
+                              : "Leer noticia completa..."}
+                          </p>
+                        </div>
+                      </button>
+                    );
+                  })}
                 </div>
               )}
 
               {!loading && !searchQuery && (
-                <div className='p-8 text-center text-gray-500'>
-                  <p className='text-sm'>Escribe para buscar noticias</p>
+                <div className='p-8 text-center text-zinc-500'>
+                  <p className='text-xs uppercase tracking-widest'>Escribe para buscar noticias</p>
                 </div>
               )}
             </div>
@@ -190,16 +206,15 @@ export function SearchButton() {
     </>
   );
 }
-// ... (Aquí termina tu SearchButton)
 
 export function RefreshButton() {
   return (
     <button
       onClick={() => window.location.reload()}
-      className='flex items-center gap-2 text-xs font-bold uppercase bg-zinc-800 hover:bg-zinc-700 px-4 py-2 rounded-lg transition text-white'
+      className='inline-flex items-center justify-center gap-2 rounded-full border border-sky-400/30 bg-white/5 px-5 py-2 text-[10px] font-black uppercase tracking-widest text-zinc-300 transition hover:border-sky-400 hover:bg-sky-400/10 hover:text-sky-400'
     >
       <svg
-        className='w-4 h-4 text-sky-500'
+        className='h-3.5 w-3.5 text-sky-400'
         fill='none'
         stroke='currentColor'
         viewBox='0 0 24 24'

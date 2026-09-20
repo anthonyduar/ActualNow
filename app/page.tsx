@@ -90,11 +90,11 @@ export default function Home() {
             {footballPosts.map((post: any) => (
               <article
                 key={post.id}
-                className='news-card group flex h-[445px] w-[300px] flex-shrink-0 flex-col md:w-[calc(33.33%-22px)]'
+                className='news-card group flex w-[300px] flex-shrink-0 flex-col md:w-[calc(33.33%-22px)]'
               >
                 <Link href={post.slug ? `/${post.slug}` : "/"} className='group flex h-full flex-col'>
                   <div className='relative aspect-video w-full shrink-0 overflow-hidden bg-zinc-900'>
-                    <span className='absolute left-3 top-3 z-10 rounded-lg border border-sky-500/10 bg-[#081923] px-3 py-2 text-[10px] font-black uppercase tracking-widest text-sky-400 shadow-lg shadow-black/20 transition hover:border-sky-400/30 hover:bg-sky-500 hover:text-white'>
+                    <span className='absolute left-3 top-3 z-10 rounded-lg border border-sky-500/20 bg-[#081923] px-3 py-1.5 text-[10px] font-black uppercase tracking-widest text-sky-400 shadow-lg shadow-black/40 pointer-events-none'>
                       Fútbol
                     </span>
                     <img
@@ -105,19 +105,21 @@ export default function Home() {
                       alt=''
                     />
                   </div>
-                  <div className='flex min-h-0 flex-1 flex-col gap-2 p-5'>
-                    <h3 className='text-lg font-bold text-white leading-tight uppercase line-clamp-2 group-hover:text-sky-500 transition'>
+                  <div className='flex flex-col gap-2 p-4 sm:p-5 flex-1'>
+                    <h3 className='text-base sm:text-lg font-bold text-white leading-snug uppercase line-clamp-2 group-hover:text-sky-400 transition'>
                       {plainText(post.title.rendered)}
                     </h3>
-                    <p className='text-zinc-500 text-[10px] font-bold uppercase py-1'>
+                    <p className='text-zinc-500 text-[10px] font-bold uppercase'>
                       {new Date(post.date).toLocaleDateString()}
                     </p>
-                    <p className='text-zinc-400 text-sm line-clamp-3 leading-relaxed'>
+                    <p className='text-zinc-400 text-xs sm:text-sm line-clamp-3 leading-relaxed'>
                       {plainText(post.excerpt.rendered) + "..."}
                     </p>
-                    <span className='inline-flex w-fit self-start items-center rounded-lg border border-sky-500/10 bg-[#081923] px-3 py-2 text-[10px] font-black uppercase tracking-widest text-sky-400 transition hover:border-sky-400/30 hover:bg-sky-500 hover:text-white'>
-                      Leer
-                    </span>
+                    <div className='mt-2 pt-1'>
+                      <span className='news-read-button'>
+                        Leer
+                      </span>
+                    </div>
                   </div>
                 </Link>
               </article>
@@ -158,7 +160,7 @@ export default function Home() {
                     {/* Categoría flotando arriba a la izquierda */}
                     {category && (
                       <div className='absolute left-5 top-5 z-20'>
-                        <span className='rounded-lg border border-sky-500/20 bg-[#081923]/90 px-3 py-1.5 text-[10px] font-black uppercase tracking-widest text-sky-400 shadow-lg backdrop-blur-sm'>
+                        <span className='rounded-lg border border-sky-500/20 bg-[#081923]/90 px-3 py-1.5 text-[10px] font-black uppercase tracking-widest text-sky-400 shadow-lg backdrop-blur-sm pointer-events-none'>
                           {category.name}
                         </span>
                       </div>
@@ -176,7 +178,7 @@ export default function Home() {
                         {plainText(post.excerpt.rendered) + "..."}
                       </p>
                       <div>
-                        <span className='inline-flex items-center rounded-lg border border-sky-500/30 bg-sky-500 px-5 py-2 text-[10px] font-black uppercase tracking-widest text-white shadow-lg shadow-sky-950/40 transition group-hover:bg-sky-400'>
+                        <span className='news-read-button'>
                           Leer
                         </span>
                       </div>
