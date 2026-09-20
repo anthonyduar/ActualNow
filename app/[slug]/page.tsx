@@ -185,13 +185,13 @@ export default async function PostPage({
         </div>
 
         {/* SECCIÓN RECOMENDADOS */}
-        <section className='mt-2 border-t border-zinc-800 pt-4'>
+        <section className='mt-10 border-t border-zinc-800 pt-10'>
           <h3 className='text-lg font-bold uppercase tracking-widest mb-8 border-l-4 border-sky-500 pl-4'>
             Recomendados
           </h3>
           <div className='grid grid-cols-2 md:grid-cols-4 gap-6'>
             {recommended.map((rec: any) => (
-              <Link key={rec.id} href={rec.slug ? `/${rec.slug}` : "/"} className='group'>
+              <Link key={rec.id} href={rec.slug ? `/${rec.slug}` : "/"} className='news-card group block p-3'>
                 <div className='aspect-square mb-3 overflow-hidden rounded bg-zinc-800'>
                   {rec._embedded?.["wp:featuredmedia"]?.[0]?.source_url && (
                     <img

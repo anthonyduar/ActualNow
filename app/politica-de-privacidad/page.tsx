@@ -88,7 +88,7 @@ export default async function PrivacidadPage() {
           {recommended.slice(0, 4).map((rec: any) => {
             const img = rec._embedded?.["wp:featuredmedia"]?.[0]?.source_url;
             return (
-              <Link key={rec.id} href={rec.slug ? `/${rec.slug}` : "/"} className='group'>
+              <Link key={rec.id} href={rec.slug ? `/${rec.slug}` : "/"} className='news-card group block p-3'>
                 <div className='aspect-square mb-3 overflow-hidden rounded bg-zinc-800'>
                   {img && (
                     <img
@@ -99,7 +99,7 @@ export default async function PrivacidadPage() {
                   )}
                 </div>
                 <h4
-                  className='text-sm font-bold leading-tight group-hover:text-sky-500 transition line-clamp-3 text-white'
+                  className='text-sm font-bold leading-tight group-hover:text-sky-500 transition line-clamp-3'
                   dangerouslySetInnerHTML={{ __html: rec.title.rendered }}
                 />
               </Link>

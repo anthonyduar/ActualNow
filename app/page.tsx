@@ -126,62 +126,62 @@ export default function Home() {
         </section>
 
         {/* SECCIÓN VERTICAL */}
-        <div className='mx-auto grid max-w-5xl justify-items-center gap-12'>
+        <div className='mx-auto grid max-w-5xl justify-items-center gap-10'>
           {posts
             .filter((p: any) => !p.categories?.includes(3))
             .map((post: any) => {
               const category = post._embedded?.["wp:term"]?.[0]?.[0];
+              const imageUrl =
+                post._embedded?.["wp:featuredmedia"]?.[0]?.source_url;
+
               return (
                 <article
                   key={post.id}
-                  className='news-card group flex h-[510px] w-full max-w-3xl flex-shrink-0 p-0'
+                  className='news-card group relative aspect-[16/9] w-full max-w-3xl overflow-hidden p-0'
                 >
-                  <div className='flex h-full flex-col'>
-                    <div className='relative aspect-video w-full shrink-0 overflow-hidden bg-zinc-900'>
-                      <Link href={post.slug ? `/${post.slug}` : "/"}>
-                        <div className='h-full w-full overflow-hidden bg-zinc-900'>
-                          <img
-                            src={
-                              post._embedded?.["wp:featuredmedia"]?.[0]
-                                ?.source_url
-                            }
-                            className='h-full w-full object-cover transition duration-500 group-hover:scale-105'
-                            alt=''
-                          />
-                        </div>
-                      </Link>
-                      {category && (
-                        <div className='absolute left-3 top-3 z-10'>
-                          <span className='rounded-lg border border-sky-500/10 bg-[#081923] px-3 py-2 text-[10px] font-black uppercase tracking-widest text-sky-400 shadow-lg shadow-black/20 transition hover:border-sky-400/30 hover:bg-sky-500 hover:text-white'>
-                            {category.name}
-                          </span>
-                        </div>
+                  <Link
+                    href={post.slug ? `/${post.slug}` : "/"}
+                    className='relative block h-full w-full overflow-hidden'
+                  >
+                    {/* Imagen de fondo ocupando todo el contenedor */}
+                    <div className='absolute inset-0 h-full w-full overflow-hidden bg-zinc-900'>
+                      {imageUrl && (
+                        <img
+                          src={imageUrl}
+                          className='h-full w-full object-cover transition duration-700 group-hover:scale-105'
+                          alt=''
+                        />
                       )}
+                      <div className='absolute inset-0 bg-gradient-to-t from-black/95 via-black/55 to-black/20' />
                     </div>
 
-                    <div className='flex min-h-0 flex-1 flex-col gap-2 p-5'>
-<Link href={post.slug ? `/${post.slug}` : "/"} className='block'>
-                        <h2 className='line-clamp-2 text-lg font-bold uppercase leading-tight text-white transition group-hover:text-sky-400'>
-                          {plainText(post.title.rendered)}
-                        </h2>
-                        <p className='py-1 text-[10px] font-bold uppercase text-zinc-500'>
-                          {new Date(post.date).toLocaleDateString()}
-                        </p>
-                        <p className='line-clamp-3 text-sm leading-relaxed text-zinc-400'>
-                          {plainText(post.excerpt.rendered) + "..."}
-                        </p>
-                      </Link>
+                    {/* Categoría flotando arriba a la izquierda */}
+                    {category && (
+                      <div className='absolute left-5 top-5 z-20'>
+                        <span className='rounded-lg border border-sky-500/20 bg-[#081923]/90 px-3 py-1.5 text-[10px] font-black uppercase tracking-widest text-sky-400 shadow-lg backdrop-blur-sm'>
+                          {category.name}
+                        </span>
+                      </div>
+                    )}
 
-                      <div className='mt-auto pt-2'>
-                        <Link
-                          href={post.slug ? `/${post.slug}` : "/"}
-className='inline-flex w-fit self-start items-center rounded-lg border border-sky-500/10 bg-[#081923] px-3 py-2 text-[10px] font-black uppercase tracking-widest text-sky-400 transition hover:border-sky-400/30 hover:bg-sky-500 hover:text-white'
-                    >
-                      Leer
-                        </Link>
+                    {/* Título, resumen y botón Leer flotando encima de la imagen */}
+                    <div className='absolute inset-0 z-10 flex flex-col justify-end p-6 md:p-8'>
+                      <h2 className='mb-2 line-clamp-2 text-xl font-black uppercase leading-tight text-white drop-shadow-md transition group-hover:text-sky-400 md:text-3xl'>
+                        {plainText(post.title.rendered)}
+                      </h2>
+                      <p className='mb-2 text-[10px] font-bold uppercase text-zinc-400'>
+                        {new Date(post.date).toLocaleDateString()}
+                      </p>
+                      <p className='mb-4 max-w-2xl line-clamp-2 text-sm leading-relaxed text-zinc-300 drop-shadow'>
+                        {plainText(post.excerpt.rendered) + "..."}
+                      </p>
+                      <div>
+                        <span className='inline-flex items-center rounded-lg border border-sky-500/30 bg-sky-500 px-5 py-2 text-[10px] font-black uppercase tracking-widest text-white shadow-lg shadow-sky-950/40 transition group-hover:bg-sky-400'>
+                          Leer
+                        </span>
                       </div>
                     </div>
-                  </div>
+                  </Link>
                 </article>
               );
             })}

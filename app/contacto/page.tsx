@@ -111,7 +111,7 @@ export default async function Contacto() {
         </h3>
         <div className='grid grid-cols-2 md:grid-cols-4 gap-6'>
           {recommended.map((rec: any) => (
-            <Link key={rec.id} href={rec.slug ? `/${rec.slug}` : "/"} className='group'>
+            <Link key={rec.id} href={rec.slug ? `/${rec.slug}` : "/"} className='news-card group block p-3'>
               <div className='aspect-square mb-3 overflow-hidden rounded bg-zinc-800'>
                 {rec._embedded?.["wp:featuredmedia"]?.[0]?.source_url && (
                   <img

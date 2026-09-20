@@ -53,21 +53,17 @@ export default async function RootLayout({
         ></script>
       </head>
       <body className='bg-black text-white min-h-screen flex flex-col'>
-        <header className='max-w-6xl mx-auto w-full p-6 pb-0'>
+        <header className='max-w-6xl mx-auto w-full px-6 pt-6 pb-0'>
           <div className='flex justify-end mb-2 text-[10px] font-bold text-gray-500 uppercase tracking-widest'>
             <SafeDate />
-          </div>
-
-          <div className='relative w-full mb-6'>
-
           </div>
 
           <LatestNewsBanner posts={tickerPosts} />
         </header>
 
         <div className='flex min-h-0 flex-1 flex-col'>
-          <div className='contents'>
-            <nav className='news-surface news-chrome sticky top-3 z-40 mx-auto mt-3 mb-4 flex w-[calc(100%-3rem)] max-w-6xl self-start items-center justify-between px-4 py-3 font-sans text-base'>
+          <div className='sticky top-3 z-40 mx-auto mt-3 mb-4 w-full max-w-6xl px-6'>
+            <nav className='news-surface news-chrome flex w-full items-center justify-between px-4 py-3 font-sans text-base'>
             <div className='flex items-center gap-x-3'>
               <Link
                 href='/'
@@ -123,23 +119,22 @@ export default async function RootLayout({
 
         <main className='flex-grow bg-black'>{children}</main>
 
-        {/* Footer principal restaurado */}
+        {/* Footer principal */}
         <footer className='mt-16 block w-full border-t border-sky-400/30 bg-black font-sans text-white'>
-          <div className='mx-auto grid max-w-6xl grid-cols-1 gap-8 px-6 py-10 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr] lg:items-start lg:gap-6'>
+          <div className='mx-auto grid max-w-6xl grid-cols-1 gap-10 px-6 py-10 sm:grid-cols-3 sm:gap-8 lg:gap-12 items-start'>
             <div className='flex flex-col items-start'>
-              <img src='/logo.png' alt='ActualNow' className='mb-1 h-28 w-auto object-contain object-left' />
-              <Link
-                href='/acerca-de'
-                className='inline-flex rounded-full border border-sky-400/30 bg-white/5 px-4 py-2 text-[10px] font-black uppercase tracking-widest text-zinc-300 transition hover:border-sky-400 hover:text-sky-400'
-              >
-                Acerca de
+              <Link href='/'>
+                <img src='/logo.png' alt='ActualNow' className='h-24 md:h-28 w-auto object-contain object-left' />
               </Link>
             </div>
 
-            <div>
-              <h3 className='mb-5 text-[10px] font-black uppercase tracking-[0.25em] text-sky-400'>
-                Información
-              </h3>
+            <div className='flex flex-col items-start'>
+              <Link
+                href='/acerca-de'
+                className='inline-flex rounded-full border border-sky-400/30 bg-white/5 px-4 py-2 text-[10px] font-black uppercase tracking-widest text-zinc-300 transition hover:border-sky-400 hover:text-sky-400 mb-5'
+              >
+                Acerca de
+              </Link>
               <div className='flex flex-col gap-2 text-sm text-gray-300'>
                 <Link
                   href='/aviso-legal'
@@ -162,21 +157,19 @@ export default async function RootLayout({
               </div>
             </div>
 
-            <div className='lg:justify-self-end lg:min-w-[190px] lg:pt-0'>
-              <h3 className='mb-5 text-[10px] font-black uppercase tracking-[0.25em] text-sky-400'>
-                Contacto
-              </h3>
+            <div className='flex flex-col items-start'>
               <Link
                 href='/contacto'
-                className='inline-flex rounded-full border border-sky-400/30 bg-white/5 px-4 py-2 text-[10px] font-black uppercase tracking-widest text-zinc-300 transition hover:border-sky-400 hover:text-sky-400 mb-4'
+                className='inline-flex rounded-full border border-sky-400/30 bg-white/5 px-4 py-2 text-[10px] font-black uppercase tracking-widest text-zinc-300 transition hover:border-sky-400 hover:text-sky-400 mb-5'
               >
-                Escríbenos
+                Contacto
               </Link>
               <p className='text-xs text-gray-500'>
                 Sitio web patrocinado por{" "}
                 <a
                   href='https://eparadise.vercel.app'
                   target='_blank'
+                  rel='noopener noreferrer'
                   className='text-sky-500 hover:underline'
                 >
                   eParadise
