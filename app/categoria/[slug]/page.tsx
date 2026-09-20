@@ -41,7 +41,7 @@ export default async function CategoryPage({
   // Si la red se corta y no hay categoría base, mostramos un aviso elegante dentro de la interfaz
   if (!category) {
     return (
-      <div className='p-20 text-white text-center font-sans min-h-screen bg-zinc-950 flex flex-col items-center justify-center gap-4'>
+      <div className='p-20 text-white text-center font-sans min-h-screen bg-black flex flex-col items-center justify-center gap-4'>
         <p>Categoría no disponible temporalmente.</p>
         <Link href='/' className='bg-sky-500 text-white px-6 py-2 rounded-full font-bold uppercase text-[10px] tracking-widest hover:bg-sky-600 transition-colors'>
           Volver al Inicio
@@ -82,7 +82,7 @@ export default async function CategoryPage({
   }
 
   return (
-    <main className='max-w-5xl mx-auto px-3 sm:px-6 pt-3 sm:pt-6 text-white min-h-screen'>
+    <main className='max-w-5xl mx-auto px-3 sm:px-6 pt-3 sm:pt-6 text-white min-h-screen bg-black'>
       <header className='mb-8 sm:mb-10 border-b border-zinc-800 pb-5 sm:pb-6 pt-6 sm:pt-10 text-center'>
         <h1 className='text-3xl sm:text-4xl font-bold uppercase tracking-tight'>
           {category.name}

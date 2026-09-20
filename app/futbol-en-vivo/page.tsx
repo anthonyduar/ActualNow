@@ -34,7 +34,7 @@ export default async function EnVivo() {
 
 
   return (
-    <main className='max-w-5xl mx-auto px-3 sm:px-6 pt-4 sm:pt-10 text-white min-h-screen font-sans'>
+    <main className='max-w-5xl mx-auto px-3 sm:px-6 pt-4 sm:pt-10 text-white min-h-screen font-sans bg-black'>
       {/* Componente que maneja los partidos y el refresco interno */}
       <LiveMatchesList initialMatches={initialMatches} />
 

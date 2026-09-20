@@ -108,11 +108,11 @@ export default async function PostPage({
   const caption = featuredMedia?.caption?.rendered;
 
   return (
-    <main className='bg-zinc-950 min-h-screen text-white flex flex-col font-sans'>
+    <main className='bg-black min-h-screen text-white flex flex-col font-sans'>
       <div className='max-w-4xl mx-auto px-3 sm:px-4 md:px-6 py-4 md:py-8 flex-grow w-full'>
         {/* TÍTULO Y ACTUALNOW */}
         <div className='text-center mb-6 sm:mb-8'>
-          <h1 className='text-2xl sm:text-3xl md:text-5xl font-black uppercase tracking-tight leading-tight sm:leading-none mb-3 sm:mb-4 text-white break-words'>
+          <h1 className='text-2xl sm:text-3xl md:text-4xl font-bold uppercase tracking-tight leading-tight mb-3 sm:mb-4 text-white break-words'>
             {plainText(post.title.rendered)}
           </h1>
           <p className='text-[10px] text-zinc-500 font-bold uppercase tracking-[0.4em] sm:tracking-[0.5em]'>

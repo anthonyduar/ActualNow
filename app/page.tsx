@@ -78,14 +78,14 @@ export default function Home() {
     getFootballData();
   }, []);
 
-  if (!isClient) return <div className='min-h-screen bg-zinc-950' />;
+  if (!isClient) return <div className='min-h-screen bg-black' />;
 
   return (
     <main className='min-h-screen bg-black text-white'>
       <div className='mx-auto max-w-6xl px-3 sm:px-6 pb-6 pt-3'>
         {/* SECCIÓN FÚTBOL */}
         <section className='mb-10 sm:mb-12'>
-          <div className='flex flex-nowrap overflow-x-auto snap-x snap-mandatory gap-4 pb-4 px-3 sm:px-0 sm:flex-wrap sm:justify-center sm:gap-6 md:gap-8 scrollbar-none touch-pan-x -mx-3 sm:mx-0'>
+          <div className='flex flex-nowrap overflow-x-auto snap-x snap-mandatory gap-4 pb-4 px-3 sm:px-0 sm:flex-wrap sm:justify-center sm:gap-6 md:gap-8 scrollbar-none -mx-3 sm:mx-0'>
             {footballPosts.map((post: any) => (
               <article
                 key={post.id}

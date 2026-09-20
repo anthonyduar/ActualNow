@@ -40,7 +40,7 @@ export default async function PrivacidadPage() {
   // Si no se encuentra la página por corte de red, muestra un aviso elegante en el layout original
   if (!page) {
     return (
-      <div className='p-20 text-center text-white font-sans min-h-screen bg-zinc-950 flex flex-col items-center justify-center gap-4'>
+      <div className='p-20 text-center text-white font-sans min-h-screen bg-black flex flex-col items-center justify-center gap-4'>
         <p>Política de Privacidad no disponible temporalmente.</p>
         <Link href='/' className='news-button'>
           Volver al Inicio
@@ -50,7 +50,7 @@ export default async function PrivacidadPage() {
   }
 
   return (
-    <main className='max-w-5xl mx-auto px-6 pt-10 text-zinc-300 font-sans min-h-screen'>
+    <main className='max-w-5xl mx-auto px-6 pt-10 text-zinc-300 font-sans min-h-screen bg-black'>
       {/* TITULO DE LA PÁGINA */}
       <header className='mb-10 border-b border-zinc-800 pb-6 text-center'>
         <h1

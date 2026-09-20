@@ -40,7 +40,7 @@ export default async function AvisoLegalPage() {
   // Si no se encuentra la página por caída de red, muestra un aviso elegante en lugar de la pantalla roja
   if (!page)
     return (
-      <div className='p-20 text-center text-white font-sans min-h-screen bg-zinc-950 flex flex-col items-center justify-center gap-4'>
+      <div className='p-20 text-center text-white font-sans min-h-screen bg-black flex flex-col items-center justify-center gap-4'>
         <p>Aviso Legal no disponible temporalmente.</p>
         <Link href='/' className='news-button'>
           Volver al Inicio
@@ -49,7 +49,7 @@ export default async function AvisoLegalPage() {
     );
 
   return (
-    <main className='max-w-5xl mx-auto px-6 pt-10 text-zinc-300 font-sans min-h-screen'>
+    <main className='max-w-5xl mx-auto px-6 pt-10 text-zinc-300 font-sans min-h-screen bg-black'>
       <header className='mb-10 border-b border-zinc-800 pb-6 text-center'>
         <h1
           className='text-4xl font-bold text-white uppercase tracking-tighter'

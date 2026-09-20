@@ -21,7 +21,7 @@ export default async function Contacto() {
   }
 
   return (
-    <main className='max-w-5xl mx-auto px-6 pt-10 text-white min-h-screen font-sans'>
+    <main className='max-w-5xl mx-auto px-6 pt-10 text-white min-h-screen font-sans bg-black'>
       <div className='max-w-2xl mx-auto'>
         <h1 className='text-4xl font-black text-white mb-2 uppercase tracking-tighter'>
           Contacto
