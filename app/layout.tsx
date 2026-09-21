@@ -67,7 +67,11 @@ export default async function RootLayout({
             <div className='mx-auto grid max-w-6xl grid-cols-1 gap-10 px-6 py-10 sm:grid-cols-3 sm:gap-8 lg:gap-12 items-center text-center'>
               <div className='flex flex-col items-center text-center'>
                 <Link href='/'>
-                  <img src='/logo.png' alt='ActualNow' className='h-24 md:h-28 w-auto object-contain mx-auto' />
+                  <img
+                    src='/logo.webp'
+                    alt='ActualNow'
+                    className='h-24 md:h-28 w-auto object-contain mx-auto'
+                  />
                 </Link>
               </div>
 
