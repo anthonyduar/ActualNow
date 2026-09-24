@@ -1,37 +1,34 @@
 # 🚀 ActualNow | Portal de Noticias Deportivas con Arquitectura Headless
 
-**[Ver sitio en vivo 🌐](https://actualnow.vercel.app/)**
+[Ver sitio en vivo 🌐](https://tu-enlace-de-vercel.com)
 
-**ActualNow** es una plataforma de noticias de alto rendimiento diseñada para la inmediatez informativa. Como **Licenciado en Comunicación Social**, desarrollé este portal para unir el periodismo profesional con una arquitectura **Jamstack** moderna, permitiendo una carga ultra rápida y una gestión editorial eficiente.
+**ActualNow** es una plataforma de noticias deportivas de alto rendimiento diseñada para la inmediatez informativa y la cobertura en tiempo real. Como Licenciado en Comunicación Social, desarrollé este portal para fusionar el periodismo profesional con una arquitectura moderna Jamstack.
 
 ---
 
-## 🎯 ¿Cómo funciona? (El Proceso)
+## 🎯 ¿Cómo funciona el flujo de trabajo?
 
-He diseñado un ecosistema donde la redacción y el código trabajan de forma independiente para maximizar el rendimiento:
+El proyecto combina un diseño visual optimizado con una separación total entre la gestión de contenidos y el código:
 
-1. **Gestión Editorial (WordPress Headless):** Utilizo WordPress (alojado en Pantheon) exclusivamente como panel de redacción profesional. Esto me permite escribir noticias, gestionar categorías y subir multimedia sin tocar el código.
-2. **Consumo de Datos (API REST):** El frontend, desarrollado en **Next.js**, se conecta a la API de WordPress para extraer las noticias en tiempo real. He programado filtros inteligentes para segmentar el contenido (noticias destacadas, sección de fútbol y noticias generales).
-3. **Desarrollo y Estética (VS Code):** Todo el diseño visual, el carrusel dinámico de noticias y la interfaz de usuario (UI/UX) han sido desarrollados en **VS Code** con asistencia de **Gemini AI**, utilizando **Tailwind CSS** para un estilo moderno y fluido.
-4. **Automatización y Despliegue:** Gracias a la integración con **Vercel** y **GitHub**, el sitio se reconstruye automáticamente. La arquitectura está optimizada para que el contenido sea estático pero se actualice con cada nueva publicación.
+1. **Diseño UI/UX (Figma):** La interfaz visual y la estructura de componentes fueron ideadas y diseñadas originalmente en Figma para garantizar una experiencia de usuario limpia y moderna.
+2. **Estructuración y Desarrollo Inicial (Google IDX):** Utilicé este entorno en la nube para transformar el diseño de Figma en código base mediante la asistencia de IA integrada.
+3. **Desarrollo y Control de Versiones (VS Code + GitHub):** Refino toda la lógica, los componentes (`components/`), las páginas dinámicas (`[slug]/`) y los estilos directamente en VS Code, gestionando los cambios mediante GitHub.
+4. **Gestión Editorial (WordPress + Pantheon):** Administro, redacto y publico las noticias directamente en WordPress alojado en Pantheon. Gracias a su integración mediante API REST y Next.js, cada artículo publicado actualiza el portal al instante.
+5. **Despliegue Continuo (Vercel):** Toda la plataforma está conectada a Vercel, lo que permite que tanto las actualizaciones de código desde GitHub como las nuevas publicaciones editoriales desde WordPress se desplieguen y actualicen de forma totalmente automatizada.
 
 ---
 
 ## 🚀 Tecnologías Utilizadas
 
-* **Frontend:** Next.js 14 / React (Lógica desarrollada con asistencia de **Gemini AI**).
-* **Estilos:** Tailwind CSS (Responsive Design).
-* **Headless CMS:** WordPress REST API.
-* **Infraestructura:** [Vercel](https://actualnow.vercel.app/) para el hosting y Pantheon para el backend.
-* **Lenguajes:** TypeScript / JavaScript.
+* **Frontend:** Next.js / React (App Router).
+* **Estilos:** Tailwind CSS para un diseño responsivo y fluido.
+* **Headless CMS / Backend:** WordPress (Pantheon) con REST API.
+* **APIs e Integraciones:** Resultados de partidos de fútbol en tiempo real (`football-data.org`).
+* **Control de Versiones y Hosting:** GitHub y Vercel.
 
 ---
 
-## 🔒 Seguridad y Propiedad Intelectual
+## 🔒 Seguridad, Privacidad y Propiedad Intelectual
 
-* **Blindaje de Credenciales:** La URL de la API y las claves de entorno están estrictamente protegidas en **Vercel** y **GitHub Secrets**, evitando cualquier acceso no autorizado al backend de WordPress.
-* **Optimización Editorial:** Implementación de técnicas de caché y Static Site Generation (SSG) para garantizar la integridad del contenido frente a picos de tráfico.
-* **⚠️ Aviso Legal y Licencia:** Este repositorio es para **exhibición de portafolio técnico y periodístico**. El código está bajo la licencia **GPL v3**. Se prohíbe su venta, uso comercial o redistribución sin la autorización expresa del autor.
-
----
-Desarrollado por [anthonyduar] - Integrando periodismo con arquitectura tecnológica avanzada.
+* **Protección de Credenciales:** Las claves de la API y variables sensibles están estrictamente protegidas mediante variables de entorno en Vercel y GitHub Secrets.
+* **Derechos de Autor (Todos los derechos reservados):** © 2026 Anthony Duarte. Este repositorio y su código forman parte de un portafolio profesional y técnico. Queda estrictamente prohibida su reproducción, distribución, modificación o uso comercial sin la autorización previa y por escrito del autor.
