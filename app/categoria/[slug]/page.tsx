@@ -84,8 +84,9 @@ export default async function CategoryPage({
   return (
     <main className='max-w-5xl mx-auto px-3 sm:px-6 pt-3 sm:pt-6 text-white min-h-screen bg-black'>
       <header className='mb-8 sm:mb-10 border-b border-zinc-800 pb-5 sm:pb-6 pt-6 sm:pt-10 text-center'>
-        <h1 className='text-3xl sm:text-4xl font-bold uppercase tracking-tight'>
-          {category.name}
+        <h1 className='text-3xl sm:text-4xl font-bold uppercase tracking-tight text-white inline-flex items-center justify-center gap-3'>
+          <span className='h-3 w-3 bg-sky-500 rounded-full animate-pulse shrink-0' />
+          <span>{category.name}</span>
         </h1>
         <p className='text-zinc-500 text-[10px] uppercase tracking-[0.4em] mt-2'>
           ActualNow

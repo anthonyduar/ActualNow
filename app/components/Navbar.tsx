@@ -50,8 +50,16 @@ export default function Navbar({ categorias }: { categorias: Category[] }) {
     router.push(`/categoria/${cat.slug}`);
   };
 
+  const isHome = pathname === "/";
+
   return (
-    <div className='sticky top-2 sm:top-3 z-40 mx-auto mt-2 sm:mt-3 mb-3 sm:mb-4 w-full max-w-6xl px-3 sm:px-6'>
+    <div
+      className={`sticky z-40 mx-auto w-full max-w-6xl px-3 sm:px-6 transition-all ${
+        isHome
+          ? "top-2 sm:top-3 mt-2 sm:mt-3 mb-3 sm:mb-4"
+          : "top-1 sm:top-1.5 -mt-1 sm:-mt-1.5 mb-2 sm:mb-3"
+      }`}
+    >
       <nav className='news-surface news-chrome !overflow-visible relative flex w-full items-center justify-between px-2.5 py-2 sm:px-4 sm:py-2.5 font-sans'>
         {/* LADO IZQUIERDO: INICIO Y CATEGORÍAS */}
         <div className='flex items-center gap-1.5 sm:gap-3 min-w-0 flex-shrink'>

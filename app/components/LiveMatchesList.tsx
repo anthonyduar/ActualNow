@@ -83,9 +83,9 @@ export default function LiveMatchesList({
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 sm:mb-8">
         <div className="flex items-center gap-3">
           <div className="h-3 w-3 bg-sky-500 rounded-full animate-pulse shrink-0"></div>
-          <h1 className="text-2xl sm:text-3xl font-bold uppercase tracking-tight text-white">
+          <h2 className="text-xl sm:text-2xl font-bold uppercase tracking-tight text-white">
             Resultados de Fútbol
-          </h1>
+          </h2>
         </div>
         <button
           onClick={refreshMatches}
