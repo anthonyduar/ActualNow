@@ -1,6 +1,6 @@
 # 🚀 ActualNow | Portal de Noticias Deportivas con Arquitectura Headless
 
-[Ver sitio en vivo 🌐](https://actualnow.vercel.com)
+[Ver sitio en vivo 🌐](https://actualnow.vercel.app)
 
 **ActualNow** es una plataforma de noticias deportivas de alto rendimiento diseñada para la inmediatez informativa y la cobertura en tiempo real. Como Licenciado en Comunicación Social, desarrollé este portal para fusionar el periodismo profesional con una arquitectura moderna Jamstack.
 
