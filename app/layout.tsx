@@ -14,6 +14,9 @@ export const metadata = {
   verification: {
     google: "rzR3HWDEDQEf9c4QIl2VmFX1Gs-vAE0pdYV7QNiFyTk",
   },
+  icons: {
+    icon: "/isotipo.webp",
+  },
 };
 
 export default async function RootLayout({
