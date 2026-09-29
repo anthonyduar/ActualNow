@@ -6,15 +6,14 @@
 
 ---
 
-## 🎯 ¿Cómo funciona el flujo de trabajo?
-
+## 🎯 **¿Cómo funciona el flujo de trabajo?**
 El proyecto combina un diseño visual optimizado con una separación total entre la gestión de contenidos y el código:
 
-1. **Diseño UI/UX (Figma):** La interfaz visual y la estructura de componentes fueron ideadas y diseñadas originalmente en Figma para garantizar una experiencia de usuario limpia y moderna.
-2. **Estructuración y Desarrollo Inicial: Google AI Studio (Build Mode):** Utilicé este entorno en la nube para transformar el diseño de Figma en código base mediante la asistencia de IA integrada.
-3. **Desarrollo y Control de Versiones (VS Code + GitHub):** Refino toda la lógica, los componentes (`components/`), las páginas dinámicas (`[slug]/`) y los estilos directamente en VS Code, gestionando los cambios mediante GitHub.
-4. **Gestión Editorial (WordPress + Pantheon):** Administro, redacto y publico las noticias directamente en WordPress alojado en Pantheon. Gracias a su integración mediante API REST y Next.js, cada artículo publicado actualiza el portal al instante.
-5. **Despliegue Continuo (Vercel):** Toda la plataforma está conectada a Vercel, lo que permite que tanto las actualizaciones de código desde GitHub como las nuevas publicaciones editoriales desde WordPress se desplieguen y actualicen de forma totalmente automatizada.
+* **Diseño de Identidad Visual e Interfaz (Figma):** Ideé y diseñé originalmente la interfaz visual (UI/UX) en Figma, definiendo la identidad del sitio (paleta de colores y tipografía) para garantizar una experiencia de usuario limpia y moderna.
+* **Traducción a Código (Google AI Studio - Build Mode):** Utilicé este entorno en la nube para transformar el diseño de Figma en el código base del portal con asistencia de IA integrada.
+* **Desarrollo y Control de Versiones (VS Code + GitHub):** Refiné toda la lógica, los componentes (`components/`), las páginas dinámicas (`[slug]/`) y los estilos directamente en VS Code, gestionando los cambios con GitHub.
+* **Gestión Editorial (WordPress + Pantheon):** Administro, redacto y publico las noticias directamente en WordPress alojado en Pantheon. Gracias a su integración entre su API REST y Next.js, cada artículo publicado actualiza el portal al instante.
+* **Conexión y Despliegue Automatizado (Vercel):** Configuré la plataforma para conectarse a Vercel, lo que permite que tanto las actualizaciones de código desde GitHub como las nuevas publicaciones editoriales desde WordPress se desplieguen de forma totalmente automatizada.
 
 ---
 
@@ -22,9 +21,10 @@ El proyecto combina un diseño visual optimizado con una separación total entre
 
 * **Frontend:** Next.js / React (App Router).
 * **Estilos:** Tailwind CSS para un diseño responsivo y fluido.
+* **IA:** Google AI Studio (Build Mode) para la estructuración y traducción de diseño a código.
 * **Headless CMS / Backend:** WordPress (Pantheon) con REST API.
 * **APIs e Integraciones:** Resultados de partidos de fútbol en tiempo real (`football-data.org`).
-* **Control de Versiones y Hosting:** GitHub y Vercel.
+* **Control de Versiones y Hosting:** GitHub y Vercel para despliegue continuo.
 
 ---
 
