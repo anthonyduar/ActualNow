@@ -11,7 +11,7 @@
 El proyecto combina un diseño visual optimizado con una separación total entre la gestión de contenidos y el código:
 
 1. **Diseño UI/UX (Figma):** La interfaz visual y la estructura de componentes fueron ideadas y diseñadas originalmente en Figma para garantizar una experiencia de usuario limpia y moderna.
-2. **Estructuración y Desarrollo Inicial (Google IDX):** Utilicé este entorno en la nube para transformar el diseño de Figma en código base mediante la asistencia de IA integrada.
+2. **Estructuración y Desarrollo Inicial: Google AI Studio (Build Mode):** Utilicé este entorno en la nube para transformar el diseño de Figma en código base mediante la asistencia de IA integrada.
 3. **Desarrollo y Control de Versiones (VS Code + GitHub):** Refino toda la lógica, los componentes (`components/`), las páginas dinámicas (`[slug]/`) y los estilos directamente en VS Code, gestionando los cambios mediante GitHub.
 4. **Gestión Editorial (WordPress + Pantheon):** Administro, redacto y publico las noticias directamente en WordPress alojado en Pantheon. Gracias a su integración mediante API REST y Next.js, cada artículo publicado actualiza el portal al instante.
 5. **Despliegue Continuo (Vercel):** Toda la plataforma está conectada a Vercel, lo que permite que tanto las actualizaciones de código desde GitHub como las nuevas publicaciones editoriales desde WordPress se desplieguen y actualicen de forma totalmente automatizada.
