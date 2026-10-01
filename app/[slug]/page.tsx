@@ -158,7 +158,7 @@ export default async function PostPage({
         {/* CUERPO DE NOTICIA: FONDO BLANCO CON TEXTO GRIS OSCURO EDITORIAL */}
         <div className='max-w-3xl mx-auto w-full'>
           <article
-            className="rounded-2xl bg-white p-4 sm:p-8 md:p-10 shadow-2xl border border-zinc-200 text-[#1a1a1a] text-sm sm:text-base md:text-lg leading-relaxed text-left sm:text-justify break-words overflow-hidden
+            className="rounded-2xl bg-white p-4 sm:p-8 md:p-10 shadow-2xl border border-zinc-200 text-[#1a1a1a] text-sm sm:text-base md:text-lg leading-relaxed text-justify break-words overflow-hidden
                        [&_p]:mb-5 sm:[&_p]:mb-6 [&_p]:block [&_p]:text-[#222222] [&_p]:leading-relaxed [&_p]:break-words
                        [&_br]:content-[''] [&_br]:block [&_br]:mb-2 sm:[&_br]:mb-3
                        [&_h2]:text-[#111111] [&_h2]:text-lg sm:[&_h2]:text-xl md:[&_h2]:text-2xl [&_h2]:font-bold [&_h2]:mt-6 sm:[&_h2]:mt-8 [&_h2]:mb-3 sm:[&_h2]:mb-4 [&_h2]:break-words

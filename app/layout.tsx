@@ -11,6 +11,11 @@ export const metadata = {
   title: "ActualNow | Noticias Deportivas al Instante",
   description:
     "Tu fuente principal de noticias de fútbol, béisbol, baloncesto y más.",
+  openGraph: {
+    title: "ActualNow | Noticias Deportivas al Instante",
+    description:
+      "Tu fuente principal de noticias de fútbol, béisbol, baloncesto y más.",
+  },
   verification: {
     google: "rzR3HWDEDQEf9c4QIl2VmFX1Gs-vAE0pdYV7QNiFyTk",
   },
