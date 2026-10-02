@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { fetchWpNoticias } from "@/lib/wordpress";
+import ContactForm from "./ContactForm";
 
 export default async function Contacto() {
   // Inicializamos la variable vacía de forma segura
@@ -11,13 +12,15 @@ export default async function Contacto() {
       `per_page=4&_embed&categories_exclude=77&v=${Date.now()}`,
       { cache: "no-store" },
     );
-    
+
     if (recRes.ok) {
       const data = await recRes.json();
       recommended = Array.isArray(data) ? data : [];
     }
   } catch (error) {
-    console.warn("Petición de recomendados en contacto interrumpida o fallida de forma segura.");
+    console.warn(
+      "Petición de recomendados en contacto interrumpida o fallida de forma segura.",
+    );
   }
 
   return (
@@ -33,81 +36,11 @@ export default async function Contacto() {
       </header>
 
       <div className='max-w-2xl mx-auto'>
-        {/* FORMULARIO CONECTADO */}
-        <form
-          action='https://api.web3forms.com/submit'
-          method='POST'
-          className='news-card grid gap-6 p-8'
-        >
-          {/* Tu Access Key de Web3Forms */}
-          <input
-            type='hidden'
-            name='access_key'
-            value='74baae1a-d4db-41e1-a29c-8b7e936794de'
-          />
-          <input 
-            type='hidden' 
-            name='subject' 
-            value='Mensaje de ActualNow' 
-          />
-
-          {/* Honeypot para evitar SPAM (invisible para usuarios) */}
-          <input
-            type='checkbox'
-            name='botcheck'
-            className='hidden'
-            style={{ display: "none" }}
-          />
-
-          <div>
-            <label className='block text-xs font-bold mb-2 uppercase tracking-wider text-sky-500'>
-              Nombre
-            </label>
-            <input
-              type='text'
-              name='name'
-              required
-              className='w-full bg-black border border-zinc-800 p-3 rounded-lg focus:outline-none focus:border-sky-500 text-white transition'
-              placeholder='Tu nombre'
-            />
-          </div>
-          <div>
-            <label className='block text-xs font-bold mb-2 uppercase tracking-wider text-sky-500'>
-              Email
-            </label>
-            <input
-              type='email'
-              name='email'
-              required
-              className='w-full bg-black border border-zinc-800 p-3 rounded-lg focus:outline-none focus:border-sky-500 text-white transition'
-              placeholder='tu@email.com'
-            />
-          </div>
-          <div>
-            <label className='block text-xs font-bold mb-2 uppercase tracking-wider text-sky-500'>
-              Mensaje
-            </label>
-            <textarea
-              name='message'
-              required
-              className='w-full bg-black border border-zinc-800 p-3 rounded-lg h-32 focus:outline-none focus:border-sky-500 text-white transition resize-none'
-              placeholder='¿En qué podemos ayudarte?'
-            ></textarea>
-          </div>
-          <button
-            type='submit'
-            className='news-button w-full py-3'
-          >
-            Enviar Formulario
-          </button>
-        </form>
+        <ContactForm />
       </div>
 
       <div className='text-center mt-10'>
-        <Link
-          href='/'
-          className='news-button'
-        >
+        <Link href='/' className='news-button'>
           Volver al Inicio
         </Link>
       </div>
@@ -119,7 +52,11 @@ export default async function Contacto() {
         </h3>
         <div className='grid grid-cols-2 md:grid-cols-4 gap-6'>
           {recommended.map((rec: any) => (
-            <Link key={rec.id} href={rec.slug ? `/${rec.slug}` : "/"} className='news-card group block p-3'>
+            <Link
+              key={rec.id}
+              href={rec.slug ? `/${rec.slug}` : "/"}
+              className='news-card group block p-3'
+            >
               <div className='aspect-square mb-3 overflow-hidden rounded bg-zinc-800'>
                 {rec._embedded?.["wp:featuredmedia"]?.[0]?.source_url && (
                   <img
