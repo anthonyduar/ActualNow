@@ -45,6 +45,11 @@ export default async function Contacto() {
             name='access_key'
             value='74baae1a-d4db-41e1-a29c-8b7e936794de'
           />
+          <input 
+            type='hidden' 
+            name='subject' 
+            value='Mensaje de ActualNow' 
+          />
 
           {/* Honeypot para evitar SPAM (invisible para usuarios) */}
           <input
