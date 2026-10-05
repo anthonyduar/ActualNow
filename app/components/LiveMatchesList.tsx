@@ -3,7 +3,6 @@
 import { useState, useEffect, useMemo, useCallback } from "react";
 
 const LIVE_STATUSES = ["IN_PLAY", "PAUSED", "LIVE", "IN_PLAY_PENALTIES", "EXTRA_TIME"];
-const TOP_LEAGUE_CODES = ["PD", "CL", "PL", "SA", "BL1", "FL1"];
 
 function formatMatchDate(utcDateString: string) {
   try {
@@ -55,19 +54,6 @@ export default function LiveMatchesList({
   const [matches, setMatches] = useState<any[]>(initialMatches || []);
   const [loading, setLoading] = useState(false);
   const [activeFilter, setActiveFilter] = useState<"live" | "upcoming" | "finished" | "all">("live");
-  const [selectedLeague, setSelectedLeague] = useState<string>("top");
-  const [searchQuery, setSearchQuery] = useState<string>("");
-  const [lastUpdated, setLastUpdated] = useState<string>("");
-
-  useEffect(() => {
-    setLastUpdated(
-      new Date().toLocaleTimeString("es-ES", {
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-      })
-    );
-  }, []);
 
   const liveMatches = useMemo(() => {
     return matches.filter((m) => LIVE_STATUSES.includes(m.status));
@@ -93,13 +79,6 @@ export default function LiveMatchesList({
       const data = await res.json();
       if (Array.isArray(data) && data.length > 0) {
         setMatches(data);
-        setLastUpdated(
-          new Date().toLocaleTimeString("es-ES", {
-            hour: "2-digit",
-            minute: "2-digit",
-            second: "2-digit",
-          })
-        );
       }
     } catch (e) {
       console.error("Error al actualizar partidos en directo:", e);
@@ -115,96 +94,33 @@ export default function LiveMatchesList({
     return () => clearInterval(interval);
   }, [refreshMatches]);
 
-  // Lista de competiciones presentes en los datos
-  const competitions = useMemo(() => {
-    const map = new Map<string, { code: string; name: string; emblem?: string; count: number }>();
-    matches.forEach((m) => {
-      const compName = m.competition?.name || "Otras";
-      const existing = map.get(compName);
-      if (existing) {
-        existing.count += 1;
-      } else {
-        map.set(compName, {
-          code: m.competition?.code,
-          name: compName,
-          emblem: m.competition?.emblem,
-          count: 1,
-        });
-      }
-    });
-    return Array.from(map.values());
-  }, [matches]);
-
-  // Filtrado de partidos según estado, liga y búsqueda
+  // Filtrado de partidos según la pestaña activa
   const filteredMatches = useMemo(() => {
-    let result = matches;
-
-    // 1. Filtro por estado
     switch (activeFilter) {
       case "live":
-        result = liveMatches;
-        break;
+        return liveMatches;
       case "upcoming":
-        result = upcomingMatches;
-        break;
+        return upcomingMatches;
       case "finished":
-        result = finishedMatches;
-        break;
+        return finishedMatches;
       case "all":
       default:
-        result = matches;
-        break;
+        return matches;
     }
-
-    // 2. Filtro por liga
-    if (selectedLeague === "top") {
-      result = result.filter((m) => TOP_LEAGUE_CODES.includes(m.competition?.code));
-    } else if (selectedLeague !== "all") {
-      result = result.filter((m) => m.competition?.name === selectedLeague);
-    }
-
-    // 3. Filtro por búsqueda
-    if (searchQuery.trim()) {
-      const q = searchQuery.toLowerCase().trim();
-      result = result.filter((m) => {
-        const home = (m.homeTeam?.name || "").toLowerCase();
-        const away = (m.awayTeam?.name || "").toLowerCase();
-        const comp = (m.competition?.name || "").toLowerCase();
-        return home.includes(q) || away.includes(q) || comp.includes(q);
-      });
-    }
-
-    return result;
-  }, [activeFilter, selectedLeague, searchQuery, matches, liveMatches, upcomingMatches, finishedMatches]);
-
-  // Próximos partidos destacados para mostrar si en vivo está en 0
-  const upcomingHighlights = useMemo(() => {
-    let list = upcomingMatches;
-    if (selectedLeague === "top") {
-      list = list.filter((m) => TOP_LEAGUE_CODES.includes(m.competition?.code));
-    }
-    return list.slice(0, 10);
-  }, [upcomingMatches, selectedLeague]);
+  }, [activeFilter, matches, liveMatches, upcomingMatches, finishedMatches]);
 
   return (
     <div className="w-full">
-      {/* CABECERA SUPERIOR DE ESTADO Y BOTÓN DE ACTUALIZACIÓN */}
+      {/* CABECERA CON TÍTULO Y BOTÓN DE ACTUALIZACIÓN */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 sm:mb-8">
-        <div>
-          <div className="flex items-center gap-3">
-            <span className="relative flex h-3 w-3">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
-            </span>
-            <h2 className="text-xl sm:text-2xl font-bold uppercase tracking-tight text-white">
-              Marcadores y Resultados en Directo
-            </h2>
-          </div>
-          {lastUpdated && (
-            <p className="text-[11px] text-zinc-400 mt-1 pl-6">
-              Sincronizado a las <span className="text-sky-400 font-mono font-medium">{lastUpdated}</span> · Datos oficiales oficiales en tiempo real
-            </p>
-          )}
+        <div className="flex items-center gap-3">
+          <span className="relative flex h-3 w-3">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+          </span>
+          <h2 className="text-xl sm:text-2xl font-bold uppercase tracking-tight text-white">
+            Marcadores y Resultados en Directo
+          </h2>
         </div>
 
         <button
@@ -229,8 +145,8 @@ export default function LiveMatchesList({
         </button>
       </div>
 
-      {/* PESTAÑAS DE FILTRO POR ESTADO (LO PRIMERO QUE SE VE: EN VIVO) */}
-      <div className="flex flex-wrap items-center gap-2 mb-4 pb-2 border-b border-zinc-800">
+      {/* PESTAÑAS DE FILTRO POR ESTADO */}
+      <div className="flex flex-wrap items-center gap-2 mb-6 pb-2 border-b border-zinc-800">
         <button
           onClick={() => setActiveFilter("live")}
           className={`px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all cursor-pointer inline-flex items-center gap-1.5 ${
@@ -279,129 +195,9 @@ export default function LiveMatchesList({
         </button>
       </div>
 
-      {/* BARRA DE BÚSQUEDA Y SELECTOR DE LIGAS */}
-      <div className="flex flex-col md:flex-row gap-3 mb-6 items-stretch md:items-center justify-between">
-        {/* BUSCADOR */}
-        <div className="relative flex-1 max-w-md">
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Buscar equipo o liga (ej: Madrid, Barcelona, City...)"
-            className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-2 pl-9 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-sky-500 transition"
-          />
-          <svg
-            className="w-4 h-4 text-zinc-500 absolute left-3 top-2.5"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-          </svg>
-          {searchQuery && (
-            <button
-              onClick={() => setSearchQuery("")}
-              className="absolute right-3 top-2 text-zinc-500 hover:text-white text-xs"
-            >
-              ✕
-            </button>
-          )}
-        </div>
-
-        {/* SELECTOR DE COMPETICIÓN */}
-        <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none max-w-full">
-          <button
-            onClick={() => setSelectedLeague("top")}
-            className={`px-3 py-1 rounded-lg text-[11px] font-semibold shrink-0 transition cursor-pointer flex items-center gap-1 ${
-              selectedLeague === "top"
-                ? "bg-sky-400/20 text-sky-400 border border-sky-400/40 shadow-sm"
-                : "bg-zinc-900/80 text-zinc-400 hover:text-white border border-zinc-800"
-            }`}
-          >
-            ⭐ Ligas Top
-          </button>
-          <button
-            onClick={() => setSelectedLeague("all")}
-            className={`px-3 py-1 rounded-lg text-[11px] font-semibold shrink-0 transition cursor-pointer ${
-              selectedLeague === "all"
-                ? "bg-sky-400/20 text-sky-400 border border-sky-400/40"
-                : "bg-zinc-900/80 text-zinc-400 hover:text-white border border-zinc-800"
-            }`}
-          >
-            Todas
-          </button>
-          {competitions.map((comp) => (
-            <button
-              key={comp.name}
-              onClick={() => setSelectedLeague(comp.name)}
-              className={`px-3 py-1 rounded-lg text-[11px] font-semibold shrink-0 transition flex items-center gap-1.5 cursor-pointer ${
-                selectedLeague === comp.name
-                  ? "bg-sky-400/20 text-sky-400 border border-sky-400/40"
-                  : "bg-zinc-900/80 text-zinc-400 hover:text-white border border-zinc-800"
-              }`}
-            >
-              {comp.emblem && (
-                <img src={comp.emblem} alt="" className="w-3.5 h-3.5 object-contain" />
-              )}
-              <span>{getLeagueDisplayName(comp.name)}</span>
-              <span className="text-[9px] opacity-60">({comp.count})</span>
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* ESTADO EN VIVO SI HAY 0 PARTIDOS EN DISPUTA AHORA MISMO */}
-      {activeFilter === "live" && liveMatches.length === 0 && (
-        <div className="mb-6 p-4 sm:p-5 rounded-2xl bg-zinc-950 border border-red-500/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <span className="flex h-3 w-3 relative">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
-            </span>
-            <div>
-              <p className="text-sm font-bold text-white uppercase tracking-tight">
-                Estado En Vivo: Sin partidos en juego en este instante
-              </p>
-              <p className="text-xs text-zinc-400 mt-0.5">
-                No hay encuentros disputándose en este segundo. A continuación te mostramos los próximos partidos oficiales en directo de la jornada:
-              </p>
-            </div>
-          </div>
-          <button
-            onClick={() => setActiveFilter("upcoming")}
-            className="text-[11px] font-bold text-sky-400 hover:text-sky-300 underline underline-offset-4 shrink-0 cursor-pointer"
-          >
-            Ver todos los próximos →
-          </button>
-        </div>
-      )}
-
-      {/* LISTADO DE PARTIDOS */}
+      {/* LISTADO DE PARTIDOS (VACÍO SI NO HAY PARTIDOS EN ESE MOMENTO) */}
       <div className="grid gap-3 sm:gap-4 mb-16">
-        {/* Si el filtro es En Vivo y hay 0, mostramos los próximos destacados para que nunca esté vacío */}
-        {activeFilter === "live" && liveMatches.length === 0 && upcomingHighlights.length > 0 ? (
-          upcomingHighlights.map((match: any) => renderMatchCard(match))
-        ) : filteredMatches && filteredMatches.length > 0 ? (
-          filteredMatches.map((match: any) => renderMatchCard(match))
-        ) : (
-          <div className="news-card p-12 text-center">
-            <p className="text-zinc-400 uppercase tracking-widest text-xs sm:text-sm italic">
-              {searchQuery
-                ? `No se encontraron partidos para "${searchQuery}".`
-                : "No se encontraron partidos para este filtro."}
-            </p>
-            <button
-              onClick={() => {
-                setActiveFilter("all");
-                setSelectedLeague("all");
-                setSearchQuery("");
-              }}
-              className="news-button mt-4 text-[10px]"
-            >
-              Ver todos los partidos
-            </button>
-          </div>
-        )}
+        {filteredMatches.map((match: any) => renderMatchCard(match))}
       </div>
     </div>
   );
