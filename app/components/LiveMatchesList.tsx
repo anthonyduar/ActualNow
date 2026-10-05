@@ -53,7 +53,7 @@ export default function LiveMatchesList({
 }) {
   const [matches, setMatches] = useState<any[]>(initialMatches || []);
   const [loading, setLoading] = useState(false);
-  const [activeFilter, setActiveFilter] = useState<"live" | "upcoming" | "finished" | "all">("live");
+  const [activeFilter, setActiveFilter] = useState<"live" | "upcoming" | "finished">("live");
 
   const liveMatches = useMemo(() => {
     return matches.filter((m) => LIVE_STATUSES.includes(m.status));
@@ -103,11 +103,10 @@ export default function LiveMatchesList({
         return upcomingMatches;
       case "finished":
         return finishedMatches;
-      case "all":
       default:
-        return matches;
+        return liveMatches;
     }
-  }, [activeFilter, matches, liveMatches, upcomingMatches, finishedMatches]);
+  }, [activeFilter, liveMatches, upcomingMatches, finishedMatches]);
 
   return (
     <div className="w-full">
@@ -182,20 +181,35 @@ export default function LiveMatchesList({
         >
           Finalizados ({finishedMatches.length})
         </button>
-
-        <button
-          onClick={() => setActiveFilter("all")}
-          className={`px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${
-            activeFilter === "all"
-              ? "bg-sky-500 text-white shadow-lg shadow-sky-950/40"
-              : "bg-zinc-900 text-zinc-400 hover:text-white border border-zinc-800"
-          }`}
-        >
-          Todos ({matches.length})
-        </button>
       </div>
 
-      {/* LISTADO DE PARTIDOS (VACÍO SI NO HAY PARTIDOS EN ESE MOMENTO) */}
+      {/* CONTENEDOR DE EN VIVO CUANDO NO HAY PARTIDOS EN ESTE MOMENTO */}
+      {activeFilter === "live" && liveMatches.length === 0 && (
+        <div className="mb-6 p-4 sm:p-5 rounded-2xl bg-zinc-950 border border-red-500/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <span className="flex h-3 w-3 relative">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+            </span>
+            <div>
+              <p className="text-sm font-bold text-white uppercase tracking-tight">
+                Sin partidos en vivo en este momento
+              </p>
+              <p className="text-xs text-zinc-400 mt-0.5">
+                No hay encuentros disputándose en este instante. Consulta los próximos partidos en directo.
+              </p>
+            </div>
+          </div>
+          <button
+            onClick={() => setActiveFilter("upcoming")}
+            className="text-[11px] font-bold text-sky-400 hover:text-sky-300 underline underline-offset-4 shrink-0 cursor-pointer"
+          >
+            Ver los próximos →
+          </button>
+        </div>
+      )}
+
+      {/* LISTADO DE PARTIDOS */}
       <div className="grid gap-3 sm:gap-4 mb-16">
         {filteredMatches.map((match: any) => renderMatchCard(match))}
       </div>
