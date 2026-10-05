@@ -158,7 +158,7 @@ export default function Home() {
 
                     {/* Categoría flotando arriba a la izquierda */}
                     {category && (
-                      <div className='absolute left-5 top-5 z-20'>
+                      <div className='hidden sm:block absolute left-5 top-5 z-20'>
                         <span className='rounded-lg border border-sky-500/20 bg-[#081923]/90 px-3 py-1.5 text-[10px] font-black uppercase tracking-widest text-sky-400 shadow-lg backdrop-blur-sm pointer-events-none'>
                           {category.name}
                         </span>
