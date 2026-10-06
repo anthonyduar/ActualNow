@@ -19,7 +19,7 @@ export default function HomeHeader({ tickerPosts }: { tickerPosts: any[] }) {
           aria-label='ActualNow Inicio'
         >
           <img
-            src='/isotipo.webp'
+            src='/isotipo2.webp'
             alt='ActualNow'
             className='h-6 sm:h-7 w-auto object-contain transition group-hover:opacity-85'
           />
