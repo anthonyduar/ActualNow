@@ -110,22 +110,50 @@ export default function LiveMatchesList({
 
   return (
     <div className="w-full">
-      {/* CABECERA CON TÍTULO Y BOTÓN DE ACTUALIZACIÓN */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 sm:mb-8">
-        <div className="flex items-center gap-3">
-          <span className="relative flex h-3 w-3">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
-          </span>
-          <h2 className="text-xl sm:text-2xl font-bold uppercase tracking-tight text-white">
-            Marcadores y Resultados en Directo
-          </h2>
+      {/* FILTROS POR ESTADO Y BOTÓN DE ACTUALIZACIÓN */}
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-6">
+        <div className="flex flex-wrap items-center gap-2">
+          <button
+            onClick={() => setActiveFilter("live")}
+            className={`px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all cursor-pointer inline-flex items-center gap-1.5 ${
+              activeFilter === "live"
+                ? "bg-red-500/20 text-red-400 border border-red-500/60 shadow-lg shadow-red-950/50 font-black"
+                : liveMatches.length > 0
+                ? "bg-red-950/40 text-red-400 hover:bg-red-900/60 border border-red-800/40 animate-pulse"
+                : "bg-zinc-900 text-zinc-400 hover:text-white border border-zinc-800"
+            }`}
+          >
+            <span className={`w-2 h-2 rounded-full ${liveMatches.length > 0 ? "bg-red-500 animate-ping" : "bg-red-500"}`} />
+            En Vivo ({liveMatches.length})
+          </button>
+
+          <button
+            onClick={() => setActiveFilter("upcoming")}
+            className={`px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${
+              activeFilter === "upcoming"
+                ? "bg-sky-500 text-white shadow-lg shadow-sky-950/40"
+                : "bg-zinc-900 text-zinc-400 hover:text-white border border-zinc-800"
+            }`}
+          >
+            Próximos ({upcomingMatches.length})
+          </button>
+
+          <button
+            onClick={() => setActiveFilter("finished")}
+            className={`px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${
+              activeFilter === "finished"
+                ? "bg-sky-500 text-white shadow-lg shadow-sky-950/40"
+                : "bg-zinc-900 text-zinc-400 hover:text-white border border-zinc-800"
+            }`}
+          >
+            Finalizados ({finishedMatches.length})
+          </button>
         </div>
 
         <button
           onClick={() => refreshMatches(true)}
           disabled={loading}
-          className="news-button text-xs py-2.5 px-5 disabled:opacity-50 w-full sm:w-auto inline-flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-sky-950/20 active:scale-95 transition"
+          className="news-button text-xs py-2 px-4 disabled:opacity-50 w-full sm:w-auto inline-flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-sky-950/20 active:scale-95 transition"
         >
           <svg
             className={`w-3.5 h-3.5 ${loading ? "animate-spin text-sky-400" : ""}`}
@@ -141,45 +169,6 @@ export default function LiveMatchesList({
             />
           </svg>
           {loading ? "ACTUALIZANDO..." : "ACTUALIZAR RESULTADOS"}
-        </button>
-      </div>
-
-      {/* PESTAÑAS DE FILTRO POR ESTADO */}
-      <div className="flex flex-wrap items-center gap-2 mb-6 pb-2 border-b border-zinc-800">
-        <button
-          onClick={() => setActiveFilter("live")}
-          className={`px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all cursor-pointer inline-flex items-center gap-1.5 ${
-            activeFilter === "live"
-              ? "bg-red-500/20 text-red-400 border border-red-500/60 shadow-lg shadow-red-950/50 font-black"
-              : liveMatches.length > 0
-              ? "bg-red-950/40 text-red-400 hover:bg-red-900/60 border border-red-800/40 animate-pulse"
-              : "bg-zinc-900 text-zinc-400 hover:text-white border border-zinc-800"
-          }`}
-        >
-          <span className={`w-2 h-2 rounded-full ${liveMatches.length > 0 ? "bg-red-500 animate-ping" : "bg-red-500"}`} />
-          En Vivo ({liveMatches.length})
-        </button>
-
-        <button
-          onClick={() => setActiveFilter("upcoming")}
-          className={`px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${
-            activeFilter === "upcoming"
-              ? "bg-sky-500 text-white shadow-lg shadow-sky-950/40"
-              : "bg-zinc-900 text-zinc-400 hover:text-white border border-zinc-800"
-          }`}
-        >
-          Próximos ({upcomingMatches.length})
-        </button>
-
-        <button
-          onClick={() => setActiveFilter("finished")}
-          className={`px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${
-            activeFilter === "finished"
-              ? "bg-sky-500 text-white shadow-lg shadow-sky-950/40"
-              : "bg-zinc-900 text-zinc-400 hover:text-white border border-zinc-800"
-          }`}
-        >
-          Finalizados ({finishedMatches.length})
         </button>
       </div>
 
