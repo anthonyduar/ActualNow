@@ -180,7 +180,7 @@ export default async function PostPage({
       </div>
 
       {/* FOOTER */}
-      <footer className='max-w-4xl mx-auto w-full px-3 sm:px-6 pb-12 mt-2'>
+      <footer data-site-chrome className='max-w-4xl mx-auto w-full px-3 sm:px-6 pb-12 mt-2'>
         <div className='text-center mt-8 mb-8'>
           <Link
             href='/'

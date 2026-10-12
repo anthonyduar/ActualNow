@@ -35,6 +35,7 @@ export default function CookieBanner() {
 
   return (
     <aside
+      data-site-chrome
       aria-label="Aviso de cookies"
       className="fixed inset-x-4 bottom-4 z-[9999] mx-auto flex max-w-xl flex-col gap-4 rounded-2xl border border-sky-400/30 bg-zinc-950/90 p-5 text-white shadow-2xl shadow-black/50 backdrop-blur-md sm:inset-x-auto sm:right-6 sm:mx-0 sm:p-6"
     >

@@ -10,7 +10,7 @@ export default function HomeHeader({ tickerPosts }: { tickerPosts: any[] }) {
   const isHome = pathname === "/";
 
   return (
-    <header className='max-w-6xl mx-auto w-full px-3 sm:px-6 pt-3 sm:pt-5 pb-0'>
+    <header data-site-chrome className='max-w-6xl mx-auto w-full px-3 sm:px-6 pt-3 sm:pt-5 pb-0'>
       {/* Barra superior: logo pegado a la izquierda y fecha/hora a la derecha, en TODAS las páginas */}
       <div className='flex items-center justify-between mb-2'>
         <Link

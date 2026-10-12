@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar";
 import { fetchWpNoticias } from "@/lib/wordpress";
 import HomeHeader from "./components/HomeHeader";
 import CookieBanner from "./components/CookieBanner";
+import EmbedFrame from "./components/EmbedFrame";
 
 export const metadata = {
   title: "ActualNow | Noticias Deportivas al Instante",
@@ -63,6 +64,7 @@ export default async function RootLayout({
         ></script>
       </head>
       <body className='bg-black text-white min-h-screen flex flex-col'>
+        <EmbedFrame />
         <HomeHeader tickerPosts={tickerPosts} />
 
         <div className='flex min-h-0 flex-1 flex-col'>
@@ -71,7 +73,7 @@ export default async function RootLayout({
           <main className='flex-grow bg-black'>{children}</main>
 
           {/* Footer principal con elementos centrados */}
-          <footer className='mt-16 block w-full border-t border-sky-400/30 bg-black font-sans text-white'>
+          <footer data-site-chrome className='mt-16 block w-full border-t border-sky-400/30 bg-black font-sans text-white'>
             <div className='mx-auto grid max-w-6xl grid-cols-1 gap-10 px-6 py-10 sm:grid-cols-3 sm:gap-8 lg:gap-12 items-center text-center'>
               <div className='flex flex-col items-center text-center'>
                 <Link href='/'>

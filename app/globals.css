@@ -33,6 +33,21 @@ body {
   color: var(--foreground);
 }
 
+html[data-embed-mode="true"],
+html[data-embed-mode="true"] body {
+  overflow-x: hidden;
+  scrollbar-width: none;
+}
+
+html[data-embed-mode="true"]::-webkit-scrollbar,
+html[data-embed-mode="true"] body::-webkit-scrollbar {
+  display: none;
+}
+
+html[data-embed-mode="true"] [data-site-chrome] {
+  display: none !important;
+}
+
 @layer components {
   .news-surface {
     @apply overflow-hidden rounded-2xl border border-sky-400/30 bg-zinc-950/90 shadow-2xl shadow-black/50 backdrop-blur-md;

@@ -54,6 +54,7 @@ export default function Navbar({ categorias }: { categorias: Category[] }) {
 
   return (
     <div
+      data-site-chrome
       className={`sticky z-40 mx-auto w-full max-w-6xl px-3 sm:px-6 transition-all ${
         isHome
           ? "top-2 sm:top-3 mt-2 sm:mt-3 mb-3 sm:mb-4"
