@@ -6,15 +6,25 @@ export default function CookieBanner() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const accepted = localStorage.getItem("cookies_accepted");
-    if (!accepted) {
+    try {
+      const accepted = window.localStorage.getItem("cookies_accepted");
+      if (!accepted) {
+        setVisible(true);
+      }
+    } catch (error) {
+      console.warn("No se pudo consultar la aceptación de cookies:", error);
       setVisible(true);
     }
   }, []);
 
   const handleAccept = () => {
-    localStorage.setItem("cookies_accepted", "true");
-    setVisible(false);
+    try {
+      window.localStorage.setItem("cookies_accepted", "true");
+    } catch (error) {
+      console.warn("No se pudo guardar la aceptación de cookies:", error);
+    } finally {
+      setVisible(false);
+    }
   };
 
   const handleClose = () => {
